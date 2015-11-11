@@ -443,10 +443,10 @@ textures:
 sources:
     osm:
         type: TopoJSONTiles
-        #url: '//vector.dev.mapzen.com/osm/all/{z}/{x}/{y}.topojson'
+        url: '//vector.dev.mapzen.com/osm/all/{z}/{x}/{y}.topojson'
         #url:  '//mapzen-tiles-prod-us-east-20151007.s3.amazonaws.com/osm/all/{z}/{x}/{y}.topojson'
         #url:  //localhost:8080//osm/all/{z}/{x}/{y}.topojson
-        url:  //vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson?api_key=vector-tiles-HqUVidw
+        #url:  //vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson?api_key=vector-tiles-HqUVidw
 
 camera:
     type: isometric

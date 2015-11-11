@@ -1,10 +1,11 @@
-# skin-and-bones-demo
+# Tangram Traditional Style
 
-A demo showing contextual highway line and landuse polygon styles using the [Tangram](http://github.com/tangrams/tangram) library. Modern take on Mike Migurski's standard [High Road](https://github.com/migurski/HighRoad).
+Give OpenStreetMap data a traditional look using the [Tangram](http://github.com/tangrams/tangram) graphics library and Mapzen's versatile [vector tiles](https://mapzen.com/projects/vector-tiles/). Please use this open source scene file in your own projects!
 
-Live demo: http://nvkelso.github.io/tangram-skin-and-bones
+Live demo: http://tangrams.github.io/traditional-style
 
-![tangram skin and bones demo](https://cloud.githubusercontent.com/assets/459970/5781837/ece89c72-9d83-11e4-93e2-757c464c1278.png)
+![tangram traditional style](https://cloud.githubusercontent.com/assets/853051/11080646/c7c6fd26-87ca-11e5-8a04-7316d8721fc4.png)
+
 
 ### To run locally:
 
