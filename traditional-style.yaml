@@ -9,6 +9,7 @@ labels-global:
     - &text_visible_continent         true
     - &text_visible_admin             true
     - &text_visible_populated_places  true
+    - &icon_visible_populated_places  false
     - &text_visible_neighbourhoods    true
     - &text_visible_neighbourhoods_e  true
     - &text_visible_water_labels      true
@@ -443,10 +444,10 @@ textures:
 sources:
     osm:
         type: TopoJSONTiles
-        url: '//vector.dev.mapzen.com/osm/all/{z}/{x}/{y}.topojson'
+        #url: '//vector.dev.mapzen.com/osm/all/{z}/{x}/{y}.topojson'
         #url:  '//mapzen-tiles-prod-us-east-20151007.s3.amazonaws.com/osm/all/{z}/{x}/{y}.topojson'
         #url:  //localhost:8080//osm/all/{z}/{x}/{y}.topojson
-        #url:  //vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson?api_key=vector-tiles-HqUVidw
+        url:  //vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson?api_key=vector-tiles-HqUVidw
 
 camera:
     type: isometric
@@ -2331,6 +2332,7 @@ layers:
                     icons:
                         size: 7px
                         interactive: true
+                        visible: *icon_visible_populated_places
                         sprite: townspot-xs-rev
 
             populated-places-natural-earth-z3:
@@ -2347,6 +2349,7 @@ layers:
                     icons:
                         size: 7px
                         interactive: true
+                        visible: *icon_visible_populated_places
                         sprite: townspot-xs-rev
 
             populated-places-natural-earth-z4:
@@ -2365,6 +2368,7 @@ layers:
                         icons:
                             size: 9px
                             interactive: true
+                            visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
 
                 z4places-2:
@@ -2381,6 +2385,7 @@ layers:
                         icons:
                             size: 9px
                             interactive: true
+                            visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
 
             populated-places-natural-earth-z5:
@@ -2398,6 +2403,7 @@ layers:
                         icons:
                             size: 13px
                             interactive: true
+                            visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                     capital:
                         filter: { capital: yes }
@@ -2420,6 +2426,7 @@ layers:
                         icons:
                             size: 9px
                             interactive: true
+                            visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
                         filter: { capital: yes }
@@ -2451,6 +2458,7 @@ layers:
                         icons:
                             size: 13px
                             interactive: true
+                            visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                     capital:
                         filter: { capital: yes }
@@ -2473,6 +2481,7 @@ layers:
                         icons:
                             size: 11px
                             interactive: true
+                            visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
                         filter: { capital: yes }
@@ -2501,6 +2510,7 @@ layers:
                         icons:
                             size: 9px
                             interactive: true
+                            visible: *icon_visible_populated_places
                             sprite: townspot-xs-rev
                     capital:
                         filter: { capital: yes }
@@ -2509,7 +2519,7 @@ layers:
                                 font:
                                     size: 12px
                             icons:
-                                    sprite: capital-s
+                                sprite: capital-s
                     state_capital:
                         filter: { state_capital: yes }
                         draw:
@@ -2532,6 +2542,7 @@ layers:
                         icons:
                             size: 14px
                             interactive: true
+                            visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                     capital:
                         filter: { capital: yes }
@@ -2554,6 +2565,7 @@ layers:
                         icons:
                             size: 11px
                             interactive: true
+                            visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
                         filter: { capital: yes }
@@ -2582,6 +2594,7 @@ layers:
                         icons:
                             size: 9px
                             interactive: true
+                            visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
                         filter: { capital: yes }
@@ -2590,7 +2603,7 @@ layers:
                                 font:
                                     size: 14px
                             icons:
-                                    sprite: capital-s
+                                sprite: capital-s
                     state_capital:
                         filter: { state_capital: yes }
                         draw:
@@ -2622,6 +2635,7 @@ layers:
                         icons:
                             size: 14px
                             interactive: true
+                            visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                     capital:
                         filter: { capital: yes }
@@ -2645,6 +2659,7 @@ layers:
                         icons:
                             size: 11px
                             interactive: true
+                            visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
                         filter: { capital: yes }
@@ -2676,6 +2691,7 @@ layers:
                         icons:
                             size: 9x
                             interactive: true
+                            visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
                         filter: { capital: yes }
@@ -2684,7 +2700,7 @@ layers:
                                 font:
                                     size: 14px
                             icons:
-                                    sprite: capital-m
+                                sprite: capital-m
                     state_capital:
                         filter: { state_capital: yes }
                         draw:
@@ -2706,6 +2722,7 @@ layers:
                         icons:
                             size: 8x
                             interactive: true
+                            visible: *icon_visible_populated_places
                             sprite: townspot-xs-rev
                     capital:
                         filter: { capital: yes }
@@ -2714,7 +2731,7 @@ layers:
                                 font:
                                     size: 12px
                             icons:
-                                    sprite: capital-s
+                                sprite: capital-s
                     state_capital:
                         filter: { state_capital: yes }
                         draw:
@@ -2738,6 +2755,7 @@ layers:
                         icons:
                             size: 8x
                             interactive: true
+                            visible: *icon_visible_populated_places
                             sprite: townspot-xs-rev
                     capital:
                         filter: { capital: yes }
@@ -2746,7 +2764,7 @@ layers:
                                 font:
                                     size: 12px
                             icons:
-                                    sprite: capital-s
+                                sprite: capital-s
                     state_capital:
                         filter: { state_capital: yes }
                         draw:
@@ -2769,6 +2787,7 @@ layers:
                         icons:
                             size: 14px
                             interactive: true
+                            visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                     capital:
                         filter: { capital: yes }
@@ -2791,6 +2810,7 @@ layers:
                         icons:
                             size: 11px
                             interactive: true
+                            visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
                         filter: { capital: yes }
@@ -2819,6 +2839,7 @@ layers:
                         icons:
                             size: 9px
                             interactive: true
+                            visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
                         filter: { capital: yes }
@@ -2827,7 +2848,7 @@ layers:
                                 font:
                                     size: 14px
                             icons:
-                                    sprite: capital-s
+                                sprite: capital-s
                     state_capital:
                         filter: { state_capital: yes }
                         draw:
@@ -2859,6 +2880,7 @@ layers:
                         icons:
                             size: 14px
                             interactive: true
+                            visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                     capital:
                         filter: { capital: yes }
@@ -2883,6 +2905,7 @@ layers:
                         icons:
                             size: 11px
                             interactive: true
+                            visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
                         filter: { capital: yes }
@@ -2913,6 +2936,7 @@ layers:
                         icons:
                             size: 9x
                             interactive: true
+                            visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
                         filter: { capital: yes }
@@ -2921,7 +2945,7 @@ layers:
                                 font:
                                     size: 15px
                             icons:
-                                    sprite: capital-m
+                                sprite: capital-m
                     state_capital:
                         filter: { state_capital: yes }
                         draw:
@@ -2943,6 +2967,7 @@ layers:
                         icons:
                             size: 8x
                             interactive: true
+                            visible: *icon_visible_populated_places
                             sprite: townspot-xs-rev
                     capital:
                         filter: { capital: yes }
@@ -2951,7 +2976,7 @@ layers:
                                 font:
                                     size: 13px
                             icons:
-                                    sprite: capital-s
+                                sprite: capital-s
                     state_capital:
                         filter: { state_capital: yes }
                         draw:
@@ -2976,6 +3001,7 @@ layers:
                         icons:
                             size: 8x
                             interactive: true
+                            visible: *icon_visible_populated_places
                             sprite: townspot-xs-rev
                     capital:
                         filter: { capital: yes }
@@ -2984,7 +3010,7 @@ layers:
                                 font:
                                     size: 13px
                             icons:
-                                    sprite: capital-s
+                                sprite: capital-s
                     state_capital:
                         filter: { state_capital: yes }
                         draw:
@@ -3007,6 +3033,7 @@ layers:
                         icons:
                             size: 14px
                             interactive: true
+                            visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                     capital:
                         filter: { capital: yes }
@@ -3029,6 +3056,7 @@ layers:
                         icons:
                             size: 11px
                             interactive: true
+                            visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
                         filter: { capital: yes }
@@ -3057,6 +3085,7 @@ layers:
                         icons:
                             size: 9px
                             interactive: true
+                            visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
                         filter: { capital: yes }
@@ -3097,6 +3126,7 @@ layers:
                         icons:
                             size: 14px
                             interactive: true
+                            visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
 
                 z10places-2:
@@ -3113,6 +3143,7 @@ layers:
                         icons:
                             size: 11px
                             interactive: true
+                            visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
 
                 z10places-3:
@@ -3129,6 +3160,7 @@ layers:
                         icons:
                             size: 9x
                             interactive: true
+                            visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
 
                 z10places-4:
@@ -3145,6 +3177,7 @@ layers:
                         icons:
                             size: 8x
                             interactive: true
+                            visible: *icon_visible_populated_places
                             sprite: townspot-xs-rev
 
             populated-places-natural-earth-z10-backfill:
@@ -3162,6 +3195,7 @@ layers:
                         icons:
                             size: 14px
                             interactive: true
+                            visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                     capital:
                         filter: { capital: yes }
@@ -3184,6 +3218,7 @@ layers:
                         icons:
                             size: 11px
                             interactive: true
+                            visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
                         filter: { capital: yes }
@@ -3212,6 +3247,7 @@ layers:
                         icons:
                             size: 9px
                             interactive: true
+                            visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
                         filter: { capital: yes }
@@ -3243,7 +3279,6 @@ layers:
                     filter:
                         any:
                             - { population: { min: 1000000 } }
-                        
                     draw:
                         text:
                             priority: 1
@@ -3263,7 +3298,6 @@ layers:
                             visible: *text_visible_populated_places
                             font:
                                 size: 14px
-
 
                 z11places-3:
                     filter:
@@ -3292,6 +3326,7 @@ layers:
                         icons:
                             size: 14px
                             interactive: true
+                            visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                     capital:
                         filter: { capital: yes }
@@ -3314,6 +3349,7 @@ layers:
                         icons:
                             size: 11px
                             interactive: true
+                            visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
                         filter: { capital: yes }
@@ -3342,6 +3378,7 @@ layers:
                         icons:
                             size: 9px
                             interactive: true
+                            visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
                         filter: { capital: yes }
@@ -3421,6 +3458,7 @@ layers:
                         icons:
                             size: 14px
                             interactive: true
+                            visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                     capital:
                         filter: { capital: yes }
@@ -3443,6 +3481,7 @@ layers:
                         icons:
                             size: 11px
                             interactive: true
+                            visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
                         filter: { capital: yes }
@@ -3471,6 +3510,7 @@ layers:
                         icons:
                             size: 9px
                             interactive: true
+                            visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                     capital:
                         filter: { capital: yes }
