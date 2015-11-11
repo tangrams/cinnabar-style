@@ -9,7 +9,7 @@ labels-global:
     - &text_visible_continent         true
     - &text_visible_admin             true
     - &text_visible_populated_places  true
-    - &icon_visible_populated_places  false
+    - &icon_visible_populated_places  true
     - &text_visible_neighbourhoods    true
     - &text_visible_neighbourhoods_e  true
     - &text_visible_water_labels      true
