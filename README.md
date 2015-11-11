@@ -33,7 +33,7 @@ The Tangram scene (style) file [included in this repo](traditional-style-some-la
 
 1. Reference the [index-demo.html](index-demo.html) file in this repo for how to configure Leaflet with Tangram and the [Mapzen Traditional style scene file](traditional-style-some-labels.yaml). 
 2. Looking for a more sophisticated implementation that includes basic search? The main [index.html](index.html) file has a more real world example.
-3. Update you're copy of the scene file on [line 450](https://github.com/tangrams/traditional-style-some-labels/blob/gh-pages/traditional-style-some-labels.yaml#L450) to reference the API key you created in Step 3 in the Sign Up section above. 
+3. Update you're copy of the scene file on [line 450](https://github.com/tangrams/traditional-style/blob/gh-pages/traditional-style.yaml#L450) to reference the API key you created in Step 3 in the **Sign up** section above. 
 
 ```
 url:  //vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson?api_key=vector-tiles-{your-api-key-here}
@@ -52,4 +52,4 @@ If that doesn't work, try:
 
     python -m http.server 8000
     
-Then navigate to: [http://localhost:8000](http://localhost:8000)
+Then navigate to: [http://localhost:8000](http://localhost:8000), which loads the [index.html](index.html) file.
