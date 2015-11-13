@@ -12,7 +12,7 @@ Mapzen offers the Cinnabar style in three flavors:
 
 1. **Default** (this repo) - Full set of labels, including high contrast icons highlighting OpenStreetMap business listing data.
 2. **[Some labels](https://github.com/tangrams/cinnabar-style-some-labels)** - Streets, cities, and water bodies are labeled and some big parks are named only (no icons). No business labels. Good for data visualization overlays that need a to provide some location context.
-3. **[No labels](https://github.com/tangrams/cinnabar-style-nolabels)** - Just the lines and polygons, please. 
+3. **[No labels](https://github.com/tangrams/cinnabar-style-no-labels)** - Just the lines and polygons, please. 
 
 **Looking for a different style?** We offer a range of styles including [Refill](https://github.com/tangrams/refill) (high contrast black & white cartography) and [Zinc](https://github.com/tangrams/zinc-style) (soft gray cartography). 
 

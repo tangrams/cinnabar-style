@@ -1,8 +1,12 @@
-# This style is an homage to Michal Migurski's High Road demo:
-# https://github.com/migurski/HighRoad
-# It uses stops to set line and outline widths at various zoom levels,
-# and the sort_key property to arrange bridges, overpasses, and tunnels
-# by depth.
+# Cinnabar is a classic look and should be your go-to for general mapping applications. 
+# Give OpenStreetMap data a refined basemap skin using the Tangram graphics library and 
+# Mapzen's versatile Vector Tiles.
+#
+# This style is a High Road influenced evolution of the Traditional style Stamen created 
+# for Mapzen's Open Android app in 2014. Please use and adapt the open source scene file 
+# in your own projects!
+#
+#  https://github.com/tangrams/cinnabar-style
 #
 
 labels-global:
@@ -39,7 +43,7 @@ labels-global:
     - &text_visible_path              true
     - &text_visible_steps             true
 
-traditional-colors:
+cinnabar-colors:
     cameras:
         - &camera_settings            { type: isometric, axis: [0, .1], vanishing_point: [0, -500] }
 
