@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My Tangram Traditional Style Map</title>
+  <title>My Tangram Cinnabar Style Map</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.0-beta.2/leaflet.css" />
   <style>
   #map {
@@ -22,7 +22,7 @@
     <script>
       var map = L.map('map');
       var layer = Tangram.leafletLayer({
-        scene: 'https://raw.githubusercontent.com/tangrams/traditional-style/gh-pages/traditional-style.yaml',
+        scene: 'https://raw.githubusercontent.com/tangrams/cinnabar-style/gh-pages/cinnabar-style.yaml',
         attribution: '<a href="https://mapzen.com/tangram" target="_blank">Tangram</a> | <a href="http://www.openstreetmap.org/about" target="_blank">&copy; OSM contributors | <a href="https://mapzen.com/" target="_blank">Mapzen</a>',
       });
       layer.addTo(map);
