@@ -450,9 +450,11 @@ textures:
 
 sources:
     osm:
-        type: TopoJSONTiles
+        type: TopoJSON
         #url:  //localhost:8080//osm/all/{z}/{x}/{y}.topojson
-        url:  //vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson?api_key=vector-tiles-h6AbVZA
+        url:  https://vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson?api_key=vector-tiles-h6AbVZA
+        # type: MVT
+        # url:  http://vector.mapzen.com/osm/all/{z}/{x}/{y}.mvt
 
 camera:
     type: isometric
@@ -2097,7 +2099,7 @@ layers:
         filter: 
             all:
                 - { $zoom: { min: 20 }, kind: address }
-                - { $zoom: { min: 20 }, [ kind: true, addr_housenumber: true, name: false ] }
+                - { $zoom: { min: 20 }, kind: true, addr_housenumber: true, name: false }
         draw:
             text:
                 interactive: true
