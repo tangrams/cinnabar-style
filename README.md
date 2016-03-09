@@ -17,14 +17,14 @@ Mapzen offers the Cinnabar style in three flavors:
 **Looking for a different style?** We offer a range of styles including [Refill](https://github.com/tangrams/refill) (high contrast black & white cartography) and [Zinc](https://github.com/tangrams/zinc-style) (soft gray cartography). 
 
 
-**Live Cinnabar demo:** http://tangrams.github.io/cinnabar-style-some-labels
+**Live Cinnabar demo:** http://tangrams.github.io/cinnabar-style
 
 ![tangram cinnabar style](https://cloud.githubusercontent.com/assets/853051/11084429/f615a860-87ef-11e5-8ca9-6c46cec3534b.png)
 
 
 ## Developer resources
 
-**So how do you actually use this stuff?** Tangram styles are called "scenes" and are written in YAML. The scene file (e.g.: [cinnabar-style-some-labels.yaml](https://github.com/tangrams/cinnabar-style-some-labels/blob/gh-pages/cinnabar-style-some-labels.yaml)) requires a vector tile source. To use Mapzen's vector tile service you must first obtain a free developer API key and update your scene file with that key. 
+**So how do you actually use this stuff?** Tangram styles are called "scenes" and are written in YAML. The scene file (e.g.: [cinnabar-style.yaml](https://github.com/tangrams/cinnabar-style/blob/gh-pages/cinnabar-style.yaml)) requires a vector tile source. To use Mapzen's vector tile service you must first obtain a free developer API key and update your scene file with that key. 
 
 ### Sign up for a Mapzen Vector Tiles API key
 
@@ -39,9 +39,9 @@ Mapzen offers the Cinnabar style in three flavors:
 
 Using Tangram and Mapzen's Vector tiles inside the popular [Leaflet](http://leafletjs.com) mapping framework is easy. We'll make it even easier soon to do this via a Leaflet [provider](https://github.com/leaflet-extras/leaflet-providers), but in the meantime...
 
-1. Update your copy of the scene file on [line 453](https://github.com/tangrams/cinnabar-style-some-labels/blob/gh-pages/cinnabar-style-some-labels.yaml#L453) to reference the API key you created in Step 3 in the **Sign up** section above. 
+1. Update your copy of the scene file on [line 453](https://github.com/tangrams/cinnabar-style/blob/gh-pages/cinnabar-style.yaml#L453) to reference the API key you created in Step 3 in the **Sign up** section above. 
 `url:  //vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson?api_key=vector-tiles-{your-api-key-here}`
-2. Reference the [index-demo.html](index-demo.html) file in any of the style repos for how to configure Leaflet with Tangram and the scene file (e.g.: [Cinnabar](http://github.com/tangrams/cinnabar-style-some-labels)). 
+2. Reference the [index-demo.html](index-demo.html) file in any of the style repos for how to configure Leaflet with Tangram and the scene file (e.g.: [Cinnabar](http://github.com/tangrams/cinnabar-style)). 
 3. Looking for a more sophisticated implementation that includes basic search? The main [index.html](index.html) file has a more real world example.
 4. Need help testing your map locally? See the README in each repo.
 5. Wondering where to host your map? Make a public repo on Github (or fork ours!) and enjoy their [GitHub Pages](https://pages.github.com) to github.io magic dance.
