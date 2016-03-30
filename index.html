@@ -30,7 +30,7 @@
 
 
     .label {
-        /*width: 200px;*/
+        width: auto;
         /*margin-left: -100px;*/
         position: absolute;
         z-index: 500;
@@ -39,8 +39,16 @@
         background: #333;
         opacity: 0.9;
         padding: 2px;
+        visibility: hidden;
         /*text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
         /*word-wrap: break-word;*/
+    }
+    .label a {
+        color: white;
+    }
+
+    .label a:hover {
+        color: lightblue;
     }
 
     .labelInner {
@@ -58,42 +66,43 @@
 
     .labelLine:hover {
         border: 2px solid gold;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        cursor: default;
     }
 
     </style>
   </head>
 
   <body>
+    <div class="label" id="popup"></div>
     <div id="map"></div>
 
     <!-- 3rd party libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.0-beta.2/leaflet.js"></script>
     <!-- bog-standard leaflet URL hash -->
     <script src="lib/leaflet-hash.js"></script>
-    <!-- A lightweight graphical user interface for changing variables in JavaScript.  -->
-    <script src="lib/dat.gui.min.js"></script>
-    <!-- End of 3rd party libraries -->
+
+    <!-- Keymaster handles keyboard input -->
+    <script src="lib/keymaster.js"></script>
 
     <!-- Main tangram library -->
     <script src="https://mapzen.com/tangram/0.6/tangram.min.js"></script>
-
-	<!-- Keymaster handles keyboard input -->
-    <script src="lib/keymaster.js"></script>
 
     <!-- Demo module -->
     <script src="main.js"></script>
 
     <!-- Adding a script block to post message to the parent container (think iframed demos) -->
     <script type="text/javascript">
-      window.addEventListener("hashchange",function(){
-      	parent.postMessage(window.location.hash, "*")
-      	// Allow user to edit current view in OSM
-		//window.layer.attribution: '<a href="https://mapzen.com/tangram" target="_blank">Tangram</a> | &copy; OSM contributors | <a href="https://mapzen.com/" target="_blank">Mapzen</a> | <a href="https://mapzen.com/" target="_blank">Edit in OSM</a>'
-      });
+      window.addEventListener("hashchange",function(){parent.postMessage(window.location.hash, "*")});
     </script>
 
     <!-- Mapzen map UI -->
-    <script src='//s3.amazonaws.com/assets-staging.mapzen.com/ui/mapzen-ui.min.js'></script>
+    <script src='https://mapzen.com/common/ui/mapzen-ui.min.js'></script>
     <script>
       MPZN.bug({
       name: 'Tangram',
@@ -102,6 +111,16 @@
       repo: 'https://github.com/tangrams/cinnabar-style/'
     });
     </script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-47035811-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+
 
   </body>
 </html>
