@@ -11,48 +11,6 @@
 #
 
 labels-global:
-    # - &text_visible_continent         true
-    # - &text_visible_admin             true
-    # - &text_visible_populated_places  true
-    # - &icon_visible_populated_places  true
-    # - &text_visible_neighbourhoods    true
-    # - &text_visible_neighbourhoods_e  true
-    # - &text_visible_building          true
-    # - &text_visible_address           true
-    # - &text_visible_water_labels      true
-    # - &label_visible_landuse_green    true
-    # - &icon_visible_landuse_green     false
-    # - &text_visible_landuse_green     true
-    # - &label_visible_poi_landuse      true
-    # - &icon_visible_poi_landuse       false
-    # - &text_visible_poi_landuse       false
-    # - &text_visible_landuse_generic   false
-    # - &label_visible_poi_landuse_e    true
-    # - &icon_visible_poi_landuse_e     false
-    # - &text_visible_poi_landuse_e     true
-    # - &label_visible_station          false
-    # - &icon_visible_station           false
-    # - &text_visible_station           false
-    # - &text_visible_highway           true
-    # - &text_visible_highway_e         false
-    # - &text_visible_trunk_primary     true
-    # - &text_visible_trunk_primary_e2  false
-    # - &text_visible_trunk_primary_e   false
-    # - &text_visible_secondary         true
-    # - &text_visible_secondary_e       false
-    # - &text_visible_tertiary          true
-    # - &text_visible_tertiary_e        false
-    # - &text_visible_minor_road        true
-    # - &text_visible_minor_road_e      true
-    # - &text_visible_service_road      true
-    # - &text_visible_path              true
-    # - &text_visible_piste             true
-    # - &text_visible_steps             true
-    # - &text_visible_aerialway         true
-    # - &text_visible_shields           true
-    # - &text_visible_exits             true
-    # - &text_visible_exits_e           false
-    # - &text_visible_airport_gate      true
     - &text_visible_continent         true
     - &text_visible_admin             true
     - &text_visible_populated_places  true
@@ -63,27 +21,27 @@ labels-global:
     - &text_visible_address           true
     - &text_visible_water_labels      true
     - &label_visible_landuse_green    true
-    - &icon_visible_landuse_green     true
+    - &icon_visible_landuse_green     false
     - &text_visible_landuse_green     true
     - &label_visible_poi_landuse      true
-    - &icon_visible_poi_landuse       true
-    - &text_visible_poi_landuse       true
-    - &text_visible_landuse_generic   true
+    - &icon_visible_poi_landuse       false
+    - &text_visible_poi_landuse       false
+    - &text_visible_landuse_generic   false
     - &label_visible_poi_landuse_e    true
-    - &icon_visible_poi_landuse_e     true
+    - &icon_visible_poi_landuse_e     false
     - &text_visible_poi_landuse_e     true
-    - &label_visible_station          true
-    - &icon_visible_station           true
-    - &text_visible_station           true
+    - &label_visible_station          false
+    - &icon_visible_station           false
+    - &text_visible_station           false
     - &text_visible_highway           true
-    - &text_visible_highway_e         true
+    - &text_visible_highway_e         false
     - &text_visible_trunk_primary     true
-    - &text_visible_trunk_primary_e2  true
-    - &text_visible_trunk_primary_e   true
+    - &text_visible_trunk_primary_e2  false
+    - &text_visible_trunk_primary_e   false
     - &text_visible_secondary         true
-    - &text_visible_secondary_e       true
+    - &text_visible_secondary_e       false
     - &text_visible_tertiary          true
-    - &text_visible_tertiary_e        true
+    - &text_visible_tertiary_e        false
     - &text_visible_minor_road        true
     - &text_visible_minor_road_e      true
     - &text_visible_service_road      true
@@ -93,7 +51,7 @@ labels-global:
     - &text_visible_aerialway         true
     - &text_visible_shields           true
     - &text_visible_exits             true
-    - &text_visible_exits_e           true
+    - &text_visible_exits_e           false
     - &text_visible_airport_gate      true
 
 cinnabar-colors:
@@ -4688,6 +4646,19 @@ layers:
                         icons:
                             visible: false
                             text: { visible: false }
+                garden-area-early:
+                   filter:
+                       all:
+                           - kind: [garden, allotments]
+                       any:
+                           # limit show smaller landuse areas to higher zooms
+                           - { $zoom: [12], area: { max: 500000 } }
+                           - { $zoom: [13], area: { max: 100000 } }
+                           - { $zoom: [14], area: { max: 10000 } }
+                           - { $zoom: [15], area: { max: 5000 } }
+                   draw:
+                       icons:
+                           visible: false
             university-poi:
                 filter: { kind: [university, college], area: false, $zoom: { max: 16 } }
                 draw:
@@ -4709,6 +4680,25 @@ layers:
                     icons:
                         visible: false
                         text: { visible: false }
+            garden-no-area-early2:
+                filter: { kind: [garden, allotments], $zoom: { max: 16 }, area: false }
+                draw:
+                    icons:
+                        visible: false
+            garden-no-area-early:
+                filter: { kind: [garden, allotments], $zoom: [16], area: false }
+                draw:
+                    icons:
+                        priority: 45
+                        size: 14px
+                        text:  { font: { size: 10px, style: italic } }
+            garden-no-area-later:
+                filter: { kind: [garden, allotments], $zoom: { min: 17 }, area: false }
+                draw:
+                    icons:
+                        priority: 45
+                        size: 16px
+                        text:  { font: { size: 11px, style: italic } }
             post-office-early:
                 filter: { kind: [post_office], $zoom: { max: 14 } }
                 draw:
