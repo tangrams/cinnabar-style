@@ -11,6 +11,47 @@
 #
 
 labels-global:
+    # - &text_visible_continent         true
+    # - &text_visible_admin             true
+    # - &text_visible_populated_places  true
+    # - &icon_visible_populated_places  true
+    # - &text_visible_neighbourhoods    true
+    # - &text_visible_neighbourhoods_e  true
+    # - &text_visible_building          true
+    # - &text_visible_address           true
+    # - &text_visible_water_labels      true
+    # - &label_visible_landuse_green    true
+    # - &icon_visible_landuse_green     false
+    # - &text_visible_landuse_green     true
+    # - &label_visible_poi_landuse      true
+    # - &icon_visible_poi_landuse       false
+    # - &text_visible_poi_landuse       false
+    # - &label_visible_poi_landuse_e    true
+    # - &icon_visible_poi_landuse_e     false
+    # - &text_visible_poi_landuse_e     true
+    # - &label_visible_station          false
+    # - &icon_visible_station           false
+    # - &text_visible_station           false
+    # - &text_visible_highway           true
+    # - &text_visible_highway_e         false
+    # - &text_visible_trunk_primary     true
+    # - &text_visible_trunk_primary_e2  false
+    # - &text_visible_trunk_primary_e   false
+    # - &text_visible_secondary         true
+    # - &text_visible_secondary_e       false
+    # - &text_visible_tertiary          true
+    # - &text_visible_tertiary_e        false
+    # - &text_visible_minor_road        true
+    # - &text_visible_minor_road_e      true
+    # - &text_visible_service_road      true
+    # - &text_visible_path              true
+    # - &text_visible_piste             true
+    # - &text_visible_steps             true
+    # - &text_visible_aerialway         true
+    # - &text_visible_shields           true
+    # - &text_visible_exits             true
+    # - &text_visible_exits_e           false
+    # - &text_visible_airport_gate      true
     - &text_visible_continent         true
     - &text_visible_admin             true
     - &text_visible_populated_places  true
@@ -21,26 +62,26 @@ labels-global:
     - &text_visible_address           true
     - &text_visible_water_labels      true
     - &label_visible_landuse_green    true
-    - &icon_visible_landuse_green     false
+    - &icon_visible_landuse_green     true
     - &text_visible_landuse_green     true
     - &label_visible_poi_landuse      true
-    - &icon_visible_poi_landuse       false
-    - &text_visible_poi_landuse       false
+    - &icon_visible_poi_landuse       true
+    - &text_visible_poi_landuse       true
     - &label_visible_poi_landuse_e    true
-    - &icon_visible_poi_landuse_e     false
+    - &icon_visible_poi_landuse_e     true
     - &text_visible_poi_landuse_e     true
-    - &label_visible_station          false
-    - &icon_visible_station           false
-    - &text_visible_station           false
+    - &label_visible_station          true
+    - &icon_visible_station           true
+    - &text_visible_station           true
     - &text_visible_highway           true
-    - &text_visible_highway_e         false
+    - &text_visible_highway_e         true
     - &text_visible_trunk_primary     true
-    - &text_visible_trunk_primary_e2  false
-    - &text_visible_trunk_primary_e   false
+    - &text_visible_trunk_primary_e2  true
+    - &text_visible_trunk_primary_e   true
     - &text_visible_secondary         true
-    - &text_visible_secondary_e       false
+    - &text_visible_secondary_e       true
     - &text_visible_tertiary          true
-    - &text_visible_tertiary_e        false
+    - &text_visible_tertiary_e        true
     - &text_visible_minor_road        true
     - &text_visible_minor_road_e      true
     - &text_visible_service_road      true
@@ -50,7 +91,7 @@ labels-global:
     - &text_visible_aerialway         true
     - &text_visible_shields           true
     - &text_visible_exits             true
-    - &text_visible_exits_e           false
+    - &text_visible_exits_e           true
     - &text_visible_airport_gate      true
 
 cinnabar-colors:
@@ -385,9 +426,10 @@ textures:
             zoo: [966, 84, 38, 38]
 
 sources:
-    osm:
+    mapzen:
         type: TopoJSON #GeoJSON, MVT, TopoJSON
-        url:  //vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson?api_key=vector-tiles-HqUVidw
+        # url:  //vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson?api_key=vector-tiles-HqUVidw
+        url:  http://tile.dev.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson?api_key=vector-tiles-HqUVidw
         #url: '//vector.dev.mapzen.com/osm/all/{z}/{x}/{y}.topojson'
         #url:  //localhost:8080/osm/all/{z}/{x}/{y}.json
         max_zoom: 16
@@ -842,35 +884,35 @@ layers:
 
     # Basemap styling
     earth:
-        data: { source: osm, layer: earth }
+        data: { source: mapzen, layer: earth }
         draw:
             polygons:
-                order: function() { return feature.sort_key; }
+                order: function() { return feature.sort_rank; }
                 color: *earth1
 
     ocean-water:
-        data: { source: osm, layer: water }
+        data: { source: mapzen, layer: water }
         # don't filter ocean polys because OSM ocean split tiles don't have coherent areas
         filter: { kind: ocean }
         draw:
             polygons:
-                order: function() { return feature.sort_key; }
+                order: function() { return feature.sort_rank; }
                 color: *water1
         water_boundaries-ocean:
-            filter: { boundary: yes, $zoom: { min: 10 } }
+            filter: { boundary: true, $zoom: { min: 10 } }
             draw:
                 lines:
-                    order: function() { return feature.sort_key; }
+                    order: function() { return feature.sort_rank; }
                     color: *water1_o
                     width: [[10,1px],[12,2px]]
                     join: round
     
     water-not-ocean:
-        data: { source: osm, layer: water }
+        data: { source: mapzen, layer: water }
         filter: { not: { kind: ocean } }
         draw:
             polygons:
-                order: function() { return feature.sort_key; }
+                order: function() { return feature.sort_rank; }
                 #color: *water1
         inland-water:
             filter:
@@ -915,14 +957,14 @@ layers:
         water_boundaries-not-ocean:
             filter: 
                 all:
-                    - boundary: yes
+                    - boundary: true
                     - $zoom: { min: 14 }
                 any:
                     - { $zoom: { min: 14 }, area: { min: 2000 } }
                     - { $zoom: { min: 15 } }
             draw:
                 lines:
-                    order: function() { return feature.sort_key; }
+                    order: function() { return feature.sort_rank; }
                     color: *water2_o
                     width: [[14,1.0px],[16,1.5px],[18,2m]]
                     join: round
@@ -930,18 +972,18 @@ layers:
             filter: { kind: [river,canal,stream,dam,ditch,drain], $zoom: { min: 13 } }
             draw:
                 lines:
-                    order: function() { return feature.sort_key; }
+                    order: function() { return feature.sort_rank; }
                     color: *water2_o
                     width: [[13,0.5px],[14,1.0px],[16,1.5px],[18,4m]]
                     join: round
 
     subway-light-rail:
-        data: { source: osm, layer: transit }
+        data: { source: mapzen, layer: transit }
         filter: { not: { kind: [platform] }, $zoom: { min: 14 } }
         draw:
             lines:
                 interactive: true
-                order: function() { return feature.sort_key || 275; }
+                order: function() { return feature.sort_rank || 275; }
         railway:
             filter: { kind: [railway,train] }
             draw:
@@ -963,7 +1005,7 @@ layers:
                     width: [[14,0.5px],[16,1px],[17,1.5px],[19,1m]]
 
     railway-late:
-        data: { source: osm, layer: roads }
+        data: { source: mapzen, layer: roads }
         filter: { kind: rail, not: { railway: [subway,light_rail,tram] } }
         draw:
             lines:
@@ -971,17 +1013,17 @@ layers:
                 color: [[14,*rail1_e],[16,*rail1]]
                 width: [[15,0.5px],[16,0.75px],[18,1m]]
                 # let roads sort themselves past zoom 14
-                order: function() { return feature.sort_key; }
+                order: function() { return feature.sort_rank; }
                 # but give them all the same outline
                 outline:
                     order: 354
         bridges-tunnels:
-            filter: { any: [is_bridge: yes, is_tunnel: yes] }
+            filter: { any: [is_bridge: true, is_tunnel: true] }
             draw:
                 lines:
                     outline:
                         # except bridges and tunnels, their outlines should also self-sort
-                        order: function() { return feature.sort_key || 305; }
+                        order: function() { return feature.sort_rank || 305; }
         service:
             filter: { service: true }
             draw:
@@ -989,18 +1031,18 @@ layers:
                     color: *rail2
                     width: [[14,0px],[15,0.4px],[16,0.6px],[18,0.7m]]
     platforms:
-        data: { source: osm, layer: transit }
+        data: { source: mapzen, layer: transit }
         filter: { kind: platform, $zoom: { min: 16 } }
         draw:
             lines_transparent:
                 color: *grey9
                 width: 5m
                 visible: *grey9_v
-                order: function() { if($zoom<17) { return feature.sort_key; } else { return 435; } }
+                order: function() { if($zoom<17) { return feature.sort_rank; } else { return 435; } }
             polygons_transparent:
-                order: function() { if($zoom<17) { return feature.sort_key; } else { return 435; } }
+                order: function() { if($zoom<17) { return feature.sort_rank; } else { return 435; } }
             outline_transparent:
-                order: function() { if($zoom<17) { return feature.sort_key; } else { return 436; } }
+                order: function() { if($zoom<17) { return feature.sort_rank; } else { return 436; } }
         polygon_geom:
             filter: { $geometry: polygon }
             draw:
@@ -1013,14 +1055,14 @@ layers:
                     color: *grey9_o
                     width: [[15,0px],[16,0.5px],[17,1px],[19,2px]]
     roads:
-        data: { source: osm, layer: roads }
+        data: { source: mapzen, layer: roads }
         filter: { not: { kind: rail } }
         draw:
             lines:
                 interactive: true
                 #color: black
                 width: 1px
-                order: function() { return feature.sort_key; }
+                order: function() { return feature.sort_rank; }
                 # but give them all the same outline
                 outline:
                     order: 352
@@ -1036,15 +1078,15 @@ layers:
             draw:
                 lines:
                     outline:
-                        order: function() { return feature.sort_key; }
+                        order: function() { return feature.sort_rank; }
         bridges-tunnels:
-            filter: { any: [is_bridge: yes, is_tunnel: yes] }
+            filter: { any: [is_bridge: true, is_tunnel: true] }
             draw:
                 lines:
                     #cap: butt
                     outline:
                         # except bridges and tunnels, their outlines should also self-sort
-                        order: function() { return feature.sort_key; }
+                        order: function() { return feature.sort_rank; }
 
         # default outlines starting at zoom 16
         default-outline-width:
@@ -1093,15 +1135,15 @@ layers:
                         color: *highway_casing1
                         width: [[9, 0.5px], [12, 1px], [16, 2px], [18, 6px]]
 #            not_link:
-#                filter: { not: { is_link: yes }, $zoom: {max: 15} }
+#                filter: { not: { is_link: true }, $zoom: {max: 15} }
 #                draw:
 #                    lines:
-#                        order: function() { return (14 + feature.sort_key) || 14; }
+#                        order: function() { return (14 + feature.sort_rank) || 14; }
 #                        outline:
 #                            # except bridges and tunnels, their outlines should also self-sort
-#                            order: function() { return (14 + feature.sort_key) || 14; }
+#                            order: function() { return (14 + feature.sort_rank) || 14; }
             link:
-                filter: { is_link: yes } # on- and off-ramps, etc
+                filter: { is_link: true } # on- and off-ramps, etc
                 draw:
                     lines:
                         color: *highway_link1
@@ -1117,21 +1159,21 @@ layers:
                             # except bridges and tunnels, their outlines should also self-sort
                             order: 352
                 tunnel-link:
-                    filter: {is_tunnel: yes, $zoom: {min: 13} }
+                    filter: {is_tunnel: true, $zoom: {min: 13} }
                     draw:
                         lines:
                             color: *highway_tunnel1
                             outline:
                                 color: *highway_tunnel_casing1
             tunnel:
-                filter: {is_tunnel: yes, $zoom: {min: 13} }
+                filter: {is_tunnel: true, $zoom: {min: 13} }
                 draw:
                     lines:
                         color: *highway_tunnel1
                         outline:
                             color: *highway_tunnel_casing1
             highway_bridge:
-                filter: {is_bridge: yes}
+                filter: {is_bridge: true}
                 draw:
                     lines:
                         cap: round
@@ -1251,7 +1293,7 @@ layers:
                         color: [[0,*earth1_r],[13,*major_casing1]]
                         width: [[12, 0px], [13, .5px], [15, 1px]]
             trunk_primary:
-                filter: { highway: [trunk, primary] }
+                filter: { kind_detail: [trunk, primary] }
                 draw:
                     lines:
                         color: [[8, *major_road5], [9, *major_road2b], [13, *major_road2], [14, *major_road1c], [15, *major_road1b], [17, *major_road1]]
@@ -1264,13 +1306,13 @@ layers:
 #                        lines:
 #                            order: 352
 #                            outline:
-#                                order: function() { return feature.sort_key + 2; }
+#                                order: function() { return feature.sort_rank + 2; }
 #                    primary:
 #                        filter: { kind: [primary] }
 #                        draw:
 #                            lines:
 #                                outline:
-#                                    order: function() { return feature.sort_key + 1; }
+#                                    order: function() { return feature.sort_rank + 1; }
                 routes:
                     filter: { ref: true }
                     draw:
@@ -1284,7 +1326,7 @@ layers:
 #                        filter: { $zoom: { max: 16 } }
 #                        draw:
 #                            lines:
-#                                order: function() { return feature.sort_key + 2; }
+#                                order: function() { return feature.sort_rank + 2; }
 #                                outline:
 #                                    order: 353
                     national-routes:
@@ -1294,7 +1336,7 @@ layers:
                                 color: [[8,*major_route2],[9,*major_route2],[10,*major_route1]]
                                 width: [[8, 2.0px], [10, 2.5px], [14, 3.5px], [15, 4.5px], [16, 6.0px], [17, 12m]]
                     tunnel:
-                        filter: {is_tunnel: yes, $zoom: {min: 13} }
+                        filter: {is_tunnel: true, $zoom: {min: 13} }
                         draw:
                             lines:
                                 color: *major_tunnel1
@@ -1412,7 +1454,7 @@ layers:
                                 fill: *text_fill2
                                 size: 16px
             link:
-                filter: { is_link: yes } # on- and off-ramps, etc
+                filter: { is_link: true } # on- and off-ramps, etc
                 draw:
                     lines:
                         color: [[8, *major_road3], [9, *major_road2b], [14, *major_road2], [15, *major_road1b], [17, *major_road1]]
@@ -1421,14 +1463,14 @@ layers:
                             color: *major_casing1
                             width: [[10, 1px], [14, 1px], [18, 1.5px]]
             tunnel:
-                filter: {is_tunnel: yes, $zoom: {min: 13} }
+                filter: {is_tunnel: true, $zoom: {min: 13} }
                 draw:
                     lines:
                         color: *major_tunnel1
                         outline:
                             color: *major_tunnel_casing1
             secondary:
-                filter: { highway: secondary }
+                filter: { kind_detail: secondary }
                 draw:
                     lines:
                         color: [[13,*major_road3], [14,*major_road2b], [15,*major_road1b], [17,*major_road1]]
@@ -1441,7 +1483,7 @@ layers:
                         lines:
                             color: [[8,*major_road5],[9,*major_route2],[10,*major_route1]]  #*minor_route
                     tunnel:
-                        filter: {is_tunnel: yes, $zoom: {min: 13} }
+                        filter: {is_tunnel: true, $zoom: {min: 13} }
                         draw:
                             lines:
                                 color: *major_tunnel1
@@ -1551,7 +1593,7 @@ layers:
                                 size: 13px
                                 stroke: { color: *major_road1, width: 4 }
             tertiary:
-                filter: { highway: [tertiary, tertiary_link] }
+                filter: { kind_detail: [tertiary, tertiary_link] }
                 draw:
                     lines:
                         color: [[13,*major_road2b], [14,*major_road2a], [15,*major_road1b], [17,*major_road1]]
@@ -1564,7 +1606,7 @@ layers:
 #                        lines:
 #                            order: 352
 #                            outline:
-#                                order: function() { return feature.sort_key + 3; }
+#                                order: function() { return feature.sort_rank + 3; }
                 routes:
                     filter: { ref: true, $zoom: { min: 12} }
                     draw:
@@ -1574,18 +1616,18 @@ layers:
 #                        filter: { $zoom: { max: 15 } }
 #                        draw:
 #                            lines:
-#                                order: function() { return feature.sort_key + 3; }
+#                                order: function() { return feature.sort_rank + 3; }
 #                                outline:
 #                                    order: 353
                     tunnel:
-                        filter: {is_tunnel: yes, $zoom: {min: 13} }
+                        filter: {is_tunnel: true, $zoom: {min: 13} }
                         draw:
                             lines:
                                 color: *major_tunnel1
                                 outline:
                                     color: *major_tunnel_casing1
                 link:
-                    filter: { is_link: yes } # on- and off-ramps, etc
+                    filter: { is_link: true } # on- and off-ramps, etc
                     draw:
                         lines:
                             color: *major_road1
@@ -1685,7 +1727,7 @@ layers:
                                 size: 15px
                                 #stroke: { color: *text_stroke_road3, width: 4 }
         minor_road:
-            filter: { kind: minor_road, not: { highway: service, aeroway: [runway, taxiway] } }
+            filter: { kind: minor_road, not: { kind_detail: service } }
             draw:
                 lines:
                     color: [[11, *minor_road5], [13, *minor_road4], [15, *minor_road3]]
@@ -1759,7 +1801,7 @@ layers:
                             width: [[13, 0px], [14, 0.5px], [17, 2.0px], [18, 4.0px]]
 
             tunnel:
-                filter: {is_tunnel: yes, $zoom: {min: 13} }
+                filter: {is_tunnel: true, $zoom: {min: 13} }
                 draw:
                     lines:
                         cap: butt
@@ -1767,7 +1809,7 @@ layers:
                         outline:
                             color: *minor_tunnel_casing1
             minor_road_bridge:
-                filter: { is_bridge: yes }
+                filter: { is_bridge: true }
                 draw:
                     lines:
                         cap: round
@@ -1810,7 +1852,7 @@ layers:
                             size: 15px
                             #stroke: { color: *text_stroke_road4, width: 4 }
         service_road:
-            filter: { kind: minor_road, highway: service }
+            filter: { kind: minor_road, kind_detail: service }
             draw:
                 lines:
                     #cap: round
@@ -1902,8 +1944,8 @@ layers:
                 all:
                     - kind: path
                 not: 
-                    - highway: [steps, track]
-                    - man_made: [pier]
+                    - kind_detail: [steps, track]
+                    - kind_detail: [pier]
             draw:
                 lines:
                     color: [[14,*path2],[16,*path1]]
@@ -1916,7 +1958,7 @@ layers:
                         width: [[17, 0.0], [18, 1px]]
                         order: 350
             pedestrian:
-                filter: { highway: pedestrian }
+                filter: { kind_detail: pedestrian }
                 draw:
                     lines:
                         color: [[13,*path2],[16,*path1]]
@@ -1927,7 +1969,7 @@ layers:
 #                            color: *path_casing1
 #                            width: [[17, 0.5], [18, 1px]]
             bridge:
-                filter: { is_bridge: yes }
+                filter: { is_bridge: true }
                 draw:
                     lines:
                         width: [[15, 3.5], [17, 3m]]
@@ -2005,7 +2047,7 @@ layers:
                             size: 12px
                             stroke: { color: *text_stroke_road4, width: 4 }
         track:
-            filter: { kind: path, highway: track }
+            filter: { kind: path, kind_detail: track }
             draw:
                 lines:
                     color: [[13, *minor_road4], [15, *minor_road3]]
@@ -2018,7 +2060,7 @@ layers:
                         color: *minor_casing1
                         width: [[14, 0px], [15, 0px], [16, 0.5px], [17, 1.0px], [18, 2.0px]]
             bridge:
-                filter: { is_bridge: yes }
+                filter: { is_bridge: true }
                 draw:
                     lines:
                         width: [[15, 3.5], [17, 3m]]
@@ -2039,10 +2081,10 @@ layers:
             filter: 
                 all:
                     - kind: path
-                    - highway: steps
+                    - kind_detail: steps
             draw:
                 dashedline:
-                    order: function() { return feature.sort_key; }
+                    order: function() { return feature.sort_rank; }
                     #cap: round
                     #join: round
                     color: *path_steps1_b
@@ -2135,7 +2177,7 @@ layers:
                     text-blend-order:
                         text_source: function() { if( feature.name ){ return '◆◆ ' + feature.name; } else { return '◆◆'; } }
         pier:
-            filter: { kind: path, man_made: pier }
+            filter: { kind: path, kind_detail: pier }
             draw:
                 lines:
                     color: [[13,*path2],[16,*path1]]
@@ -2151,7 +2193,7 @@ layers:
                     color: *orange3
                     width: [[13,1.5px],[14,2px],[15, 3px], [16, 5px], [18, 10m], [19, 15m]]
         airport-lines:
-            filter: { kind: minor_road, aeroway: [runway,taxiway] }
+            filter: { kind: aeroway }
             draw:
                 lines:
                     color: *grey2
@@ -2169,7 +2211,7 @@ layers:
                     lines:
                         cap: butt
             taxiway:
-                filter: { aeroway: taxiway }
+                filter: { kind_detail: taxiway }
                 draw:
                     lines:
                         color: *grey4
@@ -2179,6 +2221,11 @@ layers:
                     draw:
                         lines:
                             visible: false
+            runway:
+                filter: { kind_detail: runway }
+                draw:
+                    lines:
+                        color: *grey2
         ferry:
             filter: { kind: ferry }
             draw:
@@ -2193,13 +2240,13 @@ layers:
                     color: '#444'
                     width: [[14, 0.5px], [15, 1.0px], [16, 2m]]
             gondola_cable_car:
-                filter: { aerialway: [gondola, cable_car] }
+                filter: { kind_detail: [gondola, cable_car] }
                 draw:
                     lines:
                         color: black
                         width: [[12, 2.0px], [13, 2px], [14, 3.5px], [15, 4.5px], [16, 9m]]
             chair_lift:
-                filter: { aerialway: chair_lift }
+                filter: { kind_detail: chair_lift }
                 draw:
                     lines:
                         color: '#333'
@@ -2216,12 +2263,12 @@ layers:
                             size: 12px
                             stroke: { color: *grey8, width: 4 }
                 minor:
-                    filter: { not: { aerialway: [gondola,cable_car,chair_lift] }, $zoom: { max: 17 } }
+                    filter: { not: { kind_detail: [gondola,cable_car,chair_lift] }, $zoom: { max: 17 } }
                     draw:
                         text-blend-order:
                             visible: false
                 early_gondola:
-                    filter: { $zoom: [14], aerialway: [gondola,cable_car] }
+                    filter: { $zoom: [14], kind_detail: [gondola,cable_car] }
                     draw:
                         text-blend-order:
                             font:
@@ -2235,19 +2282,12 @@ layers:
 
     # buildings are the only layer that gets lighting
     buildings:
-        data: { source: osm, layer: buildings }
+        data: { source: mapzen, layer: buildings }
         filter: 
             any:
                 # limit show smaller landuse areas to higher zooms
-                - { $zoom: [13], area: { min: 100000 }, name: true }
-                - { $zoom: [13], area: { min: 100000 }, kind: true }
-                - { $zoom: [13], height: { min: 250 } }
-                - { $zoom: [13], volume: { min: 250000 } }
-                - { $zoom: [14], area: { min: 20000 }, name: true }
-                - { $zoom: [14], area: { min: 20000 }, kind: true }
-                - { $zoom: [14], area: { min: 5000 }, landuse_kind: true }
-                - { $zoom: [14], height: { min: 150 } }
-                - { $zoom: [14], volume: { min: 150000 } }
+                - { $zoom: [13], scale_rank: [1,2] }
+                - { $zoom: [14], scale_rank: [1,2,3] }
                 - { $zoom: [15], area: { min: 5000 }, name: true }
                 - { $zoom: [15], area: { min: 5000 }, kind: true }
                 - { $zoom: [15], area: { min: 3000 }, landuse_kind: true }
@@ -2332,27 +2372,27 @@ layers:
 #            draw:
 #                polygons:
 #                    color: orange
-                
+
     building-labels:
-        data: { source: osm, layer: buildings }
+        data: { source: mapzen, layer: buildings }
         filter:
             all:
                 - { $zoom: { min: 16 } }
                 - $geometry: point
                 - not: { location: underground }
-                - kind: [false, building, university, college, school, kindergarten]
+                - kind_detail: [building, university, college, school, kindergarten]
             any:
                 - { $zoom: [16], area: { min: 5000 }, name: true }
                 - { $zoom: [16], area: { min: 5000 }, kind: true }
                 - { $zoom: [16], area: { min: 10000 }, landuse_kind: true }
-                - { $zoom: [16], area: { min: 7000 }, kind: [university, college, school, kindergarten] }
+                - { $zoom: [16], area: { min: 7000 }, kind_detail: [university, college, school, kindergarten] }
                 - { $zoom: [16], volume: { min: 50000 }, name: true }
                 - { $zoom: [17], area: { min: 3000 }, name: true }
-                - { $zoom: [17], area: { min: 2000 }, kind: [university, college, school, kindergarten] }
+                - { $zoom: [17], area: { min: 2000 }, kind_detail: [university, college, school, kindergarten] }
                 - { $zoom: [18], area: { min: 1000 }, name: true }
-                - { $zoom: [18], kind: [university, college, school, kindergarten] }
+                - { $zoom: [18], kind_detail: [university, college, school, kindergarten] }
                 - { $zoom: [19], area: { min: 200 }, name: true }
-                - { $zoom: { min: 19 }, kind: [university, college, school, kindergarten] }
+                - { $zoom: { min: 19 }, kind_detail: [university, college, school, kindergarten] }
                 - { $zoom: { min: 20 }, name: true }
         draw:
             text-blend-order:
@@ -2392,12 +2432,12 @@ layers:
                 text-blend-order:
                     text_source: function() { if( feature.addr_housenumber ) { return feature.name + '\n' + feature.addr_housenumber; } else { return feature.name; } }
     address-labels:
-        data: { source: osm, layer: buildings }
+        data: { source: mapzen, layer: buildings }
         filter:
             $zoom: { min: 20 }
             any:
                 - kind: address
-                - { label_position: yes, addr_housenumber: true, name: false }
+                - { label_position: true, addr_housenumber: true, name: false }
         draw:
             text-blend-order:
                 interactive: true
@@ -2412,48 +2452,50 @@ layers:
                     stroke: { color: *building1, width: 4 }
 
     boundaries:
-        data: { source: osm, layer: boundaries }
+        data: { source: mapzen, layer: boundaries }
         # country subdivisions (states, provinces)
         draw:
             lines:
                 interactive: true
-                order: function() { return feature.sort_key; }
+                order: function() { return feature.sort_rank; }
         country:
             filter:
-                any:
-                    - type: country
-                    - kind: nation
-                    - admin_level: 2
+                kind: country
+                # any:
+                #     - type: country
+                #     - kind: nation
+                #     - admin_level: 2
             draw:
                 lines:
                     interactive: true
                     color: *country_boundary
                     width: [[1, 0.5px], [2, 1.0px], [4, 1.5px], [9, 2.5px], [14, 3.5px], [16, 4.5px], [17, 14m]]
             water:
-                filter: { maritime: yes }
+                filter: { maritime: true }
                 draw:
                     lines:
-                        order: function() { return (feature.sort_key - 2); }
+                        order: function() { return (feature.sort_rank - 2); }
                         color: blue
         region:
             filter:
-                any:
-                    - type: state
-                    # territorial here is probably a hack
-                    - kind: [state, department, region, provincial, territorial]
-                    - admin_level: 4
+                kind: region
+                # any:
+                #     - type: state
+                #     # territorial here is probably a hack
+                #     - kind: [state, department, region, provincial, territorial]
+                #     - admin_level: 4
             draw:
                 lines:
                     interactive: true
                     color: *region_boundary
                     width: [[2, 0.75px], [3, 1px], [5, 1.5px], [9, 3.5px], [14, 5.5px], [16, 6.5px], [17, 16m]]
             water:
-                filter: { maritime_boundary: yes }
+                filter: { maritime_boundary: true }
                 draw:
                     lines:
                         visible: false
             early:
-                filter: { scalerank: [0,3,4,5,6,7,8,9,10], $zoom: { max: 8 } }
+                filter: { not: { min_zoom: [1,2] }, $zoom: { max: 8 } }
                 draw:
                     lines:
                         visible: false
@@ -2496,7 +2538,7 @@ layers:
                     width: [[14, 0.5px], [15, 1.0px], [16, 1.5px], [17, 2.0px], [19, 4m]]
 
     places:
-        data: { source: osm, layer: places }
+        data: { source: mapzen, layer: places }
         filter: { not: { kind: [ocean, sea] } }
         draw:
             text-blend-order:
@@ -2651,7 +2693,7 @@ layers:
                         visible: false
 
         region-z4:
-            filter: { name: true, kind: [state], $zoom: [4], not: { name: ["Western Cape","Eastern Cape","Northern Cape","North West","Limpopo","KwaZulu-Natal","Hamburg","Freie und Hansestadt Hamburg","Neuchâtel","Nordrhein-Westfalen","Haute-Normandie","Baden-Württemberg","Bayern","Sachsen-Anhalt","Berlin","Mecklenburg-Vorpommern","Schleswig-Holstein","Brandenburg","Niedersachsen","Saarland","Thüringen","Hessen","Sachsen"] } }
+            filter: { name: true, kind: [region], $zoom: [4], not: { name: ["Western Cape","Eastern Cape","Northern Cape","North West","Limpopo","KwaZulu-Natal","Hamburg","Freie und Hansestadt Hamburg","Neuchâtel","Nordrhein-Westfalen","Haute-Normandie","Baden-Württemberg","Bayern","Sachsen-Anhalt","Berlin","Mecklenburg-Vorpommern","Schleswig-Holstein","Brandenburg","Niedersachsen","Saarland","Thüringen","Hessen","Sachsen"] } }
             draw:
                 text-blend-order:
                     priority: 14
@@ -2663,7 +2705,7 @@ layers:
                         fill: *text_fill
 
         region-z5:
-            filter: { name: true, kind: [state], $zoom: [5], not: { name: ["Western Cape","Eastern Cape","Northern Cape","North West","Limpopo","KwaZulu-Natal","Hamburg","Freie und Hansestadt Hamburg","Neuchâtel","Nordrhein-Westfalen","Haute-Normandie","Baden-Württemberg","Bayern","Sachsen-Anhalt","Berlin","Mecklenburg-Vorpommern","Schleswig-Holstein","Brandenburg","Niedersachsen","Saarland","Thüringen","Hessen","Sachsen"] } }
+            filter: { name: true, kind: [region], $zoom: [5], not: { name: ["Western Cape","Eastern Cape","Northern Cape","North West","Limpopo","KwaZulu-Natal","Hamburg","Freie und Hansestadt Hamburg","Neuchâtel","Nordrhein-Westfalen","Haute-Normandie","Baden-Württemberg","Bayern","Sachsen-Anhalt","Berlin","Mecklenburg-Vorpommern","Schleswig-Holstein","Brandenburg","Niedersachsen","Saarland","Thüringen","Hessen","Sachsen"] } }
             draw:
                 text-blend-order:
                     priority: 14
@@ -2675,7 +2717,7 @@ layers:
                         fill: *text_fill
 
         region-z6:
-            filter: { name: true, kind: [state], $zoom: [6], not: { name: ["Western Cape","Eastern Cape","Northern Cape","North West","Limpopo","KwaZulu-Natal","Hamburg","Freie und Hansestadt Hamburg","Neuchâtel","Nordrhein-Westfalen","Haute-Normandie","Baden-Württemberg","Bayern","Sachsen-Anhalt","Berlin","Mecklenburg-Vorpommern","Schleswig-Holstein","Brandenburg","Niedersachsen","Saarland","Thüringen","Hessen","Sachsen"] } }
+            filter: { name: true, kind: [region], $zoom: [6], not: { name: ["Western Cape","Eastern Cape","Northern Cape","North West","Limpopo","KwaZulu-Natal","Hamburg","Freie und Hansestadt Hamburg","Neuchâtel","Nordrhein-Westfalen","Haute-Normandie","Baden-Württemberg","Bayern","Sachsen-Anhalt","Berlin","Mecklenburg-Vorpommern","Schleswig-Holstein","Brandenburg","Niedersachsen","Saarland","Thüringen","Hessen","Sachsen"] } }
             draw:
                 text-blend-order:
                     priority: 14
@@ -2686,7 +2728,7 @@ layers:
                         weight: 200
                         fill: *text_fill
         region:
-            filter: { name: true, kind: [state], $zoom: {min: 6, max: 9} }
+            filter: { name: true, kind: [region], $zoom: {min: 6, max: 9} }
             draw:
                 text-blend-order:
                     priority: 14
@@ -2715,330 +2757,285 @@ layers:
                         font: { transform: uppercase }
 
         populated-places:
+            filter:
+                kind: locality
+                name: true
             draw:
                 icons:
                     interactive: true
                     priority: 5
+                    text:
+                        buffer: 3px
+                        font:
+                            fill: *text_fill
                 text-blend-order:
                     interactive: true
                     anchor: bottom
                     priority: 6
 
             populated-places-natural-earth-z2:
-                filter: { name: true, source: naturalearthdata.com, $zoom: [2], scalerank: 0 }
+                filter: { $zoom: [2], min_zoom: 2 }
                 draw:
-                    text-blend-order:
-                        visible: *text_visible_populated_places
-                        offset: [0, 3px] # half icon size
-                        font:
-                            size: 10px
-                            fill: *text_fill
-                            # stroke: { color: *text_stroke, width: 4 }
                     icons:
                         size: 5px
                         visible: *icon_visible_populated_places
                         sprite: townspot-s-rev
-
-            populated-places-natural-earth-z3:
-                filter: { name: true, source: naturalearthdata.com, $zoom: [3] }
-                z3places-1:
-                    filter: { scalerank: [0] }
-                    draw:
-                        text-blend-order:
+                        text:
                             visible: *text_visible_populated_places
-                            offset: [0, 3px] # half icon size
-                            font:
-                                size: 11px
-                                fill: *text_fill
-                                # stroke: { color: *text_stroke, width: 4 }
-                        icons:
-                            size: 5px
-                            visible: *icon_visible_populated_places
-                            sprite: townspot-s-rev
-                z3places-2:
-                    filter: { scalerank: [1] }
-                    draw:
-                        text-blend-order:
-                            visible: *text_visible_populated_places
-                            offset: [0, 3px] # half icon size
-                            priority: 8
                             font:
                                 size: 10px
                                 fill: *text_fill
                                 # stroke: { color: *text_stroke, width: 4 }
+
+            populated-places-natural-earth-z3:
+                filter: { $zoom: [3] }
+                z3places-1:
+                    filter: { min_zoom: 2 }
+                    draw:
+                        icons:
+                            size: 5px
+                            visible: *icon_visible_populated_places
+                            sprite: townspot-s-rev
+                            text:
+                                visible: *text_visible_populated_places
+                                font:
+                                    size: 11px
+                                    fill: *text_fill
+                                    # stroke: { color: *text_stroke, width: 4 }
+                z3places-2:
+                    filter: { min_zoom: 2 }
+                    draw:
                         icons:
                             priority: 7
                             size: 5px
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
+                            text:
+                                visible: *text_visible_populated_places
+                                font:
+                                    size: 10px
+                                    fill: *text_fill
+                                    # stroke: { color: *text_stroke, width: 4 }
 
             populated-places-natural-earth-z4:
-                filter: { name: true, source: naturalearthdata.com, $zoom: [4] }
+                filter: { $zoom: [4] }
                 z4places-1:
-                    filter: { scalerank: [0] }
+                    filter: { min_zoom: 2 }
                     draw:
-                        text-blend-order:
-                            visible: *text_visible_populated_places
-                            offset: [0, 3px] # half icon size
-                            font:
-                                size: 12px
-                                fill: *text_fill
-                                # stroke: { color: *text_stroke, width: 4 }
                         icons:
                             size: 5px
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
+                            text:
+                                visible: *text_visible_populated_places
+                                font:
+                                    size: 12px
+                                    fill: *text_fill
+                                    # stroke: { color: *text_stroke, width: 4 }
 
                 z4places-2:
-                    filter: { scalerank: [1,2] }
+                    filter: { min_zoom: [3,4] }
                     draw:
-                        text-blend-order:
-                            visible: *text_visible_populated_places
-                            offset: [0, 3px] # half icon size
-                            priority: 8
-                            font:
-                                size: 11px
-                                fill: *text_fill
-                                # stroke: { color: *text_stroke, width: 4 }
                         icons:
                             priority: 7
                             size: 5px
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
+                            text:
+                                visible: *text_visible_populated_places
+                                font:
+                                    size: 11px
+                                    fill: *text_fill
+                                    # stroke: { color: *text_stroke, width: 4 }
 
             populated-places-natural-earth-z5:
-                filter: { name: true, source: naturalearthdata.com, $zoom: [5] }
+                filter: { $zoom: [5] }
                 draw: { text-blend-order: { font: { fill: *text_fill } } }
                 z5places-1:
-                    filter: { scalerank: [0,1] }
+                    filter: { min_zoom: [2,3] }
                     draw:
-                        text-blend-order:
-                            visible: *text_visible_populated_places
-                            offset: [0, 3px] # half icon size
-                            priority: 8
-                            font:
-                                size: 13px
                         icons:
                             priority: 7
                             size: 6px
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
+                            text:
+                                visible: *text_visible_populated_places
+                                font:
+                                    size: 13px
                     capital:
-                        filter: { capital: yes }
+                        filter: { country_capital: true }
                         draw:
-                            text-blend-order:
-                                offset: [0, 4px] # half icon size
-                                priority: 6
                             icons:
                                 priority: 5
                                 size: 8px
                                 sprite: capital-l
 
                 z5places-2:
-                    filter: { scalerank: [2] }
+                    filter: { min_zoom: 4 }
                     draw:
-                        text-blend-order:
-                            visible: *text_visible_populated_places
-                            offset: [0, 3px] # half icon size
-                            priority: 12
-                            font:
-                                size: 12px
                         icons:
                             priority: 11
                             size: 5px
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
+                            text:
+                                visible: *text_visible_populated_places
+                                font:
+                                    size: 12px
                     capital:
-                        filter: { capital: yes }
+                        filter: { country_capital: true }
                         draw:
-                            text-blend-order:
-                                offset: [0, 3px] # half icon size
-                                priority: 10
                             icons:
                                 priority: 9
                                 size: 6px
                                 sprite: capital-m
 
                 z5places-3:
-                    filter: { scalerank: [3,4] }
+                    filter: { min_zoom: 5 }
                     draw:
-                        text-blend-order:
-                            visible: *text_visible_populated_places
-                            offset: [0, 3px] # half icon size
-                            priority: 18
-                            font:
-                                fill: [0.25,0.25,0.25]
-                                size: 11px
                         icons:
                             priority: 17
                             size: 5px
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
+                            text:
+                                visible: *text_visible_populated_places
+                                font:
+                                    fill: [0.25,0.25,0.25]
+                                    size: 11px
                     capital:
-                        filter: { capital: yes }
+                        filter: { country_capital: true }
                         draw:
-                            text-blend-order:
-                                offset: [0, 3px] # half icon size
-                                priority: 16
                             icons:
                                 priority: 15
                                 size: 6px
                                 sprite: capital-m
 
             populated-places-natural-earth-z6:
-                filter: { name: true, source: naturalearthdata.com, $zoom: [6] }
+                filter: { $zoom: [6] }
                 draw: { text-blend-order: { font: { fill: *text_fill } } }
                 z6places-1:
-                    filter: { scalerank: [0,1] }
+                    filter: { min_zoom: [2,3] }
                     draw:
-                        text-blend-order:
-                            visible: *text_visible_populated_places
-                            offset: [0, 4px] # half icon size
-                            priority: 8
-                            font:
-                                fill: *text_fill
-                                size: 14px
                         icons:
                             priority: 7
                             size: 8px
                             visible: *icon_visible_populated_places
                             sprite: townspot-l-rev
+                            text:
+                                visible: *text_visible_populated_places
+                                font:
+                                    fill: *text_fill
+                                    size: 14px
                     capital:
-                        filter: { capital: yes }
+                        filter: { country_capital: true }
                         draw:
-                            text-blend-order:
-                                offset: [0, 4px] # half icon size
-                                priority: 6
                             icons:
                                 sprite: capital-l
                                 size: 8px
                                 priority: 5
 
                 z6places-2:
-                    filter: { scalerank: [2,3,4] }
+                    filter: { min_zoom: [4,5] }
                     draw:
-                        text-blend-order:
-                            visible: *text_visible_populated_places
-                            offset: [0, 3px] # half icon size
-                            priority: 12
-                            font:
-                                fill: *text_fill
-                                size: 13px
                         icons:
                             priority: 11
                             size: 6px
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
+                            text:
+                                visible: *text_visible_populated_places
+                                font:
+                                    fill: *text_fill
+                                    size: 13px
                     capital:
-                        filter: { capital: yes }
+                        filter: { country_capital: true }
                         draw:
-                            text-blend-order:
-                                offset: [0, 3px] # half icon size
-                                priority: 10
                             icons:
                                 size: 6px
                                 sprite: capital-m
                                 priority: 9
 
                 z6places-3:
-                    filter: { scalerank: [5,6] }
+                    filter: { min_zoom: 6 }
                     draw:
-                        text-blend-order:
-                            visible: *text_visible_populated_places
-                            offset: [0, 3px] # half icon size
-                            priority: 16
-                            font:
-                                size: 11px
                         icons:
                             size: 5px
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                             priority: 15
+                            text:
+                                visible: *text_visible_populated_places
+                                font:
+                                    size: 11px
                     capital:
-                        filter: { capital: yes }
+                        filter: { country_capital: true }
                         draw:
-                            text-blend-order:
-                                offset: [0, 3px] # half icon size
-                                priority: 14
                             icons:
                                 size: 6px
                                 sprite: capital-m
                                 priority: 13
 
             populated-places-natural-earth-z7:
-                filter: { name: true, source: naturalearthdata.com, $zoom: [7] }
+                filter: { $zoom: [7] }
                 draw: { text-blend-order: { font: { fill: *text_fill } } }
                 z7places-1:
-                    filter: { scalerank: [0,1] }
+                    filter: { min_zoom: [2,3] }
                     draw:
-                        text-blend-order:
-                            visible: *text_visible_populated_places
-                            offset: [0, 4px] # half icon size
-                            priority: 8
-                            font:
-                                size: 14px
                         icons:
                             size: 8px
                             visible: *icon_visible_populated_places
                             sprite: townspot-l-rev
                             priority: 7
+                            text:
+                                visible: *text_visible_populated_places
+                                font:
+                                    size: 14px
                     capital:
-                        filter: { capital: yes }
+                        filter: { country_capital: true }
                         draw:
-                            text-blend-order:
-                                offset: [0, 4px] # half icon size
-                                priority: 6
                             icons:
                                 size: 8px
                                 sprite: capital-l
                                 priority: 5
 
                 z7places-2:
-                    filter: { scalerank: [2,3,4,5] }
+                    filter: { min_zoom: [4,5,6] }
                     draw:
-                        text-blend-order:
-                            visible: *text_visible_populated_places
-                            offset: [0, 3px] # half icon size
-                            priority: 14
-                            font:
-                                fill: *text_fill
-                                size: 13px
                         icons:
                             size: 6px
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                             priority: 13
+                            text:
+                                visible: *text_visible_populated_places
+                                font:
+                                    fill: *text_fill
+                                    size: 13px
                     capital:
-                        filter: { capital: yes }
+                        filter: { country_capital: true }
                         draw:
-                            text-blend-order:
-                                offset: [0, 4px] # half icon size
-                                priority: 12
                             icons:
                                 size: 8px
                                 sprite: capital-l
                                 priority: 11
 
                 z7places-3:
-                    filter: { scalerank: [6,7] }
+                    filter: { min_zoom: [6,7] }
                     draw:
-                        text-blend-order:
-                            visible: *text_visible_populated_places
-                            offset: [0, 3px] # half icon size
-                            priority: 18
-                            font:
-                                size: 12px
                         icons:
                             size: 5px
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                             priority: 17
+                            text:
+                                visible: *text_visible_populated_places
+                                font:
+                                    size: 12px
                     capital:
-                        filter: { capital: yes }
+                        filter: { country_capital: true }
                         draw:
-                            text-blend-order:
-                                offset: [0, 3px] # half icon size
-                                priority: 16
                             icons:
                                 size: 6px
                                 sprite: capital-m
@@ -3058,23 +3055,18 @@ layers:
                         any:
                             - { population: { min: 500000 } }
                     draw:
-                        text-blend-order:
-                            visible: *text_visible_populated_places
-                            offset: [0, 3px] # half icon size
-                            priority: 8
-                            font:
-                                size: 15px
                         icons:
                             size: 6px
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                             priority: 7
+                            text:
+                                visible: *text_visible_populated_places
+                                font:
+                                    size: 15px
                     capital:
-                        filter: { capital: yes }
+                        filter: { country_capital: true }
                         draw:
-                            text-blend-order:
-                                offset: [0, 4px] # half icon size
-                                priority: 6
                             icons:
                                 size: 8px
                                 sprite: capital-l
@@ -3084,23 +3076,18 @@ layers:
                         any:
                             - { population: { min: 150000, max: 499999 } }
                     draw:
-                        text-blend-order:
-                            visible: *text_visible_populated_places
-                            offset: [0, 3px] # half icon size
-                            priority: 12
-                            font:
-                                size: 13px
                         icons:
                             size: 6px
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                             priority: 11
+                            text:
+                                visible: *text_visible_populated_places
+                                font:
+                                    size: 13px
                     capital:
-                        filter: { capital: yes }
+                        filter: { country_capital: true }
                         draw:
-                            text-blend-order:
-                                offset: [0, 3px] # half icon size
-                                priority: 10
                             icons:
                                 size: 6px
                                 sprite: capital-m
@@ -3111,24 +3098,19 @@ layers:
                         any:
                             - { population: { min: 85000, max: 149999 } }
                     draw:
-                        text-blend-order:
-                            visible: *text_visible_populated_places
-                            offset: [0, 3px] # half icon size
-                            priority: 16
-                            font:
-                                fill: [0.25,0.25,0.25]
-                                size: 12px
                         icons:
                             size: 6px
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                             priority: 15
+                            text:
+                                visible: *text_visible_populated_places
+                                font:
+                                    fill: [0.25,0.25,0.25]
+                                    size: 12px
                     capital:
-                        filter: { capital: yes }
+                        filter: { country_capital: true }
                         draw:
-                            text-blend-order:
-                                offset: [0, 3px] # half icon size
-                                priority: 14
                             icons:
                                 size: 6px
                                 sprite: capital-m
@@ -3139,24 +3121,19 @@ layers:
                         any:
                             - { population: { min: 50000, max: 84999 } }
                     draw:
-                        text-blend-order:
-                            visible: *text_visible_populated_places
-                            offset: [0, 3px] # half icon size
-                            priority: 20
-                            font:
-                                size: 11px
-                                fill: [0.25,0.25,0.25]
                         icons:
                             size: 5px
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                             priority: 19
+                            text:
+                                visible: *text_visible_populated_places
+                                font:
+                                    size: 11px
+                                    fill: [0.25,0.25,0.25]
                     capital:
-                        filter: { capital: yes }
+                        filter: { country_capital: true }
                         draw:
-                            text-blend-order:
-                                offset: [0, 3px] # half icon size
-                                priority: 18
                             icons:
                                 size: 5px
                                 sprite: capital-m
@@ -3166,94 +3143,83 @@ layers:
                         all:
                             - { population: { max: 50000 } }
                         any:
-                            - { capital: yes }
-                            - { state_capital: yes }
+                            - { country_capital: true }
+                            - { region_capital: true }
                     draw:
-                        text-blend-order:
-                            priority: 1
-                            interactive: true
-                            visible: *text_visible_populated_places
-                            font:
-                                size: 11px
                         icons:
                             size: 8x
                             interactive: true
                             visible: *icon_visible_populated_places
                             sprite: townspot-xs-rev
-                    capital:
-                        filter: { capital: yes }
-                        draw:
-                            text-blend-order:
+                            text:
+                                interactive: true
+                                visible: *text_visible_populated_places
                                 font:
-                                    size: 12px
+                                    size: 11px
+                    capital:
+                        filter: { country_capital: true }
+                        draw:
                             icons:
                                 sprite: capital-s
+                                text:
+                                    font:
+                                        size: 12px
                                     
             populated-places-natural-earth-z8-backfill:
-                filter: { name: true, source: naturalearthdata.com, $zoom: [8], population: { max: 50000 } }
+                filter: { $zoom: [8], population: { max: 50000 } }
                 draw: { text-blend-order: { font: { fill: *text_fill, stroke: { color: *text_stroke, width: 2px } } } }
                 z8places-1-ne:
-                    filter: { scalerank: [0,1] }
+                    filter: { min_zoom: [2,3] }
                     draw:
-                        text-blend-order:
-                            visible: *text_visible_populated_places
-                            offset: [0, 4px] # half icon size
-                            priority: 24
-                            font:
-                                size: 15px
                         icons:
                             size: 8px
                             visible: *icon_visible_populated_places
                             sprite: townspot-l-rev
                             priority: 23
+                            text:
+                                visible: *text_visible_populated_places
+                                font:
+                                    size: 15px
                     capital:
-                        filter: { capital: yes }
+                        filter: { country_capital: true }
                         draw:
-                            text-blend-order:
-                                offset: [0, 4px] # half icon size
-                                priority: 22
                             icons:
                                 size: 8px
                                 sprite: capital-l
                                 priority: 21
 
                 z8places-2-ne:
-                    filter: { scalerank: [2,3,4,5] }
+                    filter: { min_zoom: [4,5,6] }
                     draw:
-                        text-blend-order:
-                            visible: *text_visible_populated_places
-                            offset: [0, 3px] # half icon size
-                            font:
-                                size: 13px
                         icons:
                             size: 6px
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
+                            text:
+                                visible: *text_visible_populated_places
+                                font:
+                                    size: 13px
                     capital:
-                        filter: { capital: yes }
+                        filter: { country_capital: true }
                         draw:
                             icons:
                                 sprite: capital-m
 
                 z8places-3-ne:
-                    filter: { scalerank: [6,7] }
+                    filter: { min_zoom: [6,7] }
                     draw:
-                        text-blend-order:
-                            visible: *text_visible_populated_places
-                            offset: [0, 3px] # half icon size
-                            priority: 28
-                            font:
-                                size: 11px
                         icons:
                             size: 5px
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                             priority: 27
+                            text:
+                                visible: *text_visible_populated_places
+                                font:
+                                    size: 11px
                     capital:
-                        filter: { capital: yes }
+                        filter: { country_capital: true }
                         draw:
-                            text-blend-order:
-                                priority: 26
                             icons:
                                 sprite: capital-s
                                 priority: 25
@@ -3298,22 +3264,18 @@ layers:
                         any:
                             - { population: { min: 150000, max: 350000 } }
                     draw:
-                        text-blend-order:
-                            visible: *text_visible_populated_places
-                            offset: [0, 3px] # half icon size
-                            priority: 12
-                            font:
-                                size: 14px
                         icons:
                             size: 6px
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                             priority: 11
+                            text:
+                                visible: *text_visible_populated_places
+                                font:
+                                    size: 14px
                     capital:
-                        filter: { capital: yes }
+                        filter: { country_capital: true }
                         draw:
-                            text-blend-order:
-                                priority: 10
                             icons:
                                 sprite: capital-m
                                 priority: 9
@@ -3323,51 +3285,44 @@ layers:
                         any:
                             - { population: { min: 85000, max: 149999 } }
                     draw:
-                        text-blend-order:
-                            visible: *text_visible_populated_places
-                            offset: [0, 3px] # half icon size
-                            priority: 16
-                            font:
-                                fill: [0.25,0.25,0.25]
-                                size: 13px
                         icons:
                             size: 6px
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                             priority: 15
-                    capital:
-                        filter: { capital: yes }
-                        draw:
-                            text-blend-order:
-                                priority: 14
+                            text:
+                                visible: *text_visible_populated_places
                                 font:
-                                    size: 15px
+                                    fill: [0.25,0.25,0.25]
+                                    size: 13px
+                    capital:
+                        filter: { country_capital: true }
+                        draw:
                             icons:
                                 sprite: capital-m
                                 priority: 13
+                                text:
+                                    font:
+                                        size: 15px
 
                 z9places-4:
                     filter:
                         any:
                             - { population: { min: 50000, max: 84999 } }
                     draw:
-                        text-blend-order:
-                            visible: *text_visible_populated_places
-                            offset: [0, 3px] # half icon size
-                            priority: 20
-                            font:
-                                fill: [0.30,0.30,0.30]
-                                size: 12px
                         icons:
                             size: 5px
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                             priority: 19
+                            text:
+                                visible: *text_visible_populated_places
+                                font:
+                                    fill: [0.30,0.30,0.30]
+                                    size: 12px
                     capital:
-                        filter: { capital: yes }
+                        filter: { country_capital: true }
                         draw:
-                            text-blend-order:
-                                priority: 18
                             icons:
                                 sprite: capital-s
                                 priority: 17
@@ -3377,28 +3332,27 @@ layers:
                         all:
                             - { population: { max: 50000 } }
                         any:
-                            - { capital: yes }
-                            - { state_capital: yes }
+                            - { country_capital: true }
+                            - { region_capital: true }
                     draw:
-                        text-blend-order:
-                            priority: 1
-                            interactive: true
-                            visible: *text_visible_populated_places
-                            font:
-                                size: 11px
                         icons:
                             size: 8x
                             interactive: true
                             visible: *icon_visible_populated_places
                             sprite: townspot-xs-rev
-                    capital:
-                        filter: { capital: yes }
-                        draw:
-                            text-blend-order:
+                            text:
+                                interactive: true
+                                visible: *text_visible_populated_places
                                 font:
-                                    size: 13px
+                                    size: 11px
+                    capital:
+                        filter: { country_capital: true }
+                        draw:
                             icons:
                                 sprite: capital-s
+                                text:
+                                    font:
+                                        size: 13px
 
             populated-places-osm-z9-no-population:
                 filter:
@@ -3408,91 +3362,77 @@ layers:
                         - population: false
                         - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
                         - $zoom: [9]
-                        - kind: [city,town]
+                        - kind_detail: [city,town]
                 draw:
-                    text-blend-order:
-                        visible: *text_visible_populated_places
-                        offset: [0, 3px] # half icon size
-                        priority: 22
-                        font:
-                            size: 11px
-                            fill: *text_fill
-                            stroke: { color: *text_stroke, width: 2px }
                     icons:
                         size: 5px
                         visible: *icon_visible_populated_places
                         sprite: townspot-s-rev
                         priority: 21
+                        text:
+                            visible: *text_visible_populated_places
+                            font:
+                                size: 11px
+                                fill: *text_fill
+                                stroke: { color: *text_stroke, width: 2px }
 
             populated-places-natural-earth-z9-backfill:
-                filter: { name: true, source: naturalearthdata.com, $zoom: [9], population: { max: 50000 } }
+                filter: { $zoom: [9], population: { max: 50000 } }
                 draw: { text-blend-order: { font: { fill: *text_fill } } }
                 z9places-1-ne:
-                    filter: { scalerank: [0,1] }
+                    filter: { min_zoom: [2,3] }
                     draw:
-                        text-blend-order:
-                            visible: *text_visible_populated_places
-                            offset: [0, 4px] # half icon size
-                            priority: 26
-                            font:
-                                size: 16px
-                                stroke: { color: *text_stroke, width: 2px }
                         icons:
                             size: 8px
                             visible: *icon_visible_populated_places
                             sprite: townspot-l-rev
                             priority: 25
+                            text:
+                                visible: *text_visible_populated_places
+                                font:
+                                    size: 16px
+                                    stroke: { color: *text_stroke, width: 2px }
                     capital:
-                        filter: { capital: yes }
+                        filter: { country_capital: true }
                         draw:
-                            text-blend-order:
-                                priority: 24
                             icons:
                                 sprite: capital-l
                                 priority: 23
 
                 z9places-2-ne:
-                    filter: { scalerank: [2,3,4,5] }
+                    filter: { min_zoom: [4,5,6] }
                     draw:
-                        text-blend-order:
-                            visible: *text_visible_populated_places
-                            offset: [0, 3px] # half icon size
-                            priority: 30
-                            font:
-                                size: 13px
                         icons:
                             size: 6px
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                             priority: 29
+                            text:
+                                visible: *text_visible_populated_places
+                                font:
+                                    size: 13px
                     capital:
-                        filter: { capital: yes }
+                        filter: { country_capital: true }
                         draw:
-                            text-blend-order:
-                                priority: 27
                             icons:
                                 sprite: capital-m
                                 priority: 28
 
                 z9places-3-ne:
-                    filter: { scalerank: [6,7,8,9] }
+                    filter: { min_zoom: [6,7,9] }
                     draw:
-                        text-blend-order:
-                            visible: *text_visible_populated_places
-                            offset: [0, 3px] # half icon size
-                            priority: 34
-                            font:
-                                size: 11px
                         icons:
                             size: 6px
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                             priority: 33
+                            text:
+                                visible: *text_visible_populated_places
+                                font:
+                                    size: 11px
                     capital:
-                        filter: { capital: yes }
+                        filter: { country_capital: true }
                         draw:
-                            text-blend-order:
-                                priority: 32
                             icons:
                                 sprite: capital-m
                                 priority: 31
@@ -3537,51 +3477,45 @@ layers:
                         any:
                             - { population: { min: 150000, max: 350000 } }
                     draw:
-                        text-blend-order:
-                            visible: *text_visible_populated_places
-                            offset: [0, 3px] # half icon size
-                            priority: 8
-                            font:
-                                size: 13px
                         icons:
                             size: 6px
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                             priority: 7
+                            text:
+                                visible: *text_visible_populated_places
+                                font:
+                                    size: 13px
 
                 z10places-3:
                     filter:
                         any:
                             - { population: { min: 50000, max: 149999 } }
                     draw:
-                        text-blend-order:
-                            visible: *text_visible_populated_places
-                            offset: [0, 3px] # half icon size
-                            priority: 12
-                            font:
-                                size: 12px
                         icons:
                             size: 6px
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                             priority: 11
+                            text:
+                                visible: *text_visible_populated_places
+                                font:
+                                    size: 12px
 
                 z10places-4:
                     filter:
                         any:
                             - { population: { min: 20000, max: 49999 } }
                     draw:
-                        text-blend-order:
-                            visible: *text_visible_populated_places
-                            offset: [0, 3px] # half icon size
-                            priority: 14
-                            font:
-                                size: 11px
                         icons:
                             size: 5px
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                             priority: 13
+                            text:
+                                visible: *text_visible_populated_places
+                                font:
+                                    size: 11px
 
             populated-places-osm-z10-no-population:
                 filter:
@@ -3591,27 +3525,25 @@ layers:
                         - population: false
                         - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
                         - $zoom: [10]
-                        - kind: [city,town]
+                        - kind_detail: [city,town]
                 draw:
-                    text-blend-order:
-                        visible: *text_visible_populated_places
-                        offset: [0, 3px] # half icon size
-                        priority: 16
-                        font:
-                            size: 11px
-                            fill: *text_fill
-                            stroke: { color: *text_stroke, width: 3px }
                     icons:
                         size: 5px
                         visible: *icon_visible_populated_places
                         sprite: townspot-s-rev
                         priority: 15
+                        text:
+                            visible: *text_visible_populated_places
+                            font:
+                                size: 11px
+                                fill: *text_fill
+                                stroke: { color: *text_stroke, width: 3px }
 
             populated-places-natural-earth-z10-backfill:
-                filter: { name: true, source: naturalearthdata.com, $zoom: [10], population: { max: 20000 } }
+                filter: { $zoom: [10], population: { max: 20000 } }
                 draw: { text-blend-order: { font: { fill: *text_fill, stroke: { color: *text_stroke, width: 3px } } } }
                 z10places-1-ne:
-                    filter: { scalerank: [0,1] }
+                    filter: { min_zoom: [2,3] }
                     draw:
                         text-blend-order:
                             visible: *text_visible_populated_places
@@ -3621,47 +3553,39 @@ layers:
                                 size: 16px
 
                 z10places-2-ne:
-                    filter: { scalerank: [2,3,4,5] }
+                    filter: { min_zoom: [4,5,6] }
                     draw:
-                        text-blend-order:
-                            visible: *text_visible_populated_places
-                            offset: [0, 3px] # half icon size
-                            priority: 22
-                            font:
-                                size: 14px
                         icons:
                             size: 6px
                             visible: *icon_visible_populated_places
                             sprite: townspot-m-rev
                             priority: 21
+                            text:
+                                visible: *text_visible_populated_places
+                                font:
+                                    size: 14px
                     capital:
-                        filter: { capital: yes }
+                        filter: { country_capital: true }
                         draw:
-                            text-blend-order:
-                                priority: 21
                             icons:
                                 sprite: capital-m
                                 priority: 20
 
                 z10places-3-ne:
-                    filter: { scalerank: [6,7,8,9,10] }
+                    filter: { min_zoom: [6,7,9,10] }
                     draw:
-                        text-blend-order:
-                            visible: *text_visible_populated_places
-                            offset: [0, 3px] # half icon size
-                            priority: 26
-                            font:
-                                size: 13px
                         icons:
                             size: 5px
                             visible: *icon_visible_populated_places
                             sprite: townspot-s-rev
                             priority: 25
+                            text:
+                                visible: *text_visible_populated_places
+                                font:
+                                    size: 13px
                     capital:
-                        filter: { capital: yes }
+                        filter: { country_capital: true }
                         draw:
-                            text-blend-order:
-                                priority: 24
                             icons:
                                 size: 7px
                                 sprite: capital-m
@@ -3675,7 +3599,7 @@ layers:
                         - population: true
                         - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
                         - $zoom: [11]
-                        - kind: [city,town]
+                        - kind_detail: [city,town]
                 draw: { text-blend-order: { anchor: center, font: { fill: *text_fill, stroke: { color: *text_stroke, width: 3px } } } }
 
                 z11places-1:
@@ -3721,7 +3645,7 @@ layers:
                         - population: false
                         - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
                         - $zoom: [11]
-                        - kind: [city,town]
+                        - kind_detail: [city,town]
                 draw:
                     text-blend-order:
                         anchor: center
@@ -3733,7 +3657,7 @@ layers:
                             stroke: { color: *text_stroke, width: 3px }
 
             populated-places-natural-earth-z11-backfill:
-                filter: { name: true, source: naturalearthdata.com, $zoom: [11], population: { max: 5000 } }
+                filter: { $zoom: [11], population: { max: 5000 } }
                 draw:
                     text-blend-order:
                         anchor: center
@@ -3741,7 +3665,7 @@ layers:
                             fill: *text_fill
                             stroke: { color: *text_stroke, width: 3px }
                 z11places-1-ne:
-                    filter: { scalerank: [0,1] }
+                    filter: { min_zoom: [2,3] }
                     draw:
                         text-blend-order:
                             visible: *text_visible_populated_places
@@ -3749,13 +3673,13 @@ layers:
                             font:
                                 size: 16px
                     capital:
-                        filter: { capital: yes }
+                        filter: { country_capital: true }
                         draw:
                             text-blend-order:
                                 priority: 9
 
                 z11places-2-ne:
-                    filter: { scalerank: [2,3,4,5] }
+                    filter: { min_zoom: [4,5,6] }
                     draw:
                         text-blend-order:
                             visible: *text_visible_populated_places
@@ -3763,14 +3687,14 @@ layers:
                             font:
                                 size: 14px
                     capital:
-                        filter: { capital: yes }
+                        filter: { country_capital: true }
                         draw:
                             text-blend-order:
                                 priority: 11
                                 font:
                                     size: 16px
                     state_capital:
-                        filter: { state_capital: yes }
+                        filter: { region_capital: true }
                         draw:
                             text-blend-order:
                                 priority: 12
@@ -3778,7 +3702,7 @@ layers:
                                     size: 15px
 
                 z11places-3-ne:
-                    filter: { scalerank: [6,7,8,9,10,11] }
+                    filter: { min_zoom: [6,7,9,10] }
                     draw:
                         text-blend-order:
                             visible: *text_visible_populated_places
@@ -3786,7 +3710,7 @@ layers:
                             font:
                                 size: 12px
                     capital:
-                        filter: { capital: yes }
+                        filter: { country_capital: true }
                         draw:
                             text-blend-order:
                                 priority: 14
@@ -3801,7 +3725,7 @@ layers:
                         - population: true
                         - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
                         - $zoom: [12]
-                        - kind: [city,town]
+                        - kind_detail: [city,town]
                 draw: { text-blend-order: { anchor: center, font: { fill: *text_fill, weight: 600, stroke: { color: *text_stroke, width: 3px } } } }
 
                 z12places-1:
@@ -3858,7 +3782,7 @@ layers:
                         - population: false
                         - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
                         - $zoom: [12]
-                        - kind: [city,town]
+                        - kind_detail: [city,town]
                 draw:
                     text-blend-order:
                         anchor: center
@@ -3870,7 +3794,7 @@ layers:
                             stroke: { color: *text_stroke, width: 3px }
 
             populated-places-natural-earth-z12-backfill:
-                filter: { name: true, source: naturalearthdata.com, $zoom: [12], population: { max: 5000 } }
+                filter: { $zoom: [12], population: { max: 5000 } }
                 draw:
                     text-blend-order:
                         anchor: center
@@ -3880,7 +3804,7 @@ layers:
                             stroke: { color: *text_stroke, width: 3px }
 
                 z12places-1-ne:
-                    filter: { scalerank: [0,1] }
+                    filter: { min_zoom: [2,3] }
                     draw:
                         text-blend-order:
                             visible: *text_visible_populated_places
@@ -3888,7 +3812,7 @@ layers:
                             font:
                                 size: 16px
                     capital:
-                        filter: { capital: yes }
+                        filter: { country_capital: true }
                         draw:
                             text-blend-order:
                                 priority: 11
@@ -3896,7 +3820,7 @@ layers:
                                     size: 16px
 
                 z12places-2-ne:
-                    filter: { scalerank: [2,3,4,5] }
+                    filter: { min_zoom: [4,5,6] }
                     draw:
                         text-blend-order:
                             visible: *text_visible_populated_places
@@ -3904,7 +3828,7 @@ layers:
                             font:
                                 size: 13px
                     capital:
-                        filter: { capital: yes }
+                        filter: { country_capital: true }
                         draw:
                             text-blend-order:
                                 priority: 13
@@ -3912,7 +3836,7 @@ layers:
                                     size: 16px
 
                 z12places-3-ne:
-                    filter: { scalerank: [6,7,8,9,10,11,12] }
+                    filter: { min_zoom: [6,7,9,10] }
                     draw:
                         text-blend-order:
                             visible: *text_visible_populated_places
@@ -3920,7 +3844,7 @@ layers:
                             font:
                                 size: 11px
                     capital:
-                        filter: { capital: yes }
+                        filter: { country_capital: true }
                         draw:
                             text-blend-order:
                                 priority: 15
@@ -3935,7 +3859,7 @@ layers:
                         - population: true
                         - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
                         - $zoom: [13,14]
-                        - kind: [city,town]
+                        - kind_detail: [city,town]
                 draw:
                     text-blend-order:
                         anchor: center
@@ -4003,7 +3927,7 @@ layers:
                         - population: false
                         - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
                         - $zoom: [13, 14]
-                        - kind: [city,town]
+                        - kind_detail: [city,town]
                 draw:
                     text-blend-order:
                         anchor: center
@@ -4015,7 +3939,7 @@ layers:
                             stroke: { color: *text_stroke, width: 3 }
 
             populated-places-natural-earth-z13-z14-backfill:
-                filter: { name: true, source: naturalearthdata.com, $zoom: [13,14], population: { max: 5000 } }
+                filter: { $zoom: [13,14], population: { max: 5000 } }
                 draw:
                     text-blend-order:
                         anchor: center
@@ -4024,7 +3948,7 @@ layers:
                             weight: 400
 
                 z13places-1-ne:
-                    filter: { scalerank: [0,1] }
+                    filter: { min_zoom: [2,3] }
                     draw:
                         text-blend-order:
                             priority: 8
@@ -4032,7 +3956,7 @@ layers:
                             visible: false
 
                 z13places-2-ne:
-                    filter: { scalerank: [2,3,4,5] }
+                    filter: { min_zoom: [4,5,6] }
                     draw:
                         text-blend-order:
                             priority: 9
@@ -4041,28 +3965,24 @@ layers:
                                 size: 13px
 
                 z13places-3-ne:
-                    filter: { scalerank: [6,7,8,9,10,11,12] }
+                    filter: { min_zoom: [6,7,9,10] }
                     draw:
                         text-blend-order:
                             visible: *text_visible_populated_places
                             priority: 10
                             font:
                                 size: 12px
-
+        neighbourhoods:
+            filter:
+                kind: [macrohood, neighbourhood]
             neighborhood-z11:
                 filter:
                     all:
-                        - name: true
-                        - kind: [macrohood, neighbourhood]
                         - $zoom: [11]
-                    any:
-                        - source: [openstreetmap, openstreetmap.org]
-                        - source: [whosonfirst, whosonfirst.mapzen.com]
-                          all:
-                            - min_zoom: [11]
-                            - max_zoom: { min: 12 }
-                            - is_landuse_aoi: false
-                            #- kind_tile_rank: { max: 6 }
+                        - min_zoom: [11]
+                        - max_zoom: { min: 12 }
+                        - is_landuse_aoi: false
+                        #- kind_tile_rank: { max: 6 }
                 draw:
                     text-blend-order:
                         priority: 18
@@ -4077,17 +3997,11 @@ layers:
             neighborhood-z12:
                 filter:
                     all:
-                        - name: true
-                        - kind: [macrohood, neighbourhood]
                         - $zoom: [12]
-                    any:
-                        - source: [openstreetmap, openstreetmap.org]
-                        - source: [whosonfirst, whosonfirst.mapzen.com]
-                          all:
-                            - min_zoom: [11,12]
-                            - max_zoom: { min: 13 }
-                            - is_landuse_aoi: false
-                            #- kind_tile_rank: { max: 8 }
+                        - min_zoom: [11,12]
+                        - max_zoom: { min: 13 }
+                        - is_landuse_aoi: false
+                        #- kind_tile_rank: { max: 8 }
                 draw:
                     text-blend-order:
                         priority: 18
@@ -4102,17 +4016,11 @@ layers:
             neighborhood-z13:
                 filter:
                     all:
-                        - name: true
-                        - kind: [macrohood, neighbourhood]
                         - $zoom: [13]
-                    any:
-                        - source: [openstreetmap, openstreetmap.org]
-                        - source: [whosonfirst, whosonfirst.mapzen.com]
-                          all:
-                            - min_zoom: [11,12,13]
-                            - max_zoom: { min: 14 }
-                            - is_landuse_aoi: false
-                            - kind_tile_rank: { max: 8 }
+                        - min_zoom: [11,12,13]
+                        - max_zoom: { min: 14 }
+                        - is_landuse_aoi: false
+                        - kind_tile_rank: { max: 8 }
                 draw:
                     text-blend-order:
                         priority: 18
@@ -4127,17 +4035,11 @@ layers:
             neighborhood-z14:
                 filter:
                     all:
-                        - name: true
-                        - kind: [macrohood, neighbourhood]
                         - $zoom: [14]
-                    any:
-                        - source: [openstreetmap, openstreetmap.org]
-                        - source: [whosonfirst, whosonfirst.mapzen.com]
-                          all:
-                            - min_zoom: [11,12,13,14]
-                            - max_zoom: { min: 15 }
-                            - is_landuse_aoi: false
-                            - kind_tile_rank: { max: 8 }
+                        - min_zoom: [11,12,13,14]
+                        - max_zoom: { min: 15 }
+                        - is_landuse_aoi: false
+                        - kind_tile_rank: { max: 8 }
                 draw:
                     text-blend-order:
                         priority: 18
@@ -4152,17 +4054,11 @@ layers:
             neighborhood-z15:
                 filter:
                     all:
-                        - name: true
-                        - kind: [macrohood, neighbourhood]
                         - $zoom: [15]
-                    any:
-                        - source: [openstreetmap, openstreetmap.org]
-                        - source: [whosonfirst, whosonfirst.mapzen.com]
-                          all:
-                            - min_zoom: [11,12,13,14,15]
-                            - max_zoom: { min: 16 }
-                            - is_landuse_aoi: false
-                            - kind_tile_rank: { max: 8 }
+                        - min_zoom: [11,12,13,14,15]
+                        - max_zoom: { min: 16 }
+                        - is_landuse_aoi: false
+                        - kind_tile_rank: { max: 8 }
                 draw:
                     text-blend-order:
                         priority: 18
@@ -4186,17 +4082,11 @@ layers:
             neighborhood-z16:
                 filter:
                     all:
-                        - name: true
-                        - kind: [macrohood, neighbourhood]
                         - $zoom: [16]
-                    any:
-                        - source: [openstreetmap, openstreetmap.org]
-                        - source: [whosonfirst, whosonfirst.mapzen.com]
-                          all:
-                            - min_zoom: [11,12,13,14,15,16]
-                            - max_zoom: { min: 17 }
-                            - is_landuse_aoi: false
-                            - kind_tile_rank: { max: 8 }
+                        - min_zoom: [11,12,13,14,15,16]
+                        - max_zoom: { min: 17 }
+                        - is_landuse_aoi: false
+                        - kind_tile_rank: { max: 8 }
                 draw:
                     text-blend-order:
                         visible: *text_visible_neighbourhoods
@@ -4209,7 +4099,7 @@ layers:
                             stroke: { color: *text_stroke, width: 3 }
 
     highway-exit:
-        data: { source: osm, layer: [pois] }
+        data: { source: mapzen, layer: [pois] }
         filter: { kind: motorway_junction }
         draw:
             icons:
@@ -4235,8 +4125,8 @@ layers:
                     font:
                         weight: 600
     airport-gate:
-        data: { source: osm, layer: [pois] }
-        filter: { kind: gate, aeroway: gate }
+        data: { source: mapzen, layer: [pois] }
+        filter: { kind: aeroway_gate }
         draw:
             icons:
                 visible: false
@@ -4256,7 +4146,7 @@ layers:
                         weight: 600
 
     pois_and_landuse_labels:
-        data: { source: osm, layer: [pois,landuse,buildings] }
+        data: { source: mapzen, layer: [pois,landuse,buildings] }
         visible: *label_visible_poi_landuse
         filter: 
             not: { kind: [building,farm,tree,gate,address,apron] }
@@ -4274,57 +4164,55 @@ layers:
                 interactive: true
                 visible: false
                 priority: 45
-            text-blend-order:
-                visible: false    # labels are enabled by each layer below
-                move_into_tile: false # preserves text alignment w/icons in JS
-                anchor: bottom
-                offset: [[13, [0, 6px]], [16, [0, 8px]], [18, [0, 10px]]] # offset tracks alongside icon size (half icon height)
-                interactive: true
-                priority: 46
-                font:
-                    family: *text_font_family
-                    weight: 500
-                    fill: *text_fill
-                    size: 12px
-                    stroke: { color: *text_stroke, width: 4 }
+                text:
+                    visible: false    # labels are enabled by each layer below
+                    move_into_tile: false # preserves text alignment w/icons in JS
+                    interactive: true
+                    buffer: 7px
+                    font:
+                        family: *text_font_family
+                        weight: 500
+                        fill: *text_fill
+                        size: 12px
+                        stroke: { color: *text_stroke, width: 4 }
         poi_labels-z14:
             filter: { $zoom: [14] }
-            draw: { text-blend-order: { font: { size: 11px } } }
+            draw: { icons: { text: { font: { size: 11px } } } }
         poi_labels-z15:
             filter: { $zoom: [15,16,17] }
-            draw: { text-blend-order: { font: { size: 12px, stroke: { width: 2 } } } }
+            draw: { icons: { text: { font: { size: 12px, stroke: { width: 2 } } } } }
         poi_labels-z18:
             filter: { $zoom: [18,19] }
-            draw: { text-blend-order: { font: { size: 12px, weight: 600, stroke: { width: 3 } } } }
+            draw: { icons: { text: { font: { size: 12px, weight: 600, stroke: { width: 3 } } } } }
         poi_labels-z20-up:
             filter: { $zoom: { min: 20 } }
-            draw: { text-blend-order: { font: { size: 14px, weight: 600, stroke: { width: 3 }  } } }
+            draw: { icons: { text: { font: { size: 14px, weight: 600, stroke: { width: 3 } } } } }
         no-name:
             filter: { name: false }
             sports-pitch:
                 filter: { kind: [grass, pitch], $geometry: point, area: true, $zoom: { min: 17 } }
                 draw:
                     icons:
-                        sprite: function() { return feature.sport }
+                        sprite: function() { return feature.kind_detail }
                         visible: *icon_visible_poi_landuse_e
                         priority: 49
                 baseball:
-                    filter: { sport: baseball }
+                    filter: { kind_detail: baseball }
                     draw: { icons: { sprite: baseball-field } }
                 basketball:
-                    filter: { sport: basketball }
+                    filter: { kind_detail: basketball }
                     draw: { icons: { sprite: basketball-court } }
                 football:
-                    filter: { sport: football }
+                    filter: { kind_detail: football }
                     draw: { icons: { sprite: football-stadium } }
                 hockey:
-                    filter: { sport: hockey-field }
+                    filter: { kind_detail: hockey-field }
                     draw: { icons: { sprite: hockey-field } }
                 soccer:
-                    filter: { sport: soccer }
+                    filter: { kind_detail: soccer }
                     draw: { icons: { sprite: soccer-field } }
                 tennis:
-                    filter: { sport: tennis }
+                    filter: { kind_detail: tennis }
                     draw: { icons: { sprite: tennis } }
             toilets:
                 filter: { kind: toilets, $zoom: { min: 18 }  }
@@ -4374,13 +4262,14 @@ layers:
             default-label-names:
                 filter: { $zoom: { min: 13 }, area: false }
                 draw:
-                    text-blend-order:
-                        visible: *text_visible_poi_landuse
-                        priority: 48
-                        font:
-                            fill: *text_fill
-                            size: 12px
-                            stroke: { color: *text_stroke, width: 4 }
+                    icons:
+                        text:
+                            visible: *text_visible_poi_landuse
+                            priority: 48
+                            font:
+                                fill: *text_fill
+                                size: 12px
+                                stroke: { color: *text_stroke, width: 4 }
             landuse-labels-green-areas-national-park:
                 filter:
                     all:
@@ -4408,32 +4297,34 @@ layers:
                             visible: *icon_visible_landuse_green
                             sprite: park
                             priority: 41
-                        text-blend-order:
-                            visible: *text_visible_landuse_green
-                            priority: 42
-                            font:
-                                fill: *text_fill_park
-                                size: 12px
-                                style: italic
-                                stroke: { color: *text_stroke_park, width: 4 }
+                            text:
+                                visible: *text_visible_landuse_green
+                                font:
+                                    fill: *text_fill_park
+                                    size: 12px
+                                    style: italic
+                                    stroke: { color: *text_stroke_park, width: 4 }
                     natl-park-labels-z4-z6:
                         filter: { $zoom: [4,5,6] }
                         draw:
                             icons:
                                 visible: false
-                            text-blend-order: { font: { size: 10px, stroke: { width: 2px } } }
+                                text: { font: { size: 10px, stroke: { width: 2px } } }
                     natl-park-labels-z7:
                         filter: { $zoom: [7] }
                         draw:
-                            text-blend-order: { font: { size: 10px, stroke: { width: 2px } } }
+                            icons:
+                                text: { font: { size: 10px, stroke: { width: 2px } } }
                     natl-park-labels-z8:
                         filter: { $zoom: [8,9] }
                         draw:
-                            text-blend-order: { font: { size: 11px, stroke: { width: 2px } } }
+                            icons:
+                                text: { font: { size: 11px, stroke: { width: 2px } } }
                     natl-park-labels-z10:
                         filter: { $zoom: {min: 10, max: 14 } }
                         draw:
-                            text-blend-order: { font: { size: 12px } }
+                            icons:
+                                text: { font: { size: 12px } }
 
             landuse-labels-green-areas-not-national-park:
                 filter:
@@ -4462,40 +4353,44 @@ layers:
                             visible: *icon_visible_landuse_green
                             sprite: park
                             priority: 41
-                        text-blend-order:
-                            visible: *text_visible_landuse_green
-                            priority: 42
-                            font:
-                                fill: *text_fill_park
-#                                size: 12px
-#                                weight: 400
-                                style: italic
-#                                stroke: { color: [0.870,0.870,0.870], width: 2 }
+                            text:
+                                visible: *text_visible_landuse_green
+                                font:
+                                    fill: *text_fill_park
+    #                                size: 12px
+    #                                weight: 400
+                                    style: italic
+    #                                stroke: { color: [0.870,0.870,0.870], width: 2 }
                     green-areas-z6:
                         # mojave national preserve
                         filter: { $zoom: [6] }
                         draw:
-                            icons: { visible: false }
-                            text-blend-order: { font: { size: 10px, stroke: { width: 2px } } }
+                            icons:
+                                visible: false
+                                text: { font: { size: 10px, stroke: { width: 2px } } }
                     green-areas-z7:
                         filter: { $zoom: [7] }
                         draw:
-                            icons: { visible: false }
-                            text-blend-order: { font: { size: 10px } }
+                            icons:
+                                visible: false
+                                text: { font: { size: 10px } }
                     green-areas-z8-z9:
                         filter: { $zoom: { min: 8, max: 14 } }
                         draw:
-                            text-blend-order: { font: { size: 11px } }
+                            icons:
+                                text: { font: { size: 11px } }
                     wilderness-areas-early:
-                       filter: function() { return $zoom < 10 && feature.name && (feature.name.indexOf("Wilderness") > -1 || feature.name.indexOf("BLM") > -1) }
-                       draw:
-                           text-blend-order: { visible: false }
-                           icons: { visible: false }
+                        filter: function() { return $zoom < 10 && feature.name && (feature.name.indexOf("Wilderness") > -1 || feature.name.indexOf("BLM") > -1) }
+                        draw:
+                            icons: 
+                                visible: false
+                                text: { visible: false }
                     early-not-national-park:
                         filter: { not: { kind: national_park }, $zoom: { max: 6 } }
                         draw:
-                            text-blend-order: { visible: false }
-                            icons: { visible: false }
+                            icons:
+                                visible: false
+                                text: { visible: false }
                     not-national-park:
                         filter: function() { return feature.name && feature.name.indexOf("Park") > -1 }
                         # draw:
@@ -4504,23 +4399,27 @@ layers:
                         early:
                             filter: { $zoom: { max: 8 } }
                             draw:
-                                text-blend-order: { visible: false }
-                                icons: { visible: false }
+                                icons:
+                                    visible: false
+                                    text: { visible: false }
                     forest:
                         filter: function() { return $zoom < 8 && ((feature.name && feature.name.indexOf("Forest") > -1) || feature.protect_class >=6) }
                         draw:
-                            text-blend-order: { visible: false }
-                            icons: { visible: false }
+                            icons:
+                                visible: false
+                                text: { visible: false }
                     hide-till-later:
                         filter: { kind: [grass], $zoom: { max: 16 } }
                         draw:
-                            text-blend-order: { visible: false }
-                            icons: { visible: false }
+                            icons:
+                                visible: false
+                                text: { visible: false }
                     only-text-later:
                         filter: { kind: [grass], $zoom: { min: 16 } }
                         draw:
-                            text-blend-order: { font: { style: italic } }
-                            icons: { visible: false }
+                            icons:
+                                visible: false
+                                text: { font: { style: italic } }
             beach:
                 filter:
                     all:
@@ -4542,13 +4441,11 @@ layers:
                         visible: *icon_visible_landuse_green
                         interactive: true
                         sprite: beach
-                    text-blend-order:
-                        visible: *text_visible_landuse_green
-                        interactive: true
-                        font:
-                            fill: *text_fill_beach
-                            stroke:
-                                color: *yellow1
+                        text:
+                            visible: *text_visible_landuse_green
+                            interactive: true
+                            font:
+                                fill: *text_fill_beach
             airport:
                 filter:
                     all:
@@ -4573,21 +4470,20 @@ layers:
                         sprite: airport
                         visible: *icon_visible_landuse_green
                         priority: 42
-                    text-blend-order:
-                        visible: *text_visible_landuse_green
-                        priority: 41
-                        text_source: function() { if(feature.iata) { return feature.name + ' (' + feature.iata + ')'; } else { return feature.name; } }
-                        font:
-                            fill: [0.20,0.20,0.20] # *text_fill
-                            #size: 11px
-                            stroke: { color: *text_stroke, width: 4 }
+                        text:
+                            visible: *text_visible_landuse_green
+                            text_source: function() { if(feature.iata) { return feature.name + ' (' + feature.iata + ')'; } else { return feature.name; } }
+                            font:
+                                fill: [0.20,0.20,0.20] # *text_fill
+                                #size: 11px
+                                stroke: { color: *text_stroke, width: 4 }
                 early:
                     filter: { $zoom: [9,10,11] }
                     # todo: huh?
-                    draw: { text-blend-order: { text_source: iata, font: { size: 11px } } }
+                    draw: { icons: { text: { text_source: iata, font: { size: 11px } } } }
                 early2:
                     filter: { $zoom: { min: 12, max: 14 } }
-                    draw: { text-blend-order: { font: { size: 11px } } }
+                    draw: { icons: { text: { font: { size: 11px } } } }
             university:
                 filter:
                     all:
@@ -4614,19 +4510,18 @@ layers:
                         sprite: college-university
                         visible: *icon_visible_landuse_green
                         priority: 41
-                    text-blend-order:
-                        visible: *text_visible_landuse_green
-                        priority: 42
-                        font:
-                            fill: *text_fill
-                            size: 12px
-                            stroke: { color: *text_stroke, width: 4 }
+                        text:
+                            visible: *text_visible_landuse_green
+                            font:
+                                fill: *text_fill
+                                size: 12px
+                                stroke: { color: *text_stroke, width: 4 }
                 early:
                     filter: { $zoom: { max: 12 } }
-                    draw: { text-blend-order: { visible: false } }
+                    draw: { icons: { text: { visible: false } } }
                 early2:
                     filter: { $zoom: { min: 12, max: 14 } }
-                    draw: { text-blend-order: { size: 11px } }
+                    draw: { icons: { text: { size: 11px } } }
             school:
                 filter:
                     all:
@@ -4648,15 +4543,15 @@ layers:
                         sprite: school
                         visible: *icon_visible_landuse_green
                         priority: 41
-                    text-blend-order:
-                        visible: *text_visible_landuse_green
-                        font:
-                            fill: *text_fill
-                            size: 12px
-                            stroke: { color: *text_stroke, width: 4 }
+                        text:
+                            visible: *text_visible_landuse_green
+                            font:
+                                fill: *text_fill
+                                size: 12px
+                                stroke: { color: *text_stroke, width: 4 }
                 early:
                     filter: { $zoom: { max: 14 } }
-                    draw: { text-blend-order: { font: { size: 11px } } }
+                    draw: { icons: { text: { font: { size: 11px } } } }
             winter_sports:
                 filter:
                     all:
@@ -4676,19 +4571,19 @@ layers:
                         - { $zoom: [17], area: { min: 2000 } }
                         - { $zoom: { min: 18 } }
                 draw:
-                    text-blend-order:
-                        visible: *text_visible_landuse_green
-                        font:
-                            fill: *text_fill
-                            size: 12px
-                            stroke: { color: *text_stroke, width: 4 }
                     icons:
                         sprite: ski-area
                         visible: *icon_visible_landuse_green
                         priority: 41
+                        text:
+                            visible: *text_visible_landuse_green
+                            font:
+                                fill: *text_fill
+                                size: 12px
+                                stroke: { color: *text_stroke, width: 4 }
                 early:
                     filter: { $zoom: { max: 14 } }
-                    draw: { text-blend-order: { font: { size: 10px } } }
+                    draw: { icons: { text: { font: { size: 10px } } } }
             tourism-related:
                 filter:
                     all:
@@ -4710,16 +4605,15 @@ layers:
                         sprite_default: generic
                         visible: *icon_visible_poi_landuse
                         priority: 43
-                    text-blend-order:
-                        visible: *text_visible_poi_landuse
-                        priority: 44
-                        font:
-                            fill: *text_fill
-                            size: 12px
-                            stroke: { color: *text_stroke, width: 4 }
+                        text:
+                            visible: *text_visible_poi_landuse
+                            font:
+                                fill: *text_fill
+                                size: 12px
+                                stroke: { color: *text_stroke, width: 4 }
                 early-sizing:
                     filter: { $zoom: { max: 14 } }
-                    draw: { text-blend-order: { size: 11px } }
+                    draw: { icons: { text: { size: 11px } } }
             landuse-labels-not-green-areas:
                 filter:
                     all:
@@ -4747,16 +4641,15 @@ layers:
                         sprite_default: generic
                         visible: *icon_visible_poi_landuse
                         priority: 43
-                    text-blend-order:
-                        visible: *text_visible_poi_landuse
-                        priority: 44
-                        font:
-                            fill: *text_fill
-                            size: 12px
-                            stroke: { color: *text_stroke, width: 4 }
+                        text:
+                            visible: *text_visible_poi_landuse
+                            font:
+                                fill: *text_fill
+                                size: 12px
+                                stroke: { color: *text_stroke, width: 4 }
                 early-sizing:
                     filter: { $zoom: { max: 14 } }
-                    draw: { text-blend-order: { size: 11px } }
+                    draw: { icons: { text: { size: 11px } } }
                 building-like:
                     filter: { kind: [commercial,residential,warehouse,public,dormitory], osm_relation: false }
                     draw:
@@ -4765,89 +4658,104 @@ layers:
                 residential-relations-paris-wtf-early:
                     filter: { kind: [residential], osm_relation: true, $zoom: { max: 13 } }
                     draw:
-                        text-blend-order: { visible: false }
-                        icons: { visible: false }
+                        icons:
+                            visible: false
+                            text: { visible: false }
                 residential-relations-paris-wtf:
                     filter: { kind: [residential], osm_relation: true, $zoom: { min: 13 } }
                     draw:
-                        text-blend-order: 
-                            visible: true
-                            text_source: short_name
                         icons:
                             visible: false
+                            text: 
+                                visible: true
+                                text_source: short_name
                 hide-till-later:
                     filter: { kind: [pedestrian,common,railway,ship,houseboat,common,grass,wetland,pitch], $zoom: { max: 17 } }
                     draw:
-                        text-blend-order: { visible: false }
-                        icons: { visible: false }
+                        icons:
+                            visible: false
+                            text: { visible: false }
                 only-text-later:
                     filter: { kind: [pedestrian,common,railway,ship,houseboat,common,grass,wetland,pitch], $zoom: { min: 17 } }
                     draw:
-                        text-blend-order: { font: { style: italic } }
-                        icons: { visible: false }
+                        icons:
+                            visible: false
+                            text: { font: { style: italic } }
                 burial_vault-early:
                     filter: { kind: [burial_vault], $zoom: { max: 19 } }
                     draw:
-                        text-blend-order:  { visible: false }
-                        icons: { visible: false }
+                        icons:
+                            visible: false
+                            text: { visible: false }
             university-poi:
                 filter: { kind: [university, college], area: false, $zoom: { max: 16 } }
                 draw:
-                    text-blend-order:  { visible: false }
-                    icons: { visible: false }
+                    icons:
+                        visible: false
+                        text: { visible: false }
             office-early:
                 filter:
                     any:
                         - { kind: [insurance, office, company], $zoom: [15], area: { max: 10000 } }
                         - { kind: [insurance, office, company], $zoom: [16], area: { max: 5000 } }
                 draw:
-                    text-blend-order:  { visible: false }
-                    icons: { visible: false }
+                    icons:
+                        visible: false
+                        text: { visible: false }
             bank-early:
                 filter: { kind: [bank], $zoom: { max: 17 } }
                 draw:
-                    text-blend-order:  { visible: false }
-                    icons: { visible: false }
+                    icons:
+                        visible: false
+                        text: { visible: false }
             post-office-early:
                 filter: { kind: [post_office], $zoom: { max: 14 } }
                 draw:
-                    text-blend-order:  { visible: false }
-                    icons: { visible: false }
+                    icons:
+                        visible: false
+                        text: { visible: false }
             atm-early:
                 filter: { kind: [atm], $zoom: { max: 18 } }
                 draw:
-                    text-blend-order:  { visible: false }
-                    icons: { visible: false }
+                    icons:
+                        visible: false
+                        text: { visible: false }
             bicycle-parking-early:
                 filter: { kind: [bicycle_parking], $zoom: { max: 19 } }
                 draw:
-                    text-blend-order:  { visible: false }
-                    icons: { visible: false }
-            yes-early:
-                filter: { kind: [yes], $zoom: { max: 18 } }
+                    icons:
+                        visible: false
+                        text: { visible: false }
+            true-early:
+                filter: { kind: [true], $zoom: { max: 18 } }
                 draw:
-                    text-blend-order:  { visible: false }
-                    icons: { visible: false }
+                    icons:
+                        visible: false
+                        text: { visible: false }
             peak-early:
                 filter: { kind: [peak], $zoom: { max: 16 } }
                 draw:
-                    text-blend-order:  { visible: false }
-                    icons: { visible: false }
+                    icons:
+                        visible: false
+                        text: { visible: false }
             drinking-water-early:
                 filter: { kind: [drinking_water], $zoom: { max: 18 } }
                 draw:
-                    text-blend-order:  { visible: false }
-                    icons: { visible: false }
+                    icons:
+                        visible: false
+                        text: { visible: false }
             memorial-early:
                 filter: { kind: [memorial], $zoom: { max: 13 } }
                 draw:
-                    text-blend-order:  { visible: false }
-                    icons: { visible: false }
+                    icons:
+                        visible: false
+                        text: { visible: false }
             animal-points-early:
                 filter: { kind: [animal], area: false, $zoom: { max: 18 } }
                 draw:
-                    text-blend-order:  { visible: false }
-                    icons: { visible: false }
+                    icons:
+                        visible: false
+                        text: { visible: false }
 #            animal-areas-early:
 #                filter: { kind: [animal], area: { min: 500 }, $zoom: { max: 18 } }
 #                draw:
@@ -4858,26 +4766,27 @@ layers:
                     kind: [parking]
                     $zoom: { max: 18 }
                 draw:
-                    text-blend-order:
-                        visible: false
                     icons:
                         visible: false
+                        text: { visible: false }
             parking-labels:
                 filter:
                     kind: [parking]
                     $zoom: { min: 18 }
                 draw:
-                    text-blend-order:
-                        visible: *text_visible_poi_landuse
-                        font:
-                            fill: *text_fill
-                            size: 12px
-                            stroke: { color: *text_stroke, width: 4 }
+                    icons:
+                        text:
+                            visible: *text_visible_poi_landuse
+                            font:
+                                fill: *text_fill
+                                size: 12px
+                                stroke: { color: *text_stroke, width: 4 }
             landuse-funky:
                 filter: { kind: [commercial, residential, wood], $zoom: { max: 17 } }
                 draw:
-                    text-blend-order:
-                        visible: false
+                    icons:
+                        text:
+                            visible: false
             car-sharing:
                 filter: { kind: car_sharing }
                 icons-early:
@@ -4888,16 +4797,17 @@ layers:
                 text-labels-early:
                     filter: { $zoom: { max: 19 } }
                     draw:
-                        text-blend-order:
-                            visible: false
+                        icons:
+                            text:
+                                visible: false
             tower:
-                filter: { kind: [tower], label_placement: yes }
+                filter: { kind: [tower], label_placement: true }
                 draw:
                     icons:
                         visible: false
-                    text-blend-order:
-                        font:
-                            style: italic
+                        text:
+                            font:
+                                style: italic
             station-train-subway:
                 filter: { kind: [station, train-station, train_station], $zoom: { min: 11 } }
                 visible: *label_visible_station
@@ -4907,61 +4817,59 @@ layers:
                         sprite: train-station
                         size: [[13, 12px], [14, 12px], [15, 16px], [17, 18px], [18, 20px]]
                         priority: 41
-                    text-blend-order:
-                        visible: *text_visible_station
-                        offset: [[13, [0, 6px]], [14, [0, 6px]],[15, [0, 8px]], [17, [0, 9px]], [18, [0, 10px]]]
-                        priority: 42
+                        text:
+                            visible: *text_visible_station
                 low-priority-early:
                     filter: { kind_tile_rank: { min: 5 }, $zoom: { min: 0, max: 13 } }
                     draw:
                         icons:
                             visible: false
                             #size: [[12, 6px], [14, 6px], [15, 16px]]
-                        text-blend-order: { visible: false } 
+                            text: { visible: false } 
                 low-priority-early-z13:
                     filter: { kind_tile_rank: { min: 5 }, $zoom: [13] }
                     draw:
                         icons:
                             visible: false
                             #size: [[12, 6px], [14, 6px], [15, 16px]]
-                        text-blend-order: { visible: false } 
+                            text: { visible: false } 
                 low-priority-early-z14:
                     filter: { kind_tile_rank: { min: 7 }, $zoom: [14] }
                     draw:
-                        #icons:
+                        icons:
                             #size: [[12, 10px], [14, 11px], [15, 16px]]
                             #visible: false
-                        text-blend-order: { visible: false }
+                            text: { visible: false }
             tram-stop-early:
                 filter: { kind: tram_stop, $zoom: { max: 15 } }
                 draw:
                     icons:
                         visible: false
-                    text-blend-order:
-                        visible: false
+                        text:
+                            visible: false
             tram-stop-early-z15:
                 filter: { kind: tram_stop, $zoom: [15] }
                 draw:
-                    text-blend-order:
-                        visible: false
+                    icons:
+                        text:
+                            visible: false
             tram-stop:
                 filter: { kind: tram_stop, $zoom: { min: 15 } }
                 draw:
                     icons:
                         size: [[16, 12px], [17, 18px]]
-                    text-blend-order:
-                        offset: [[16, [0, 6px]], [17, [0, 9px]]]
             bus-stop-bus-station-labels:
                 filter:
                     kind: [bus_stop, bus_station]
                     $zoom: { min: 18 }
                 draw:
-                    text-blend-order:
-                        visible: *text_visible_poi_landuse
-                        font:
-                            fill: *text_fill
-                            size: 12px
-                            stroke: { color: *text_stroke, width: 4 }
+                    icons:
+                        text:
+                            visible: *text_visible_poi_landuse
+                            font:
+                                fill: *text_fill
+                                size: 12px
+                                stroke: { color: *text_stroke, width: 4 }
                 bus_stop:
                     filter:
                         kind: [bus_stop]
@@ -4969,24 +4877,28 @@ layers:
                     draw:
                         icons:
                             size: [[13, 8px], [19, 18px]]
-                        text-blend-order:
-                            visible: false
+                            text:
+                                visible: false
             minor-z17-early:
                 filter:
-                    kind: [accountant, administrative, advertising_agency, architect, association, atm, bakery, bed_and_breakfast, bicycle, bicycle_parking, bicycle_rental, books, bus_stop, bus_stop, butcher, car, car_repair, chalet, clothes, company, computer, consulting, convenience, doityourself, drinking_water, dry_cleaning, educational_institution, emergency_phone, employment_agency, estate_agent, fashion, financial, florist, foundation, gate, gift, government, greengrocer, guest_house, hairdresser, hostel, hotel, insurance, it, jewelry, lawyer, mast, memorial, mobile_phone, motel, newspaper, ngo, notary, optician, parking, pet, physician, playground, political_party, post_box, religion, research, slipway, subway_entrance, tax_advisor, telecommunication, telephone, theatre, therapist, toilets, traffic_signals, travel_agent, water_tower, yes]
+                    kind: [accountant, administrative, advertising_agency, architect, association, atm, bakery, bed_and_breakfast, bicycle, bicycle_parking, bicycle_rental, books, bus_stop, bus_stop, butcher, car, car_repair, chalet, clothes, company, computer, consulting, convenience, doityourself, drinking_water, dry_cleaning, educational_institution, emergency_phone, employment_agency, estate_agent, fashion, financial, florist, foundation, gate, gift, government, greengrocer, guest_house, hairdresser, hostel, hotel, insurance, it, jewelry, lawyer, mast, memorial, mobile_phone, motel, newspaper, ngo, notary, optician, parking, pet, physician, playground, political_party, post_box, religion, research, slipway, subway_entrance, tax_advisor, telecommunication, telephone, theatre, therapist, toilets, traffic_signals, travel_agent, water_tower, true]
                     area: false
                     $zoom: { max: 17 }
                 draw:
-                    text-blend-order:  { visible: false }
-                    icons: { visible: false }
+                    icons:
+                        visible: false
+                        text:
+                            visible: false
             minor-z18-early:
                 filter:
                     kind: [bench, waste_basket]
                     area: false
                     $zoom: { max: 18 }
                 draw:
-                    text-blend-order:  { visible: false }
-                    icons: { visible: false }
+                    icons:
+                        visible: false
+                        text:
+                            visible: false
 
             icons:
                 adult-boutique:
@@ -5055,10 +4967,10 @@ layers:
                                 - { $zoom: [16], area: { max: 5000 } }
                                 - { $zoom: [17], area: { max: 1000 } }
                         draw:
-                            text-blend-order:
-                                visible: false
                             icons:
                                 visible: false
+                                text:
+                                    visible: false
                 burger:
                     filter: { kind: [fast_food, burger] }
                     draw:   { icons: { sprite: burger } }
@@ -5392,7 +5304,7 @@ layers:
 
     # todo: ocean and sea features are hiding in the places layer
     water-area-labels:
-        data: { source: osm, layer: [water] }
+        data: { source: mapzen, layer: [water] }
         visible: *text_visible_water_labels
         filter:
             all:
@@ -5440,7 +5352,7 @@ layers:
                 text-blend-order: { font: { size: 12px } }
 
     ocean-sea-labels:
-        data: { source: osm, layer: places }
+        data: { source: mapzen, layer: places }
         visible: *text_visible_water_labels
         filter: { name: true, kind: [sea, ocean] }
         draw:
@@ -5518,7 +5430,7 @@ layers:
                         text-blend-order: { font: { size: 14px } }
 
     playa-labels:
-        data: { source: osm, layer: [water] }
+        data: { source: mapzen, layer: [water] }
         visible: *text_visible_water_labels
         filter:
             all:
@@ -5555,7 +5467,7 @@ layers:
 #            interactive: true
 #            sprite: *townspot_sprite
     water-line-labels:
-        data: { source: osm, layer: [water] }
+        data: { source: mapzen, layer: [water] }
         filter:
             all:
                 - name: true
@@ -5591,29 +5503,29 @@ layers:
                     visible: false
 
     landuse:
-        data: { source: osm }
+        data: { source: mapzen }
         draw: 
             polygons: 
-                order: function() { return feature.sort_key; }
+                order: function() { return feature.sort_rank; }
         tier1:
-            filter:
-                any:
-                    # limit show smaller landuse areas to higher zooms
-                    - { $zoom: { min: 3 },  area: { min: 300000000 } }
-                    - { $zoom: { min: 4 },  area: { min: 300000000 } }
-                    - { $zoom: { min: 5 },  area: { min: 150000000 } }
-                    - { $zoom: { min: 6 },  area: { min: 150000000 } }
-                    - { $zoom: { min: 7 },  area: { min: 100000000 } }
-                    - { $zoom: { min: 8 },  area: { min: 10000000 } }
-                    - { $zoom: { min: 9 },  area: { min: 5000000 } }
-                    - { $zoom: { min: 10 }, area: { min: 1000000 } }
-                    - { $zoom: { min: 11 }, area: { min: 500000 } }
-                    - { $zoom: { min: 12 }, area: { min: 500000 } }
-                    - { $zoom: { min: 13 }, area: { min: 100000 } }
-                    - { $zoom: { min: 14 }, area: { min: 50000 } }
-                    - { $zoom: { min: 15 }, area: { min: 20000 } }
-                    - { $zoom: { min: 15 }, area: { min: 2000 } }
-                    - { $zoom: { min: 16 } }
+            # filter:
+            #     any:
+            #         # limit show smaller landuse areas to higher zooms
+            #         - { $zoom: { min: 3 },  area: { min: 300000000 } }
+            #         - { $zoom: { min: 4 },  area: { min: 300000000 } }
+            #         - { $zoom: { min: 5 },  area: { min: 150000000 } }
+            #         - { $zoom: { min: 6 },  area: { min: 150000000 } }
+            #         - { $zoom: { min: 7 },  area: { min: 100000000 } }
+            #         - { $zoom: { min: 8 },  area: { min: 10000000 } }
+            #         - { $zoom: { min: 9 },  area: { min: 5000000 } }
+            #         - { $zoom: { min: 10 }, area: { min: 1000000 } }
+            #         - { $zoom: { min: 11 }, area: { min: 500000 } }
+            #         - { $zoom: { min: 12 }, area: { min: 500000 } }
+            #         - { $zoom: { min: 13 }, area: { min: 100000 } }
+            #         - { $zoom: { min: 14 }, area: { min: 50000 } }
+            #         - { $zoom: { min: 15 }, area: { min: 20000 } }
+            #         - { $zoom: { min: 15 }, area: { min: 2000 } }
+            #         - { $zoom: { min: 16 } }
             national_park:
                 filter: { kind: [national_park, "park or protected land"], not: { operator: [ "United States Forest Service", "US Forest Service", "U.S. Forest Service", "USDA Forest Service" ] } }
                 draw:
@@ -5628,23 +5540,23 @@ layers:
                             order: 19
                             color: *green1
         tier2:
-            filter:
-                any:
-                    # limit show smaller landuse areas to higher zooms
-                    - { $zoom: { min: 4 },  area: { min: 1000000000 } }
-                    - { $zoom: { min: 5 },  area: { min: 1000000000 } }
-                    - { $zoom: { min: 6 },  area: { min: 150000000 } }
-                    - { $zoom: { min: 7 },  area: { min: 100000000 } }
-                    - { $zoom: { min: 8 },  area: { min: 10000000 } }
-                    - { $zoom: { min: 9 },  area: { min: 5000000 } }
-                    - { $zoom: { min: 10 }, area: { min: 1000000 } }
-                    - { $zoom: { min: 11 }, area: { min: 500000 } }
-                    - { $zoom: { min: 12 }, area: { min: 250000 } }
-                    - { $zoom: { min: 13 }, area: { min: 100000 } }
-                    - { $zoom: { min: 14 }, area: { min: 50000 } }
-                    - { $zoom: { min: 15 }, area: { min: 20000 } }
-                    - { $zoom: { min: 15 }, area: { min: 2000 } }
-                    - { $zoom: { min: 16 } }
+            # filter:
+            #     any:
+            #         # limit show smaller landuse areas to higher zooms
+            #         - { $zoom: { min: 4 },  area: { min: 1000000000 } }
+            #         - { $zoom: { min: 5 },  area: { min: 1000000000 } }
+            #         - { $zoom: { min: 6 },  area: { min: 150000000 } }
+            #         - { $zoom: { min: 7 },  area: { min: 100000000 } }
+            #         - { $zoom: { min: 8 },  area: { min: 10000000 } }
+            #         - { $zoom: { min: 9 },  area: { min: 5000000 } }
+            #         - { $zoom: { min: 10 }, area: { min: 1000000 } }
+            #         - { $zoom: { min: 11 }, area: { min: 500000 } }
+            #         - { $zoom: { min: 12 }, area: { min: 250000 } }
+            #         - { $zoom: { min: 13 }, area: { min: 100000 } }
+            #         - { $zoom: { min: 14 }, area: { min: 50000 } }
+            #         - { $zoom: { min: 15 }, area: { min: 20000 } }
+            #         - { $zoom: { min: 15 }, area: { min: 2000 } }
+            #         - { $zoom: { min: 16 } }
             conservation:
                 filter:
                     kind: [conservation, protected_area, nature_reserve]
@@ -5732,19 +5644,19 @@ layers:
                         color: [[0,*earth2],[9,*earth2]]
                         visible: *earth2_v
         tier3:
-            filter:
-                any:
-                    # limit show smaller landuse areas to higher zooms
-                    - { $zoom: { min: 8 },  area: { min: 10000000 } }
-                    - { $zoom: { min: 9 },  area: { min: 5000000 } }
-                    - { $zoom: { min: 10 }, area: { min: 1000000 } }
-                    - { $zoom: { min: 11 }, area: { min: 500000 } }
-                    - { $zoom: { min: 12 }, area: { min: 500000 } }
-                    - { $zoom: { min: 13 }, area: { min: 100000 } }
-                    - { $zoom: { min: 14 }, area: { min: 50000 } }
-                    - { $zoom: { min: 15 }, area: { min: 20000 } }
-                    - { $zoom: { min: 15 }, area: { min: 2000 } }
-                    - { $zoom: { min: 16 } }
+            # filter:
+            #     any:
+            #         # limit show smaller landuse areas to higher zooms
+            #         - { $zoom: { min: 8 },  area: { min: 10000000 } }
+            #         - { $zoom: { min: 9 },  area: { min: 5000000 } }
+            #         - { $zoom: { min: 10 }, area: { min: 1000000 } }
+            #         - { $zoom: { min: 11 }, area: { min: 500000 } }
+            #         - { $zoom: { min: 12 }, area: { min: 500000 } }
+            #         - { $zoom: { min: 13 }, area: { min: 100000 } }
+            #         - { $zoom: { min: 14 }, area: { min: 50000 } }
+            #         - { $zoom: { min: 15 }, area: { min: 20000 } }
+            #         - { $zoom: { min: 15 }, area: { min: 2000 } }
+            #         - { $zoom: { min: 16 } }
             airport:
                 filter:
                     kind: aerodrome
@@ -5765,17 +5677,17 @@ layers:
                     polygons:
                         color: *brown1
         tier4:
-            filter:
-                any:
-                    # limit show smaller landuse areas to higher zooms
-                    - { $zoom: { min: 10 }, area: { min: 1000000 } }
-                    - { $zoom: { min: 11 }, area: { min: 500000 } }
-                    - { $zoom: { min: 12 }, area: { min: 500000 } }
-                    - { $zoom: { min: 13 }, area: { min: 100000 } }
-                    - { $zoom: { min: 14 }, area: { min: 50000 } }
-                    - { $zoom: { min: 15 }, area: { min: 20000 } }
-                    - { $zoom: { min: 15 }, area: { min: 2000 } }
-                    - { $zoom: { min: 16 } }
+            # filter:
+            #     any:
+            #         # limit show smaller landuse areas to higher zooms
+            #         - { $zoom: { min: 10 }, area: { min: 1000000 } }
+            #         - { $zoom: { min: 11 }, area: { min: 500000 } }
+            #         - { $zoom: { min: 12 }, area: { min: 500000 } }
+            #         - { $zoom: { min: 13 }, area: { min: 100000 } }
+            #         - { $zoom: { min: 14 }, area: { min: 50000 } }
+            #         - { $zoom: { min: 15 }, area: { min: 20000 } }
+            #         - { $zoom: { min: 15 }, area: { min: 2000 } }
+            #         - { $zoom: { min: 16 } }
             cemetery:
                 filter:
                     kind: cemetery
@@ -5868,25 +5780,25 @@ layers:
                         polygons:
                             color: *earth1
         tier5:
-            filter:
-                any:
-                    # limit show smaller landuse areas to higher zooms
-                    - { $zoom: { min: 10 }, area: { min: 1000000 } }
-                    - { $zoom: { min: 11 }, area: { min: 400000 } }
-                    - { $zoom: { min: 12 }, area: { min: 200000 } }
-                    - { $zoom: { min: 13 }, area: { min: 50000 } }
-                    - { $zoom: { min: 14 }, area: { min: 20000 } }
-                    - { $zoom: { min: 15 }, area: { min: 10000 } }
-                    - { $zoom: { min: 15 }, area: { min: 2000 } }
-                    - { $zoom: { min: 16 } }
-                all:
-                    - kind:
-                        - theme_park
-                        - resort
-                        - aquarium
-                        - winery
-                        - maze
-                        - beach
+            # filter:
+            #     any:
+            #         # limit show smaller landuse areas to higher zooms
+            #         - { $zoom: { min: 10 }, area: { min: 1000000 } }
+            #         - { $zoom: { min: 11 }, area: { min: 400000 } }
+            #         - { $zoom: { min: 12 }, area: { min: 200000 } }
+            #         - { $zoom: { min: 13 }, area: { min: 50000 } }
+            #         - { $zoom: { min: 14 }, area: { min: 20000 } }
+            #         - { $zoom: { min: 15 }, area: { min: 10000 } }
+            #         - { $zoom: { min: 15 }, area: { min: 2000 } }
+            #         - { $zoom: { min: 16 } }
+            #     all:
+            #         - kind:
+            #             - theme_park
+            #             - resort
+            #             - aquarium
+            #             - winery
+            #             - maze
+            #             - beach
             tourism-related:
                 filter:
                     kind:
@@ -5905,15 +5817,15 @@ layers:
                     polygons:
                         color: *yellow1
         tier6:
-            filter:
-                any:
-                    # limit show smaller landuse areas to higher zooms
-                    - { $zoom: { min: 12 }, area: { min: 500000 } }
-                    - { $zoom: { min: 13 }, area: { min: 100000 } }
-                    - { $zoom: { min: 14 }, area: { min: 50000 } }
-                    - { $zoom: { min: 15 }, area: { min: 20000 } }
-                    - { $zoom: { min: 15 }, area: { min: 2000 } }
-                    - { $zoom: { min: 16 } }
+            # filter:
+            #     any:
+            #         # limit show smaller landuse areas to higher zooms
+            #         - { $zoom: { min: 12 }, area: { min: 500000 } }
+            #         - { $zoom: { min: 13 }, area: { min: 100000 } }
+            #         - { $zoom: { min: 14 }, area: { min: 50000 } }
+            #         - { $zoom: { min: 15 }, area: { min: 20000 } }
+            #         - { $zoom: { min: 15 }, area: { min: 2000 } }
+            #         - { $zoom: { min: 16 } }
             garden:
                 filter:
                     kind: garden
@@ -5994,7 +5906,7 @@ layers:
                         width: [[14,0px],[15,1px],[16,0.5m]]
 
     landuse-not-filtered:
-        data: { source: osm, layer: landuse }
+        data: { source: mapzen, layer: landuse }
         # runways and taxiways are also in the roads layer as lines
         # these ones are probably duplicate features, but have AREA (a good thing)
         filter:
@@ -6013,7 +5925,7 @@ layers:
                 - aviary
         draw: 
             polygons:
-                order: function() { return feature.sort_key; }
+                order: function() { return feature.sort_rank; }
         runway:
             filter:
                 kind: runway
@@ -6062,18 +5974,18 @@ layers:
                     width: [[14,0px],[15,1px],[16,0.5m]]
                     
     landuse_urban_area-early:
-        data: { source: osm, layer: landuse }
+        data: { source: mapzen, layer: landuse }
         filter:
             # This is from Natural Earth and only shows up from zoom(0,9)
             kind: ['urban area']
         visible: *earth2_ev
         draw:
             polygons:
-                order: function() { return feature.sort_key; }
+                order: function() { return feature.sort_rank; }
                 color: [[0,*earth2_e],[6,*earth2_e2],[8,*earth2_e3]]
 
     debug:
-        data: { source: osm }
+        data: { source: mapzen }
         draw:
             flat_lines:
                 width: 2px
