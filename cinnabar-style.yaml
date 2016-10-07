@@ -1033,12 +1033,16 @@ layers:
                     weight: 400
                     fill: *text_fill
 
-        early:
-            filter: { $zoom: { max: 15 } }
+        early-other:
+            filter: { $zoom: { max: 12 }, kind: [major_road] }
             draw:
                 lines:
-                    outline:
-                        order: function() { return feature.sort_rank; }
+                    order: 351
+        early-minor_road:
+            filter: { $zoom: { max: 15 }, kind: [minor_road] }
+            draw:
+                lines:
+                    order: 350
         bridges-tunnels:
             filter: { any: [is_bridge: true, is_tunnel: true] }
             draw:
@@ -1066,25 +1070,25 @@ layers:
                     color: [[7,*highway1_e],[8,*major_road3]]
                     width: [[5, 1px], [7, 1.4px], [9, 2px], [14, 3px], [16, 4px], [17, 10m]]
             major_road:
-                filter: { type: ['Secondary Highway','Road'] }
+                filter: { kind: major_road }
                 draw:
                     lines:
                         color: *highway1_e
                         width: [[5, 0.45px], [6, 0.75px]]
             minor_road:
-                filter: { type: 'Unknown' }
+                filter: { kind: minor_road }
                 draw:
                     lines:
                         color: [[12, *minor_road1], [17, *minor_road2]]
                         width: [[12, 1.0px], [14, 1.5px], [15, 3px], [16, 5m]]
             ferry:
-                filter: { kind: Ferry }
+                filter: { kind: ferry }
                 draw:
                     lines:
                         color: *ferry1
                         width: 1px
         highway:
-            filter: { kind: highway }
+            filter: { kind: highway, $zoom: { min: 8 } }
             draw:
                 lines:
                     #cap: [[0,butt],[15,round]]
