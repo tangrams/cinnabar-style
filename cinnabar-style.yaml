@@ -24,24 +24,24 @@ labels-global:
     - &icon_visible_landuse_green     true     # needs work
     - &text_visible_landuse_green     true
     - &label_visible_poi_landuse      true
-    - &icon_visible_poi_landuse       false     # false for default
-    - &text_visible_poi_landuse       false     # false for default
-    - &text_visible_landuse_generic   false     # false for default
+    - &icon_visible_poi_landuse       false     #false for default
+    - &text_visible_poi_landuse       false     #false for default
+    - &text_visible_landuse_generic   false     #false for default
     - &label_visible_poi_landuse_e    true
-    - &icon_visible_poi_landuse_e     false     # false for default
+    - &icon_visible_poi_landuse_e     false     #false for default
     - &text_visible_poi_landuse_e     true
-    - &label_visible_station          false     # false for default
-    - &icon_visible_station           false     # false for default
-    - &text_visible_station           false     # false for default
+    - &label_visible_station          false     #false for default
+    - &icon_visible_station           false     #false for default
+    - &text_visible_station           false     #false for default
     - &text_visible_highway           true
-    - &text_visible_highway_e         false     # false for default, false for more
+    - &text_visible_highway_e         false     #false for default, #false for more
     - &text_visible_trunk_primary     true
-    - &text_visible_trunk_primary_e2  false     # false for default, false for more
-    - &text_visible_trunk_primary_e   false     # false for default, false for more
+    - &text_visible_trunk_primary_e2  false     #false for default, #false for more
+    - &text_visible_trunk_primary_e   false     #false for default, #false for more
     - &text_visible_secondary         true
-    - &text_visible_secondary_e       false     # false for default, false for more
+    - &text_visible_secondary_e       false     #false for default, #false for more
     - &text_visible_tertiary          true
-    - &text_visible_tertiary_e        false     # false for default, false for more
+    - &text_visible_tertiary_e        false     #false for default, #false for more
     - &text_visible_minor_road        true
     - &text_visible_minor_road_e      true
     - &text_visible_service_road      true
@@ -51,7 +51,7 @@ labels-global:
     - &text_visible_aerialway         true
     - &text_visible_shields           true
     - &text_visible_exits             true
-    - &text_visible_exits_e           false     # false for default, false for more
+    - &text_visible_exits_e           false     #false for default, #false for more
     - &text_visible_airport_gate      true
 
 cinnabar-colors:
