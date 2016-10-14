@@ -1,6 +1,6 @@
 /*jslint browser: true*/
-/*global Tangram */
-var picking = false;
+/*global Tangram, gui */
+
 map = (function () {
 // (function () {
     // 'use strict';
@@ -13,7 +13,7 @@ map = (function () {
 
     // leaflet-style URL hash pattern:
     // #[zoom],[lat],[lng]
-    var url_hash = window.location.hash.slice(1).split('/');
+    var url_hash = window.location.hash.slice(1, window.location.hash.length).split('/');
 
     // location
     var defaultpos = true; // use default position
