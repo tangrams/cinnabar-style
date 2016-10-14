@@ -1,9 +1,9 @@
-# Cinnabar is a classic look and should be your go-to for general mapping applications. 
-# Give OpenStreetMap data a refined basemap skin using the Tangram graphics library and 
+# Cinnabar is a classic look and should be your go-to for general mapping applications.
+# Give OpenStreetMap data a refined basemap skin using the Tangram graphics library and
 # Mapzen's versatile Vector Tiles.
 #
-# This style is a High Road influenced evolution of the Traditional style Stamen created 
-# for Mapzen's Open Android app in 2014. Please use and adapt the open source scene file 
+# This style is a High Road influenced evolution of the Traditional style Stamen created
+# for Mapzen's Open Android app in 2014. Please use and adapt the open source scene file
 # in your own projects!
 #
 # Authors: Nathaniel V. Kelso, Geraldine Sarmiento
@@ -21,27 +21,27 @@ labels-global:
     - &text_visible_address           true
     - &text_visible_water_labels      true
     - &label_visible_landuse_green    true
-    - &icon_visible_landuse_green     false
+    - &icon_visible_landuse_green     true     # needs work
     - &text_visible_landuse_green     true
     - &label_visible_poi_landuse      true
-    - &icon_visible_poi_landuse       false
-    - &text_visible_poi_landuse       false
-    - &text_visible_landuse_generic   false
+    - &icon_visible_poi_landuse       false     # false for default
+    - &text_visible_poi_landuse       false     # false for default
+    - &text_visible_landuse_generic   false     # false for default
     - &label_visible_poi_landuse_e    true
-    - &icon_visible_poi_landuse_e     false
+    - &icon_visible_poi_landuse_e     false     # false for default
     - &text_visible_poi_landuse_e     true
-    - &label_visible_station          false
-    - &icon_visible_station           false
-    - &text_visible_station           false
+    - &label_visible_station          false     # false for default
+    - &icon_visible_station           false     # false for default
+    - &text_visible_station           false     # false for default
     - &text_visible_highway           true
-    - &text_visible_highway_e         false
+    - &text_visible_highway_e         false     # false for default, false for more
     - &text_visible_trunk_primary     true
-    - &text_visible_trunk_primary_e2  false
-    - &text_visible_trunk_primary_e   false
+    - &text_visible_trunk_primary_e2  false     # false for default, false for more
+    - &text_visible_trunk_primary_e   false     # false for default, false for more
     - &text_visible_secondary         true
-    - &text_visible_secondary_e       false
+    - &text_visible_secondary_e       false     # false for default, false for more
     - &text_visible_tertiary          true
-    - &text_visible_tertiary_e        false
+    - &text_visible_tertiary_e        false     # false for default, false for more
     - &text_visible_minor_road        true
     - &text_visible_minor_road_e      true
     - &text_visible_service_road      true
@@ -51,7 +51,7 @@ labels-global:
     - &text_visible_aerialway         true
     - &text_visible_shields           true
     - &text_visible_exits             true
-    - &text_visible_exits_e           false
+    - &text_visible_exits_e           false     # false for default, false for more
     - &text_visible_airport_gate      true
 
 cinnabar-colors:
@@ -208,7 +208,7 @@ cinnabar-colors:
         - &building2   [.6, .6, .6]        # building stroke
         - &building_o  5                   # building stroke order
         - &building_e  true                # building stroke order
-    
+
     labels:
         - &text_fill          '#333'             # WHITE
         - &text_fill2         '#000'             # WHITE
@@ -221,7 +221,7 @@ cinnabar-colors:
         - &text_fill_beach    '#99905c'          # green
         - &text_fill_piste    '#444'             # dark gray
         - &text_fill_piste_e  '#666'             # dark gray early
-        - &text_fill_shield   white              # road shield fill color 
+        - &text_fill_shield   white              # road shield fill color
         - &text_stroke        '#e4e1de'          # land color
         - &text_stroke_water  [0.9, 0.9, 0.9]    # water stroke color
         - &text_stroke_park   '#bddec5'          # park stroke color
@@ -436,7 +436,7 @@ sources:
     # mz_default_polygon:
     #     type: GeoJSON
     #     url: https://gist.githubusercontent.com/anonymous/88235c795bb44b8c45150bdd5561f947/raw/71d4fab97b6513833bf1a589167119e6169ef86d/map.geojson
-    
+
 camera:
     type: isometric
     axis: [0, .1] # very small building extrusion
@@ -470,7 +470,7 @@ styles:
 
                     float chevron(vec2 st){
                         st = mirrorTile(st,vec2(1.,6.));
-                        float x = st.x*2.; 
+                        float x = st.x*2.;
                         float a = floor(1.+sin(x*3.14));
                         float b = floor(1.+sin((x+1.)*3.14));
                         float f = fract(x);
@@ -485,13 +485,13 @@ styles:
                     float xMargin(vec2 st,float margin){
                         return 1.0-clamp(step(margin*.5,st.x)*step(margin*.5,1.0-st.x),0.,1.);
                     }
-                    
+
                     //  Function from Iñigo Quiles
                     //  https://www.shadertoy.com/view/MsS3Wc
                     vec3 hsb2rgb( in vec3 c ){
                         vec3 rgb = clamp(abs(mod(c.x*6.0+vec3(0.0,4.0,2.0),
-                                                 6.0)-3.0)-1.0, 
-                                         0.0, 
+                                                 6.0)-3.0)-1.0,
+                                         0.0,
                                          1.0 );
                         rgb = rgb*rgb*(3.0-2.0*rgb);
                         return c.z * mix(vec3(1.0), rgb, c.y);
@@ -499,10 +499,10 @@ styles:
                 color: |
                     vec2 st = v_texcoord;
                     vec4 foreground = vec4(0.400,0.400,0.400,1.0);
-                    
+
                     vec3 color1 = hsb2rgb(vec3(color.r,1.,1.));
                     vec3 color2 = hsb2rgb(vec3(color.g,1.,1.));
-                    
+
                     // Nathaniel un-comment the following lines
                      color = mix(v_color,foreground, chevron(st) - xMargin(st,.25) );
                      color = mix(v_color,foreground, stripes(st) );
@@ -517,10 +517,10 @@ styles:
                     // GridTile
                     //=============================
                     varying vec3 v_pos;
-                    
+
                     #ifdef TANGRAM_FRAGMENT_SHADER
-                    
-                    vec2 TileCoords() { 
+
+                    vec2 TileCoords() {
                         return fract(v_pos.xy*0.0002445);
                     }
 
@@ -548,7 +548,7 @@ styles:
                         return smoothstep(threshold-afwidth, threshold+afwidth, value);
                       #else
                         return step(threshold, value);
-                      #endif  
+                      #endif
                     }
 
                     vec2 tile(vec2 _st, float _zoom){
@@ -649,7 +649,7 @@ styles:
         shaders:
             blocks:
                 filter: |
-                    vec2 st = (TileCoords()+vec2(.4))*1000.; 
+                    vec2 st = (TileCoords()+vec2(.4))*1000.;
                     color.rgb = mix(vec3(0.899,0.95,1.0), vec3(0.899,0.95,1.0), gl_FragCoord.x / u_resolution.x);
                     color.rgb -= grain(gl_FragCoord.xy)*0.1;
 
@@ -809,7 +809,7 @@ layers:
                 transition:
                     [show, hide]:
                         time: 0s
-                        
+
     # Used by the SDK to place point, line, and polygon overlays on the map
     mz_default_point:
         data: { source: mz_default_point }
@@ -866,7 +866,7 @@ layers:
                     color: *water1_o
                     width: [[10,1px],[12,2px]]
                     join: round
-    
+
     water-not-ocean:
         data: { source: mapzen, layer: water }
         filter: { not: { kind: ocean } }
@@ -915,7 +915,7 @@ layers:
 #                polygons:
 #                    order: 8
         water_boundaries-not-ocean:
-            filter: 
+            filter:
                 all:
                     - boundary: true
                     - $zoom: { min: 14 }
@@ -1498,7 +1498,7 @@ layers:
                                 outline:
                                     color: *green1_r
                 labels-secondary-z13:
-                    filter: 
+                    filter:
                         $zoom: [12,13,14]
                     draw:
                         text-blend-order:
@@ -1510,7 +1510,7 @@ layers:
                                 size: 10px
                                 stroke: { color: *text_stroke_road4, width: 1 }
                 labels-secondary-z15:
-                    filter: 
+                    filter:
                         $zoom: [15]
                     draw:
                         text-blend-order:
@@ -1522,7 +1522,7 @@ layers:
                                 size: 11px
                                 stroke: { color: *text_stroke_road3, width: 3 }
                 labels-secondary-z16:
-                    filter: 
+                    filter:
                         $zoom: [16]
                     draw:
                         text-blend-order:
@@ -1713,7 +1713,7 @@ layers:
                     lines:
                         cap: round
                         join: round
-            
+
             in_park:
                 filter: { landuse_kind: [park,protected_area,nature_reserve,conservation,golf_course,garden,wood,farmland,farm] }
                 draw:
@@ -1904,10 +1904,10 @@ layers:
                             size: 12px
                             #stroke: { color: *text_stroke_road4, width: 4 }
         path:
-            filter: 
+            filter:
                 all:
                     - kind: path
-                not: 
+                not:
                     - kind_detail: [steps, track]
                     - kind_detail: [pier]
             draw:
@@ -2042,7 +2042,7 @@ layers:
                             color: [[16,*green1_r],[17,*major_casing1]]
                             width: [[14, 0px], [15, 0px], [16, 0.25px], [17, 0.5px], [18, 1.0px], [19, 2.0px]]
         steps:
-            filter: 
+            filter:
                 all:
                     - kind: path
                     - kind_detail: steps
@@ -2104,12 +2104,12 @@ layers:
                         fill: *text_fill_piste
                         size: 12px
                         stroke: { color: *grey8, width: 4 }
-            early: 
+            early:
                 filter: { $zoom: { max: 15 } }
                 draw:
                     text-blend-order:
                         visible: false
-            early-z15: 
+            early-z15:
                 filter: { $zoom: [15] }
                 draw:
                     text-blend-order:
@@ -2128,14 +2128,14 @@ layers:
                         color: *piste_intermediate
             advanced:
                 filter: { piste_difficulty: advanced }
-                draw: 
+                draw:
                     lines:
                         color: *piste_advanced
-                    text-blend-order: 
+                    text-blend-order:
                         text_source: function() { if( feature.name ){ return '◆ ' + feature.name; } else { return '◆'; } }
             expert:
                 filter: { piste_difficulty: expert }
-                draw: 
+                draw:
                     lines:
                         color: *piste_expert
                     text-blend-order:
@@ -2247,7 +2247,7 @@ layers:
     # buildings are the only layer that gets lighting
     buildings:
         data: { source: mapzen, layer: buildings }
-        filter: 
+        filter:
             any:
                 # limit show smaller landuse areas to higher zooms
                 - { $zoom: [13], scale_rank: [1,2] }
@@ -3127,7 +3127,7 @@ layers:
                                 text:
                                     font:
                                         size: 12px
-                                    
+
             populated-places-natural-earth-z8-backfill:
                 filter: { $zoom: [8], population: { max: 50000 } }
                 draw: { text-blend-order: { font: { fill: *text_fill, stroke: { color: *text_stroke, width: 2px } } } }
@@ -3221,7 +3221,7 @@ layers:
                             priority: 8
                             font:
                                 size: 15px
-                                    
+
                 z9places-2b:
                     filter:
                         any:
@@ -3409,7 +3409,7 @@ layers:
                         - not: { kind: [country, county, state, island, neighbourhood, suburb, quarter] }
                         - $zoom: [10]
                 draw: { text-blend-order: { font: { fill: *text_fill, stroke: { color: *text_stroke, width: 3px } } } }
-                
+
                 z10places-1:
                     filter:
                         any:
@@ -4034,7 +4034,7 @@ layers:
                             transform: uppercase
                             stroke: { color: *text_stroke, width: 3 }
                 z15-new:
-                    filter: 
+                    filter:
                         all:
                             - min_zoom: 15
                     draw:
@@ -4111,7 +4111,7 @@ layers:
     pois_and_landuse_labels:
         data: { source: mapzen, layer: [pois] }
         visible: *label_visible_poi_landuse
-        filter: 
+        filter:
             not: { kind: [building,farm,tree,gate,address,apron] }
             any:
                 - area: false
@@ -4345,7 +4345,7 @@ layers:
                     wilderness-areas-early:
                         filter: function() { return $zoom < 10 && feature.name && (feature.name.indexOf("Wilderness") > -1 || feature.name.indexOf("BLM") > -1) }
                         draw:
-                            icons: 
+                            icons:
                                 visible: false
                                 text: { visible: false }
                     early-not-national-park:
@@ -4629,7 +4629,7 @@ layers:
                     draw:
                         icons:
                             visible: false
-                            text: 
+                            text:
                                 visible: true
                                 text_source: short_name
                 hide-till-later:
@@ -4820,14 +4820,14 @@ layers:
                         icons:
                             visible: false
                             #size: [[12, 6px], [14, 6px], [15, 16px]]
-                            text: { visible: false } 
+                            text: { visible: false }
                 low-priority-early-z13:
                     filter: { kind_tile_rank: { min: 5 }, $zoom: [13] }
                     draw:
                         icons:
                             visible: false
                             #size: [[12, 6px], [14, 6px], [15, 16px]]
-                            text: { visible: false } 
+                            text: { visible: false }
                 low-priority-early-z14:
                     filter: { kind_tile_rank: { min: 7 }, $zoom: [14] }
                     draw:
@@ -5499,8 +5499,8 @@ layers:
 
     landuse:
         data: { source: mapzen }
-        draw: 
-            polygons: 
+        draw:
+            polygons:
                 order: function() { return feature.sort_rank; }
 
         landuse-labels:
@@ -5878,7 +5878,7 @@ layers:
                         visible: *grey8_v
             man-made:
                 filter: { kind: [pier,wastewater_plant,works,bridge,tower,breakwater,water_works,groyne,dike,cutline] }
-                draw: 
+                draw:
                     polygons:
                         color: *grey3
                 pier:
@@ -6030,7 +6030,7 @@ layers:
                 - enclosure
                 - petting_zoo
                 - aviary
-        draw: 
+        draw:
             polygons:
                 order: function() { return feature.sort_rank; }
         runway:
@@ -6079,7 +6079,7 @@ layers:
                     style: lines
                     color: *green11_o
                     width: [[14,0px],[15,1px],[16,0.5m]]
-                    
+
     landuse_urban_area-early:
         data: { source: mapzen, layer: landuse }
         filter:
