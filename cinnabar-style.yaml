@@ -363,7 +363,6 @@ textures:
             county_shield_4char: [728, 304, 152, 72]
             county_shield_5char: [540, 304, 180, 72]
             courthouse: [364, 0, 38, 38]
-            current-location: [702, 680, 88, 88]
             department-store: [734, 126, 38, 38]
             department_store: [734, 126, 38, 38]
             drinking-water: [230, 210, 38, 38]
@@ -520,9 +519,6 @@ textures:
             car_sharing: [594, 0, 38, 38]
             restaurant: [92, 210, 38, 38]
             deli: [92, 210, 38, 38]
-            route-arrow: [408, 680, 128, 128]
-            route-start: [622, 680, 72, 92]
-            route-stop: [544, 680, 72, 92]
             ruin: [502, 0, 38, 38]
             ruins: [502, 0, 38, 38]
             archaeological_site: [502, 0, 38, 38]
@@ -532,8 +528,6 @@ textures:
             beauty_salon: [46, 42, 38, 38]
             school: [552, 84, 38, 38]
             kindergarten: [552, 84, 38, 38]
-            search-active: [796, 680, 72, 108]
-            search-inactive: [876, 680, 72, 108]
             shoe-store: [552, 42, 38, 38]
             shoes: [552, 42, 38, 38]
             shoe_store: [552, 42, 38, 38]
@@ -590,6 +584,16 @@ textures:
             wine: [456, 168, 38, 38]
             zoo: [966, 84, 38, 38]
 
+            ux-current-location: [702, 680, 88, 88]
+            ux-route-arrow: [408, 680, 128, 128]
+            ux-route-start: [622, 680, 72, 92]
+            ux-route-stop: [544, 680, 72, 92]
+            ux-search-active: [796, 680, 72, 108]
+            ux-search-inactive: [876, 680, 72, 108]
+            #
+            # reuse capital-xl
+            ux-transit-stop: [170, 680, 20, 20]
+
 sources:
     mapzen:
         type: TopoJSON #GeoJSON, MVT, TopoJSON
@@ -598,48 +602,60 @@ sources:
         #url:  //localhost:8080/vector/all/{z}/{x}/{y}.json
         max_zoom: 16
 
-    # # Only enable this for local debug, should not be enabled for prod (app inserts these at runtime)
-    # #These are all in San Francisco, California
-    # #
-    # # Current location gem
-    # mz_current_location:
-    #     type: GeoJSON
-    #     url: https://gist.githubusercontent.com/anonymous/9e9588228b0a604264a2/raw/b28be49bea0b7feb859eb65b588c28e9fee5ae2c/map.geojson
-    # # Route line
-    # mz_route_line:
-    #     type: GeoJSON
-    #     # sf to ny
-    #     url: https://gist.githubusercontent.com/anonymous/30c6c1a75c168d91d90c/raw/92bfe55e622766d250b1f2f5d17bdc7c26acb956/map.geojson
-    #     # local sf trip
-    #     # url: https://gist.githubusercontent.com/anonymous/9a610ebda6fe4be7bccc/raw/8d217e43f2412d48d01534ba115f1e42dac72e68/map.geojson
-    # # Pin at start of route
-    # mz_route_start:
-    #     type: GeoJSON
-    #     url: https://gist.githubusercontent.com/anonymous/5262969cb7549ea69221/raw/be03f233fa323d9b5cf50ef1d8e89a1faa3750f1/map.geojson
-    # # Pin at end of route
-    # mz_route_stop:
-    #     type: GeoJSON
-    #     url: https://gist.githubusercontent.com/anonymous/dbae9635dfe46796490e/raw/df55c318635a7d91b309ed40754d4738a292fd38/map.geojson
-    # # Arrow for current route location
-    # mz_route_location::
-    #     type: GeoJSON
-    #     url: https://gist.githubusercontent.com/anonymous/36613092be6e2aa004fd/raw/f753d13069425199e1dea1b449ef67d723f6510e/map.geojson
-    # # Pins showing search result locations
-    # mz_search_result:
-    #     type: GeoJSON
-    #     url: https://gist.githubusercontent.com/anonymous/57dc09eeb120919f76de/raw/43426217da3c2bae0522dc4257aaa61e4df3981e/map.geojson
-    # # Default point styling (SDK)
-    # mz_default_point:
-    #     type: GeoJSON
-    #     url: https://gist.githubusercontent.com/anonymous/16324c771edfce45be0721390389b878/raw/7dbaebf17da7da8562e6c6f8768bc8cff83efa88/map.geojson
-    # # Default line styling (SDK)
-    # mz_default_line:
-    #     type: GeoJSON
-    #     url: https://gist.githubusercontent.com/anonymous/26f4e8b6b34b2617b5d5533d89decb39/raw/df8e180ab4f7f19448014dccc4a755f7cfa20003/map.geojson
-    # # Default polygon styling (SDK)
-    # mz_default_polygon:
-    #     type: GeoJSON
-    #     url: https://gist.githubusercontent.com/anonymous/88235c795bb44b8c45150bdd5561f947/raw/71d4fab97b6513833bf1a589167119e6169ef86d/map.geojson
+#    # Only enable this for local debug, should not be enabled for prod (app inserts these at runtime)
+#    # These are all in San Francisco, California
+#    #
+#    # Current location gem
+#    mz_current_location:
+#        type: GeoJSON
+#        url: https://gist.githubusercontent.com/anonymous/9e9588228b0a604264a2/raw/b28be49bea0b7feb859eb65b588c28e9fee5ae2c/map.geojson
+#    # Route line
+#    mz_route_line:
+#        type: GeoJSON
+#        # sf to ny
+#        #url: https://gist.githubusercontent.com/anonymous/30c6c1a75c168d91d90c/raw/92bfe55e622766d250b1f2f5d17bdc7c26acb956/map.geojson
+#        # local sf trip
+#        url: https://gist.githubusercontent.com/anonymous/9a610ebda6fe4be7bccc/raw/8d217e43f2412d48d01534ba115f1e42dac72e68/map.geojson
+#    # Dashed route line
+#    mz_dash_line:
+#        type: GeoJSON
+#        url: https://gist.githubusercontent.com/anonymous/d73b851c64c3e5fbfc2754aa32f44c10/raw/938ae435776e176919c4797bed1465a92e403ef3/map.geojson
+#    # Transit route line
+#    mz_route_line_transit:
+#        type: GeoJSON
+#        url: https://gist.githubusercontent.com/anonymous/71ae88cbc6d62c4d141ecd6a61060050/raw/2254bbc18243f5dc609e663a580c9412a7447936/map.geojson
+#    # Pin at start of route
+#    mz_route_start:
+#        type: GeoJSON
+#        url: https://gist.githubusercontent.com/anonymous/5262969cb7549ea69221/raw/be03f233fa323d9b5cf50ef1d8e89a1faa3750f1/map.geojson
+#    # Pin at end of route
+#    mz_route_stop:
+#        type: GeoJSON
+#        url: https://gist.githubusercontent.com/anonymous/dbae9635dfe46796490e/raw/df55c318635a7d91b309ed40754d4738a292fd38/map.geojson
+#    # Arrow for current route location
+#    mz_route_location:
+#        type: GeoJSON
+#        url: https://gist.githubusercontent.com/anonymous/36613092be6e2aa004fd/raw/f753d13069425199e1dea1b449ef67d723f6510e/map.geojson
+#    # Dots for transit stops in route preview
+#    mz_route_transit_stop:
+#        type: GeoJSON
+#        url: https://gist.githubusercontent.com/anonymous/b9f16bca4a804f50faf71277d52ee4ab/raw/db13e4e765fa1ac8844b8ba02f4a0f66fe772907/map.geojson
+#    # Pins showing search result locations
+#    mz_search_result:
+#        type: GeoJSON
+#        url: https://gist.githubusercontent.com/anonymous/57dc09eeb120919f76de/raw/43426217da3c2bae0522dc4257aaa61e4df3981e/map.geojson
+#    # Default point styling (SDK)
+#    mz_default_point:
+#        type: GeoJSON
+#        url: https://gist.githubusercontent.com/anonymous/16324c771edfce45be0721390389b878/raw/7dbaebf17da7da8562e6c6f8768bc8cff83efa88/map.geojson
+#    # Default line styling (SDK)
+#    mz_default_line:
+#        type: GeoJSON
+#        url: https://gist.githubusercontent.com/anonymous/26f4e8b6b34b2617b5d5533d89decb39/raw/df8e180ab4f7f19448014dccc4a755f7cfa20003/map.geojson
+#    # Default polygon styling (SDK)
+#    mz_default_polygon:
+#        type: GeoJSON
+#        url: https://gist.githubusercontent.com/anonymous/88235c795bb44b8c45150bdd5561f947/raw/71d4fab97b6513833bf1a589167119e6169ef86d/map.geojson
 
 camera:
     type: isometric
@@ -892,17 +908,26 @@ styles:
     text-blend-order:
         base: text
         blend_order: 1
-    ui-lines-overlay:
+    ux-route-line-overlay:
         base: lines
         blend: overlay
         blend_order: 0
-    ui-location-gem-overlay:
+    ux-route-line-dash-overlay:
+        base: lines
+        blend: overlay
+        blend_order: 0
+        dash: [2, 1]
+    ux-transit-line-overlay:
+        base: lines
+        blend: overlay
+        blend_order: 0
+    ux-location-gem-overlay:
         base: points
         texture: pois
         interactive: true
         blend: overlay
         blend_order: 2
-    ui-icons-overlay:
+    ux-icons-overlay:
         base: points
         texture: pois
         interactive: true
@@ -936,16 +961,33 @@ layers:
     mz_route_line:
         data: { source: mz_route_line }
         draw:
-            ui-lines-overlay:
+            ux-route-line-overlay:
                 color: '#06a6d4'
+                order: 500
+                width: [[0,3.5px],[5,5px],[9,7px],[10,6px],[11,6px],[13,8px],[14,9px],[15,10px],[16,11px],[17,12px],[18,10px]]
+    mz_route_line_dash:
+        data: { source: mz_dash_line }
+        draw:
+            ux-route-line-dash-overlay:
+                color: '#06a6d4'
+                order: 500
+                width: [[2,2px],[5,2.5px],[11,3px],[16,7px],[17,9px]]
+    mz_route_line_transit:
+        data: { source: mz_route_line_transit }
+        draw:
+            ux-transit-line-overlay:
+                # each transit route segment could be a different "line" each with it's own color
+                # but some transit lines don't define a color, in those cases default to blue
+                # and since the color is coming from Transit.land they call it "color" instead of "colour"
+                color: function() { return feature.color || '#06a6d4'; }
                 order: 500
                 width: [[0,3.5px],[5,5px],[9,7px],[10,6px],[11,6px],[13,8px],[14,9px],[15,10px],[16,11px],[17,12px],[18,10px]]
     mz_current_location_gem:
         data: { source: mz_current_location }
         draw:
-            ui-location-gem-overlay:
+            ux-location-gem-overlay:
                 interactive: true
-                sprite: current-location
+                sprite: ux-current-location
                 size: 36px
                 collide: false
                 transition:
@@ -954,9 +996,9 @@ layers:
     mz_route_location:
         data: { source: mz_route_location }
         draw:
-            ui-location-gem-overlay:
+            ux-location-gem-overlay:
                 interactive: true
-                sprite: route-arrow
+                sprite: ux-route-arrow
                 size: [60px,60px]
                 collide: false
                 transition:
@@ -965,10 +1007,10 @@ layers:
     mz_route_start:
         data: { source: mz_route_start }
         draw:
-            ui-icons-overlay:
+            ux-icons-overlay:
                 interactive: true
                 priority: 1
-                sprite: route-start
+                sprite: ux-route-start
                 size: [36px,46px]
                 collide: false
                 anchor: top
@@ -978,22 +1020,31 @@ layers:
     mz_route_stop:
         data: { source: mz_route_stop }
         draw:
-            ui-icons-overlay:
+            ux-icons-overlay:
                 interactive: true
                 priority: 1
-                sprite: route-stop
+                sprite: ux-route-stop
                 size: [36px,46px]
                 collide: false
                 anchor: top
                 transition:
                     [show, hide]:
                         time: 0s
+    mz_route_transit_stop:
+        data: { source: mz_route_transit_stop }
+        draw:
+            ux-icons-overlay:
+                interactive: true
+                sprite: ux-transit-stop
+                size: [15px,15px]
+                collide: false
+                transition: { show: { time: 0s }, hide: { time: 0s } }
     mz_search_result:
         data: { source: mz_search_result }
         draw:
-            ui-icons-overlay:
+            ux-icons-overlay:
                 interactive: true
-                sprite: search-active
+                sprite: ux-search-active
                 size: [36px,54px]
                 collide: false
                 anchor: top
@@ -1003,14 +1054,14 @@ layers:
         inactive:
             filter: { state: inactive }
             draw:
-                ui-icons-overlay:
-                    sprite: search-inactive
+                ux-icons-overlay:
+                    sprite: ux-search-inactive
     mz_dropped_pin:
         data: { source: mz_dropped_pin }
         draw:
-            ui-icons-overlay:
+            ux-icons-overlay:
                 interactive: true
-                sprite: search-active
+                sprite: ux-search-active
                 size: [36px,54px]
                 collide: false
                 anchor: top
@@ -1024,7 +1075,7 @@ layers:
         draw:
             sdk-point-overlay:
                 interactive: true
-                sprite: search-active
+                sprite: ux-search-active
                 size: [36px,54px]
                 collide: false
                 anchor: top
@@ -2122,7 +2173,7 @@ layers:
                 #
                 # Europe doesn't have many network relations set, so we could look for either
                 # shield_text or ref (with no shield_text) but...
-                # that makes United States look a bit funky with `(xxx)` and generic shields 
+                # that makes United States look a bit funky with `(xxx)` and generic shields
                 # showing up in fields of custom state shields like US:CA and US:NY
                 #
                 any:
@@ -2136,8 +2187,8 @@ layers:
                 icons:
                     # you need to match any custom shield to the vector tile `network` values
                     sprite: |
-                        function() { 
-                            if( feature.shield_text ) { 
+                        function() {
+                            if( feature.shield_text ) {
                                 return ('generic_shield_' + feature.shield_text.length + 'char');
                             } else {
                                 return ('generic_shield_' + feature.ref.length + 'char');
@@ -2164,8 +2215,8 @@ layers:
                         repeat_distance: 200px
                         anchor: center
                         text_source: |
-                            function() { 
-                                if( feature.shield_text ) { 
+                            function() {
+                                if( feature.shield_text ) {
                                     return feature.shield_text;
                                 } else {
                                     return feature.ref;
@@ -2177,7 +2228,7 @@ layers:
                             size: [[7,7px],[12,8px],[16,11px]]
 
             default_priority_highway:
-                filter: 
+                filter:
                     all:
                         - kind_detail: motorway
                         - $zoom: { min: 9 }
@@ -2188,7 +2239,7 @@ layers:
                         visible: *text_visible_shields
 
             default_priority_trunk:
-                filter: 
+                filter:
                     all:
                         - kind_detail: [trunk]
                         - $zoom: { min: 10 }
@@ -2198,7 +2249,7 @@ layers:
                         #color: red
                         visible: *text_visible_shields
             default_priority_primary:
-                filter: 
+                filter:
                     all:
                         - kind_detail: [primary]
                         - $zoom: { min: 12 }
@@ -2230,8 +2281,8 @@ layers:
 
             width_1char:
                 filter: |
-                    function() { 
-                        if( feature.shield_text ) { 
+                    function() {
+                        if( feature.shield_text ) {
                             return (feature.shield_text.length === 1)
                         } else {
                             return (feature.ref.length === 1)
@@ -2242,8 +2293,8 @@ layers:
                         size: [[6,[14px,14px]],[13,[16px,16px]],[16,[18px,18px]]]
             width_2char:
                 filter: |
-                    function() { 
-                        if( feature.shield_text ) { 
+                    function() {
+                        if( feature.shield_text ) {
                             return (feature.shield_text.length === 2)
                         } else {
                             return (feature.ref.length === 2)
@@ -2254,8 +2305,8 @@ layers:
                         size: [[6,[18px,14px]],[13,[20px,15px]],[16,[24px,18px]]]
             width_3char:
                 filter: |
-                    function() { 
-                        if( feature.shield_text ) { 
+                    function() {
+                        if( feature.shield_text ) {
                             return (feature.shield_text.length === 3)
                         } else {
                             return (feature.ref.length === 3)
@@ -2266,8 +2317,8 @@ layers:
                         size: [[6,[25px,14px]],[13,[27px,15px]],[16,[33px,18px]]]
             width_4char:
                 filter: |
-                    function() { 
-                        if( feature.shield_text ) { 
+                    function() {
+                        if( feature.shield_text ) {
                             return (feature.shield_text.length === 4)
                         } else {
                             return (feature.ref.length === 4)
@@ -2284,8 +2335,8 @@ layers:
                             visible: false
             width_5char:
                 filter: |
-                    function() { 
-                        if( feature.shield_text ) { 
+                    function() {
+                        if( feature.shield_text ) {
                             return (feature.shield_text.length === 5)
                         } else {
                             return (feature.ref.length === 5)
@@ -2303,8 +2354,8 @@ layers:
             # this is kinda a hack
             width_longggggg:
                 filter: |
-                    function() { 
-                        if( feature.shield_text ) { 
+                    function() {
+                        if( feature.shield_text ) {
                             return (feature.shield_text.length > 5)
                         } else {
                             return (feature.ref.length > 5)
@@ -2570,16 +2621,16 @@ layers:
                     #     }
                     #
                     # this generic for any country with 3rd level networks (like county routes in USA)
-                    # BEWARE: 
+                    # BEWARE:
                     # US:US:Business  about 150
                     # US:US:Truck
                     # US:US:Alternate
-    # 
+    #
                     # STATE ROUTE
                     # ??:??:Loop  about 200
                     # ??:??:Spur  about 200
                     # ??:??:Business   about 100
-    # 
+    #
                     # STATE TEXAS SPECIAL ROUTE
                     # US:TX:FM -- probably just state? there are 3k of these
                     #
