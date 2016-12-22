@@ -646,65 +646,18 @@ camera:
 #        ambient: .85
 
 styles:
-    dashedline:
+    dashed_steps:
         base: lines
-        texcoords: true
-        shaders:
-            blocks:
-                global: |
-                    vec2 mirrorTile(vec2 _st, vec2 _zoom){
-                        _st *= _zoom;
-                        if (fract(_st.y * 0.5) > 0.5){
-                            _st.x = _st.x+0.5;
-                            _st.y = 1.0-_st.y;
-                        }
-                        return fract(_st);
-                    }
-
-                    float fillY(vec2 _st, float _pct,float _antia){
-                      return smoothstep( _pct-_antia, _pct, _st.y);
-                    }
-
-                    float chevron(vec2 st){
-                        st = mirrorTile(st,vec2(1.,6.));
-                        float x = st.x*2.;
-                        float a = floor(1.+sin(x*3.14));
-                        float b = floor(1.+sin((x+1.)*3.14));
-                        float f = fract(x);
-                        return fillY(st,mix(a,b,f),0.01);
-                    }
-
-                    float stripes(vec2 st){
-                        st = st*10.;
-                        return step(.5,1.0-smoothstep(.3,1.,abs(sin(st.y*3.1415))));
-                    }
-
-                    float xMargin(vec2 st,float margin){
-                        return 1.0-clamp(step(margin*.5,st.x)*step(margin*.5,1.0-st.x),0.,1.);
-                    }
-
-                    //  Function from Iñigo Quiles
-                    //  https://www.shadertoy.com/view/MsS3Wc
-                    vec3 hsb2rgb( in vec3 c ){
-                        vec3 rgb = clamp(abs(mod(c.x*6.0+vec3(0.0,4.0,2.0),
-                                                 6.0)-3.0)-1.0,
-                                         0.0,
-                                         1.0 );
-                        rgb = rgb*rgb*(3.0-2.0*rgb);
-                        return c.z * mix(vec3(1.0), rgb, c.y);
-                    }
-                color: |
-                    vec2 st = v_texcoord;
-                    vec4 foreground = vec4(0.400,0.400,0.400,1.0);
-
-                    vec3 color1 = hsb2rgb(vec3(color.r,1.,1.));
-                    vec3 color2 = hsb2rgb(vec3(color.g,1.,1.));
-
-                    // Nathaniel un-comment the following lines
-                     color = mix(v_color,foreground, chevron(st) - xMargin(st,.25) );
-                     color = mix(v_color,foreground, stripes(st) );
-                    // color = mix(v_color,foreground, clamp(stripes(st)-xMargin(st,.9),0.,1.) ) ;
-
+        dash: [0.25, 0.25]
+        dash_background_color: [0.882,0.878,0.871]
+    dashed:
+        base: lines
+        dash: [1.25, 1.25]
+        dash_background_color: [0.808,0.860,0.851]
+    dashed_big:
+        base: lines
+        dash: [2.0, 1.0]
+        dash_background_color: [0.808,0.860,0.851]
     tools:
         base: polygons
         shaders:
@@ -2930,33 +2883,31 @@ layers:
                     - kind: path
                     - kind_detail: steps
             draw:
-                dashedline:
+                dashed_steps:
                     order: function() { return feature.sort_rank; }
-                    #cap: round
-                    #join: round
                     color: *path_steps1_b
                     width: [[14, 0.1], [17, 0.1]]
                     outline:
                         color: *path_steps1
-                        width: [[14, 1.0], [15, 1.5], [18, 3m]]
+                        width: [[14,1.0px],[15,1.5px],[18, 2m]]
             in_park:
                 filter: { landuse_kind: [park,nature_reserve,conservation,golf_course,garden] }
                 draw:
-                    dashedline:
+                    dashed_steps:
                         color: [[14,*green1_r],[16,*minor_road3]]
                         outline:
                             color: *green1_r
             in_university:
                 filter: { landuse_kind: university }
                 draw:
-                    dashedline:
+                    dashed_steps:
                         color: [[14,*brown1_r],[16,*minor_road3]]
                         outline:
                             color: *brown1_r
             in_hospital:
                 filter: { landuse_kind: hospital }
                 draw:
-                    dashedline:
+                    dashed_steps:
                         color: [[14,*red1_r],[16,*minor_road3]]
                         outline:
                             color: *red1_r
@@ -3304,14 +3255,12 @@ layers:
         draw:
             lines:
                 interactive: true
-                order: function() { return feature.sort_rank; }
+                order: function() { return (feature.sort_rank + 100); }
         country:
             filter:
-                kind: country
-                # any:
-                #     - type: country
-                #     - kind: nation
-                #     - admin_level: 2
+                any:
+                    - kind: country
+                    - admin_level: 2
             draw:
                 lines:
                     interactive: true
@@ -3322,6 +3271,49 @@ layers:
                 draw:
                     lines:
                         visible: false
+            labels-z9-up:
+                filter: { name: true, $zoom: { min: 9 }, not: { maritime_boundary: true } }
+                draw:
+                    text-blend-order:
+                        priority: 2
+                        visible: *text_visible_admin
+                        text_source: name
+                        # text_source:  |
+                        #     function() {
+                        #         var right = (global.ux_language && feature['name:right:'+global.ux_language]) || (global.ux_language_fallback && feature['name:right:'+global.ux_language_fallback]) || feature['name:right'];
+                        #         var left = (global.ux_language && feature['name:left:'+global.ux_language]) || (global.ux_language_fallback && feature['name:left:'+global.ux_language_fallback]) || feature['name:left'];
+                        #         if( right && left ) {
+                        #             if( right.includes(' ') || left.includes(' ') ) {
+                        #                 return left + " - " + right;
+                        #             } else {
+                        #                 return right + '\n' + left;
+                        #             }
+                        #         } else {
+                        #             return (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature.name;
+                        #         }
+                        #     }
+                        text_wrap: 100
+                        font:
+                            family: *text_font_family
+                            size: 9px
+                            fill: [0.00,0.00,0.00]
+                            transform: uppercase
+        other_country_boundary_disputed_etc:
+            filter: { kind: [disputed, indefinite, indeterminate, lease_limit, line_of_control, overlay_limit] }
+            draw:
+                dashed:
+                    order: function() { return (feature.sort_rank + 100); }
+                    color: *country_boundary
+                    width: [[1,0.2px],[9,1.5px],[17,10m]]
+            disputed:
+                filter: { kind: [disputed, line_of_control] }
+                draw:
+                    dashed:
+                        visible: false
+                    dashed_big:
+                        order: function() { return (feature.sort_rank + 100); }
+                        color: *country_boundary
+                        width: [[1,0.5px],[9,2.5px],[17,14m]]
         region:
             filter:
                 kind: region
