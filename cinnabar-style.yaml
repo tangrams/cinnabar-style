@@ -3114,21 +3114,20 @@ layers:
                     text-blend-order:
                         priority: 2
                         visible: *text_visible_admin
-                        text_source: name
-                        # text_source:  |
-                        #     function() {
-                        #         var right = (global.ux_language && feature['name:right:'+global.ux_language]) || (global.ux_language_fallback && feature['name:right:'+global.ux_language_fallback]) || feature['name:right'];
-                        #         var left = (global.ux_language && feature['name:left:'+global.ux_language]) || (global.ux_language_fallback && feature['name:left:'+global.ux_language_fallback]) || feature['name:left'];
-                        #         if( right && left ) {
-                        #             if( right.includes(' ') || left.includes(' ') ) {
-                        #                 return left + " - " + right;
-                        #             } else {
-                        #                 return right + '\n' + left;
-                        #             }
-                        #         } else {
-                        #             return (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature.name;
-                        #         }
-                        #     }
+                        text_source: |
+                            function() {
+                                    var right = (global.ux_language && feature['name:right:'+global.ux_language]) || (global.ux_language_fallback && feature['name:right:'+global.ux_language_fallback]) || feature['name:right'];
+                                    var left = (global.ux_language && feature['name:left:'+global.ux_language]) || (global.ux_language_fallback && feature['name:left:'+global.ux_language_fallback]) || feature['name:left'];
+                                    if( right && left ) {
+                                        //if( right.includes(' ') || left.includes(' ') ) {
+                                            return left + " - " + right;
+                                        //} else {
+                                        //    return right + '\n' + left;
+                                        //}
+                                    } else {
+                                        return (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature.name;
+                                    }
+                                }
                         text_wrap: 100
                         font:
                             family: *text_font_family
@@ -3171,6 +3170,38 @@ layers:
                 draw:
                     lines:
                         visible: false
+
+            labels-z9-up:
+                filter: { name: true, $zoom: { min: 9 }, not: { maritime_boundary: true } }
+                draw:
+                    text-blend-order:
+                        priority: 3
+                        visible: global.text_visible_admin
+                        text_source: |
+                            function() {
+                                    var right = (global.ux_language && feature['name:right:'+global.ux_language]) || (global.ux_language_fallback && feature['name:right:'+global.ux_language_fallback]) || feature['name:right'];
+                                    var left = (global.ux_language && feature['name:left:'+global.ux_language]) || (global.ux_language_fallback && feature['name:left:'+global.ux_language_fallback]) || feature['name:left'];
+                                    if( right && left ) {
+                                        //if( right.includes(' ') || left.includes(' ') ) {
+                                            return left + " - " + right;
+                                        //} else {
+                                        //    return right + '\n' + left;
+                                        //}
+                                    } else {
+                                        return (global.ux_language && feature['name:'+global.ux_language]) || (global.ux_language_fallback && feature['name:'+global.ux_language_fallback]) || feature.name;
+                                    }
+                                }
+                        text_wrap: 100px
+                        offset: 10px
+                        anchor: top
+                        font:
+                            family: Varela
+                            size: 9px
+                            weight: 200
+                            fill: [0.4,0.4,0.4]
+                            # stroke: { color: global.text_stroke, width: 4 }
+                            transform: uppercase
+
 #        subregions:
 #            filter: { kind: county, $zoom: { min: 10 } }
 #            draw:
@@ -3234,7 +3265,7 @@ layers:
         country:
             filter:
                 kind: country
-                $zoom: { min: 2, max: 9 }
+                $zoom: { min: 3, max: 9 }
             draw:
                 text-blend-order:
                     priority: 3
@@ -3459,18 +3490,18 @@ layers:
             #
             # NOTE: So instead we play a shell game with symbolizers per zoom
             #
-            _icons_later: 
+            _icons_later:
                 filter: { $zoom: { min: 11 } }
                 draw:
-                    icons: 
+                    icons:
                         visible: false
                     text-blend-order:
                         visible: *text_visible_populated_places
 
-            _text_early: 
+            _text_early:
                 filter: { $zoom: { max: 11 } }
                 draw:
-                    text-blend-order: 
+                    text-blend-order:
                         visible: false
             # END HACK
 
@@ -3505,7 +3536,7 @@ layers:
                         visible: false
 
             halo-populated-places:
-                filter: 
+                filter:
                     $zoom: { min: 9 }
                 draw:
                     icons:
@@ -5047,7 +5078,7 @@ layers:
         water-line-labels:
             draw:
                 text-blend-order:
-                    font: 
+                    font:
                         size: [[14,10px],[17,14px]]
         not-river-not-stream:
             filter: { kind: [canal,dam,ditch,drain], $zoom: { max: 16 } }
