@@ -11,6 +11,10 @@
 #
 
 global:
+    # Sign up for a Mapzen API key to enjoy higher rate limits
+    # https://mapzen.com/documentation/overview/#developer-accounts-and-api-keys
+    sdk_mapzen_api_key: mapzen-xxxxxx     # set this value to your Mapzen API key
+
     # SHIELDS
     sdk_shield_color: black
     sdk_shield_text_color: white
@@ -530,7 +534,7 @@ sources:
         #url:  https://tile.dev.mapzen.com/mapzen/vector/v1/all/{z}/{x}/{y}.topojson
         #url:  //localhost:8080/vector/all/{z}/{x}/{y}.json
         url_params:
-            api_key: vector-tiles-HqUVidw
+            api_key: global.sdk_mapzen_api_key
         max_zoom: 16
 
 #    # Only enable this for local debug, should not be enabled for prod (app inserts these at runtime)
