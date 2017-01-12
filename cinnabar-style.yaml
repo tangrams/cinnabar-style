@@ -4616,6 +4616,14 @@ layers:
             draw:
                 icons:
                     visible: false
+            # eg park polygons in SF that have area but no name, sigh
+            no-name-no-area:
+                filter:
+                    kind: true
+                    name: false
+                draw:
+                    icons:
+                        visible: false
             sports-pitch:
                 filter:
                     $zoom: { min: 17 }

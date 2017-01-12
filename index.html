@@ -470,7 +470,7 @@
                 scene.config.global.text_visible_exits = _default;
 
                 scene.config.global.text_visible_building = _more;
-                scene.config.global.text_visible_addresses = _more;
+                scene.config.global.text_visible_address = _more;
 
                 scene.config.global.label_visible_poi_landuse = _more;
                 scene.config.global.text_visible_poi_landuse = _more;
@@ -519,19 +519,19 @@
             });
             gui.transit_button.name('transit');
 
-           // Building extrusion selector
-           var building_3d = {
-               '(default)': true,
-               'Yes': true,
-               'No': false
-           };
-           // use transit ux, else default to false
-           gui.building_3d = query.building_3d || true;
-           gui.building_button = gui.add(gui, 'building_3d', building_3d).onChange(function(value) {
-               scene.config.global.sdk_building_extrude = (value === 'true' || value === true); // dat.gui passes a string
-               scene.updateConfig();
-           });
-           gui.building_button.name( '3D buildings' );
+            // Building extrusion selector
+            var building_3d = {
+                '(default)': true,
+                'Yes': true,
+                'No': false
+            };
+            // use transit ux, else default to false
+            gui.building_3d = query.building_3d || true;
+            gui.building_button = gui.add(gui, 'building_3d', building_3d).onChange(function(value) {
+                scene.config.global.sdk_building_extrude = (value === 'true' || value === true); // dat.gui passes a string
+                scene.updateConfig();
+            });
+            gui.building_button.name( '3D buildings' );
 
 //             // Animation selector
 //             var animated = {
@@ -716,7 +716,7 @@
         <script src='https://mapzen.com/common/ui/mapzen-ui.min.js'></script>
         <script>
           MPZN.bug({
-          name: 'Tangram',
+          name: 'Mapzen Cinnabar cartography',
           link: 'https://mapzen.com/projects/tangram',
           tweet: 'Tangram Cinnabar style from @mapzen',
           repo: 'https://github.com/tangrams/cinnabar-style/'
