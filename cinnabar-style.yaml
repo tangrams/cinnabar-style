@@ -4920,7 +4920,7 @@ layers:
             #             size: [[14,24px],[16,32px]]
         parks:
             filter:
-                - kind: [park, conservation, nature_reserve, grass]
+                - kind: [park, conservation, grass]
                 - { kind: protected_area, not: { protect_class: [6, '6'] } }
             draw:
                 icons:
