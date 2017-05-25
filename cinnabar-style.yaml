@@ -5972,13 +5972,13 @@ layers:
             draw:
                 lines:
                     color: global.city_wall
-                    width: [[12, 0.75px], [13, 1.0px], [14, 1.2px], [15, 2.0px], [16, 2.5px], [19, 6m]]
+                    width: [[12, 0.75px], [13, 1.0px], [14, 1.2px], [15, 2.0px], [16, 2.5px], [19, 5m]]
         retaining_wall:
             filter: { kind: retaining_wall }
             draw:
                 lines:
                     color: global.retaining_wall
-                    width: [[14, 0.5px], [15, 1.0px], [16, 1.5px], [17, 2.0px], [19, 4m]]
+                    width: [[14, 0.5px], [15, 1.0px], [16, 1.5px], [17, 2.0px], [19, 3m]]
         fence:
             filter: { kind: fence }
             draw:
@@ -5990,7 +5990,7 @@ layers:
             draw:
                 lines:
                     color: global.snow_fence
-                    width: [[14, 0.5px], [15, 1.0px], [16, 1.5px], [17, 2.0px], [19, 4m]]
+                    width: [[14, 0.5px], [15, 1.0px], [16, 1.5px], [17, 2.0px], [19, 2m]]
 
 #    transit-bus-roads:
 #        data: { source: mapzen, layer: roads }
