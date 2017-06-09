@@ -3490,6 +3490,19 @@ layers:
                 color: global.building2
                 width: [[14,0.1px],[15,0.5px],[17,0.5px],[18,0.75px],[19,0.4m]]
                 extrude: global.sdk_building_extrude
+
+        basement:
+            filter:
+                all:
+                    - layer: [-1, -2, -3, -4, -5]
+            draw:
+                polygons:
+                    extrude: false
+                    order: 329
+                outline:
+                    extrude: false
+                    order: 330
+
         in_park:
             #todo: does forest belong here?
             filter: { landuse_kind: [park,forest,nature_reserve,conservation,golf_course,garden] }
