@@ -1,0 +1,175 @@
+global:
+    #
+    #label styling
+    text_fill:          '#333'             # WHITE
+    text_fill2:         '#000'             # WHITE
+    text_fill_road_e:   '#555'             # WHITE
+    text_fill_exits:    '#D16768'          # motorway junctions, highway_casing1
+    text_fill_building: '#ccc'             # WHITE
+    text_fill_address:  '#aaa'             # HUH
+    text_fill_water:    '#4c89b5'          # blue
+    text_fill_park:     '#43a254'          # green
+    text_fill_beach:    '#99905c'          # green
+    text_fill_piste:    '#444'             # dark gray
+    text_fill_piste_e:  '#666'             # dark gray early
+    text_fill_shield:   white              # road shield fill color
+    text_stroke:        '#e4e1de'          # land color
+    text_stroke_water:  [0.9, 0.9, 0.9]    # water stroke color
+    text_stroke_park:   '#bddec5'          # park stroke color
+    text_stroke_building:  [.8, .8, .8]    # building stroke color
+    text_stroke_address:   [0.85, 0.85, 0.85]    # address stroke color
+    text_stroke_road1:  '#f8c2c2'          # road stroke color highway
+    text_stroke_road2:  '#fbf2f2'          # road stroke color major road
+    text_stroke_road3:  '#f8d8d9'          # road stroke color major road route
+    text_stroke_road4:  white             # road stroke color minor road
+    text_stroke_shield: '#D16768'         # road shield stroke color &highway_casing1
+    townspot_sprite:    townspot-l-rev     # depends on land color and text settings
+    text_font_family:  'Open Sans'        # branding in asperational Unicode, yo (or Helvetica)
+    #
+    # roads:
+    highway1:                   '#f8c2c2'
+    highway1_e:                 '#eeb1b1'
+    highway_link1:              '#D19596'
+    highway_casing1:            '#D16768'
+    highway_tunnel1:            '#D19596'       #85%
+    highway_tunnel_casing1:     [0.3, 0.3, 0.3] #95%
+    highway_link_tunnel_casing1: '#D16768'      #95%
+    ferry1:                     '#7caacb'
+    rail1:                      '#777'
+    rail1_e:                    '#bbb'
+    rail2:                      '#999'             # less important rail (service, sidings)
+    major_road1:                '#fbf2f2'    #80%
+    major_road1b:               '#faeeee'    #10%
+    major_road1c:               white    #15%
+    major_road2:                white    #20%
+    major_road2a:               white    #17%
+    major_road2b:               white    #25%
+    major_road3:                white    #30%
+    major_road4:                white
+    major_road5:                '#e3989a'
+    major_casing1:              '#d19596'           # same as highway_casing1
+    major_casing2:              '#d19596'           # zoomed out
+    major_tunnel1:              grey                # light orange (major_route1)
+    major_tunnel_casing1:       [0.3, 0.3, 0.3]
+    major_route1:               '#f8d8d9'
+    major_route2:               '#e3989a'           # zoomed out
+    minor_route:                '#d19596'           # same as major_route
+    minor_road1:                white               # natural earth
+    minor_road2:                whtie               # natural earth, same as major_road2
+    minor_road3:                white
+    minor_road4:                white               # zoomed out
+    minor_road5:                white               # zoomed out, again
+    minor_casing1:              white               # same as highway_casing1
+    minor_casing2:              grey                # zoomed out
+    minor_tunnel1:              white
+    minor_tunnel_casing1:       [0.3, 0.3, 0.3]
+    service_road1:              white
+    service_road2:              white
+    service_road_casing1:       white
+    service_road_casing2:       white
+    path1:                      '#fff'
+    path2:                      '#fff'              # zoomed out
+    path_casing1:               grey
+    path_bridge_casing1:        black
+    path_bridge_casing2:        grey                # zoomed out
+    path_steps1:                '#bcc19e'
+    path_steps1_b:              '#e3e2e0'
+    piste_easy:                 '#d0d0d0'
+    piste_intermediate:         '#d0d0d0'
+    piste_advanced:             '#b3b3b3'
+    piste_expert:               '#a6a6a6'
+
+    # boundaries:
+    country_boundary:           '#fff'
+    region_boundary:            '#eee'
+    subregion_boundary:         '#eee'
+    city_wall:                  '#ccb38f'
+    retaining_wall:             '#d9c4a5'
+    snow_fence:                 '#d9c4a5'
+    fence:                      '#555555'
+
+    #areas:
+    scene1:             white               # map background, water
+    water1:             '#9dc3de'           # water
+    water2:             [.75,.75,.75]       # playa
+    water1_o:           '#9dc3de'           # water stroke
+    water2_o:           '#9dc3de'           # water stroke 2
+    earth1:             '#e3e2e0'           # land color
+    earth1_r:           '#666'              # land color road
+    earth2:             '#d8d3ca'           # urban
+    earth2_v:           false               # urban visibility
+    earth2_e:           '#d8d3ca'           # urban early
+    earth2_e2:          '#d4cfc6'           # urban early fade in
+    earth2_e3:          '#dbd8d3'           # urban early fade in 3
+    earth2_ev:          true                # urban early visibility
+    green1:             '#aed0b6'           # park (national park, local parks)
+    green1_r:           '#bddec5'           # park roads
+    green1_b:           '#9caca0'           # park buildings
+    green1_bo:          [.20, .20, .20]     # park building outlines
+    green1_w:           '#b7d7bf'           # wilderness area
+    green1_ws:          '#aed0b6'           # wilderness area stroke
+    green1b:            [0.80,0.80,0.80]    # park
+    green2:             '#b8d2bf'           # cemetery
+    green2_r:           [0.7,0.7,0.7]       # cemetery road
+    green2_b:           '#9caca0'           # cemetery, zoo buildings
+    green2_bo:          [.20, .20, .20]     # cemetery, zoo building outline
+    green3:             '#b8d2bf'           # golf course
+    green4:             '#e3e2e0'           # farm faint
+    green4_v:           false               # farm faint
+    green5:             '#e3e2e0'           # farm
+    green6:             '#94d59f'           # nature reserve
+    green7:             '#bddec5'           # forest
+    green8:             '#B4D8BD'           # conservation
+    green9:             '#cfe3d4'           # forest (landcover)
+    green9_e:           '#cfe3d4'           # forest (landcover) early
+    green9_v:           true                # forest (landcover) visibility
+    green10:            '#c7d4c0'           # sports_centre
+    green11:            '#d8ddd0'           # minor zoo related AOIs
+    green11_o:          '#aec7b5'           # minor zoo related AOIs outline
+    green12:            [0.584,0.843,0.792] # grass (common areas)
+    orange1:            '#bfb08e'           # stadium
+    orange2:            '#d8ccb0'           # pitch (play field)
+    orange3:            '#b9a597'           # racetrack (play field)
+    brown1:             '#D9CFC3'           # university
+    brown1_r:           '#cec1b2'           # university roads
+    brown1_b:           '#b1aca4'           # university buildings
+    brown1_bo:          [.30, .30, .30]     # university building outlines
+    brown2:             '#D9CFC3'           # school
+    brown3:             '#c7b7a2'           # playground
+    red1:               '#d9c3c3'           # hospital
+    red1_r:             '#d9c3c3'           # hospital roads
+    red1_b:             '#b5a7a7'           # hospital buildings
+    red1_bo:            [.30, .30, .30]     # hospital building outlines
+    grey1:              '#d7d7d7'           # retail, airport apron, parking, church
+    grey1_e:            '#cacaca'           # retail, airport apron, parking, church early zoom 14
+    grey1_v:            true                # retail, airport apron, parking, church
+    grey2:              orange              # airport runway
+    grey3:              '#d7d7d7'           # railway
+    grey4:              '#ffc52a'           # airport taxiway
+    grey5:              '#ffc52a'           # airport taxiway
+    grey6:              '#d1d1d1'           # industrial
+    grey6_b:            [.70, .70, .70]     # industrial buildings
+    grey6_bo:           [.20, .20, .20]     # industrial building outlines
+    grey7:              '#ecebe9'           # pedestrian, match minor road / path color
+    grey7_v:            true                # pedestrian visibility
+    grey8:              '#ecebe9'           # winter sports
+    grey8_v:            true                # winter sports visibility
+    grey9:              [.569,.69,.722,.5]  #[.7, .7, .7]        # transit platform
+    grey9_o:            [.5, .5, .5]        # transit platform outline
+    grey9_v:            true                # transit platform visibility
+    grey10:             '#d4cce6'           # generic major landuse (theme park, resort, aquarium, winery)
+    grey10_o:           '#bcb9c5'           # generic major landuse outline
+    grey11:             '#d7d7d7'           # generic minor landuse (attraction, artwork)
+    grey11_o:           '#cccccc'           # generic minor landuse outline
+    grey12:             '#cfcfcf'           # generic minor amusements (roller coasters, rides, slide, carousel)
+    grey12_o:           '#c5c5c5'           # generic minor amusements
+    purple:             '#d2d1cd'           # airport
+    purple_v:           true                # airport visibility
+    purple_b:           '#c2c3c4'           # airport buildings
+    purple_bo:          '#969798'           # airport buildings outline
+    mystry1:            '#d9d7c3'           # recreation ground
+    yellow1:            '#e7eda8'           # beach
+    building1:          [.8, .8, .8]        # building
+    building2:          [.6, .6, .6]        # building stroke
+    building_o:         5                   # building stroke order
+    sdk_building_extrude:  true             # building extrude

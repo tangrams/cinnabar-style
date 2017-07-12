@@ -1,0 +1,174 @@
+global:
+    #label styling
+    text_fill:          [0.00,0.00,0.00]    # BLACK
+    text_fill2:         '#555'             # WHITE
+    text_fill_road_e:   '#555'             # WHITE
+    text_fill_exits:    [0.2, 0.2, 0.2]    # motorway junctions, highway_casing1
+    text_fill_building: [0.3, 0.3, 0.3]    # WHITE
+    text_fill_address:  '#666'             # HUH
+    text_fill_water:    '#000'             # blue
+    text_fill_park:     [0.2, 0.2, 0.2]    # green
+    text_fill_beach:    [0.2, 0.2, 0.2]    # green
+    text_fill_piste:    '#000'             # dark gray
+    text_fill_piste_e:  '#666'             # dark gray early
+    text_fill_shield:   [0.8, 0.8, 0.8]    # road shield fill color
+    text_stroke:        [0.749,0.749,0.749]    # land color
+    text_stroke_water:  [0.8, 0.8, 0.8]    # water stroke color
+    text_stroke_park:   [0.8, 0.8, 0.8]    # park stroke color
+    text_stroke_building:  [.8, .8, .8]   # building stroke color
+    text_stroke_address:   [0.85, 0.85, 0.85]    # address stroke color
+    text_stroke_road1:  [0.8, 0.8, 0.8]   # road stroke color highway
+    text_stroke_road2:  [0.8, 0.8, 0.8]   # road stroke color major road
+    text_stroke_road3:  [0.8, 0.8, 0.8]   # road stroke color major road route
+    text_stroke_road4:  [0.8, 0.8, 0.8]   # road stroke color minor road
+    text_stroke_shield: [0.2, 0.2, 0.2]   # road shield stroke color &highway_casing1
+    townspot_sprite:   townspot-l-rev     # depends on land color and text settings
+    text_font_family:  'Open Sans'        # branding in asperational Unicode, yo (or Helvetica)
+
+    # roads:
+    highway1:                   [0.8, 0.8, 0.8]
+    highway1_e:                 [0.8, 0.8, 0.8]
+    highway_link1:              [0.8, 0.8, 0.8]
+    highway_casing1:            [0.2, 0.2, 0.2]
+    highway_tunnel1:            [0.6, 0.6, 0.6]
+    highway_tunnel_casing1:     [0.75, 0.75, 0.75]
+    highway_link_tunnel_casing1: [0.6, 0.6, 0.6]
+    ferry1:                     [0.4, 0.4, 0.4]
+    rail1:                      '#777'
+    rail1_e:                    '#777'
+    rail2:                      '#999'             # less important rail (service, sidings)
+    major_road1:                [0.8, 0.8, 0.8]
+    major_road1b:               [0.8, 0.8, 0.8]
+    major_road1c:               [0.8, 0.8, 0.8]
+    major_road2:                [0.8, 0.8, 0.8]
+    major_road2a:               [0.8, 0.8, 0.8]
+    major_road2b:               [0.8, 0.8, 0.8]
+    major_road3:                [0.8, 0.8, 0.8]
+    major_road4:                [0.60, 0.60, 0.60]  # ???????
+    major_road5:                [0.8, 0.8, 0.8]
+    major_casing1:              [0.45, 0.45, 0.45]  # same as highway_casing1
+    major_casing2:              [0.5, 0.5, 0.5]     # zoomed out
+    major_tunnel1:              grey
+    major_tunnel_casing1:       [0.75, 0.75, 0.75]
+    major_route1:               [0.8, 0.8, 0.8]
+    major_route2:               [0.8, 0.8, 0.8]     # zoomed out
+    minor_route:                [0.8, 0.8, 0.8]     # same as major_route
+    minor_road1:                [0.60, 0.60, 0.60]  # natural earth
+    minor_road2:                [0.40, 0.40, 0.40]  # natural earth, same as major_road2
+    minor_road3:                '#ccc'
+    minor_road4:                '#ccc'              # zoomed out
+    minor_road5:                [0.8, 0.8, 0.8]     # zoomed out, again
+    minor_casing1:              [0.2, 0.2, 0.2]     # same as highway_casing1
+    minor_casing2:              [0.2, 0.2, 0.2]     # zoomed out
+    minor_tunnel1:              [0.9, 0.9, 0.9]
+    minor_tunnel_casing1:       [0.1, 0.1, 0.1]
+    service_road1:              [0.2, 0.2, 0.2]
+    service_road2:              '#bbb'
+    service_road_casing1:       grey
+    service_road_casing2:       '#444'
+    path1:                      '#b3b3b3'
+    path2:                      '#b3b3b3'           # zoomed out
+    path_casing1:               '#6b6b6b'
+    path_bridge_casing1:        grey
+    path_bridge_casing2:        grey                # zoomed out
+    path_steps1:                grey
+    path_steps1_b:              '#dadada'
+    piste_easy:                 '#c5c5c5'
+    piste_intermediate:         '#c5c5c5'
+    piste_advanced:             '#b3b3b3'
+    piste_expert:               '#a6a6a6'
+
+    # boundaries:
+    country_boundary:           [0.3,0.3,0.3]
+    region_boundary:            [0.4,0.4,0.4]
+    subregion_boundary:         '#ccc'
+    city_wall:                  '#b7b7b7'
+    retaining_wall:             '#c7c7c7'
+    snow_fence:                 '#555555'
+    fence:                      '#555555'
+
+    # areas:
+    scene1:             [0.85, 0.85, 0.85]  # map background, water
+    water1:             grey                # water
+    water2:             [0.70, 0.70, 0.70]  # playa
+    water1_o:           [0.30, 0.30, 0.30]  # water stroke
+    water2_o:           [0.40, 0.40, 0.40]  # water stroke
+    earth1:             [0.75, 0.75, 0.75]  # land color
+    earth1_r:           '#666'              # land color road
+    earth2:             '#111'              # urban
+    earth2_v:           false               # urban
+    earth2_e:           '#b3b3b3'           # urban early
+    earth2_e2:          '#b3b3b3'           # urban early fade in
+    earth2_e3:          '#bbbbbb'           # urban early fade in 3
+    earth2_ev:          true                # urban early visibility
+    green1:             [0.59,0.59,0.59]    # park
+    green1_r:           [0.60,0.60,0.60]    # park roads
+    green1_b:           [0.60, 0.60, 0.60]  # park buildings
+    green1_bo:          [0.20, 0.20, 0.20]  # park building outlines
+    green1_w:           [0.630,0.630,0.630]       # wilderness area
+    green1_ws:          '#6e6e6e'           # wilderness area stroke
+    green1b:            [0.80,0.80,0.80]    # park
+    green2:             [0.70,0.70,0.70]    # cemetery, zoo
+    green2_r:           [0.65,0.65,0.66]    # cemetery, zoo road
+    green2_b:           [0.65,0.65,0.65]    # cemetery, zoo buildings
+    green2_bo:          [0.35,0.35,0.35]    # cemetery, zoo building outline
+    green3:             [0.7,0.7,0.7]       # golf course
+    green4:             [0.90,0.90,0.9]     # farm faint
+    green4_v:           false               # farm faint
+    green5:             [0.75,0.75,0.75]    # farm
+    green6:             [0.55,0.55,0.55]    # nature reserve
+    green7:             [0.675,0.675,0.675]    # forest / park
+    green8:             [0.65,0.65,0.65]    # conservation
+    green9:             [0.7, 0.7, 0.7]     # forest (landcover)
+    green9_e:           [0.7, 0.7, 0.7]     # forest (landcover) early
+    green9_v:           true                # forest (landcover) visibility
+    green10:            [0.7,0.7,0.7]       # sports_centre
+    green11:            [0.8,0.8,0.8]       # minor zoo related AOIs
+    green11_o:          [0.4,0.4,0.4]       # minor zoo related AOIs outline
+    green12:            [0.7,0.7,0.7]       # grass (common areas)
+    orange1:            [0.7,0.7,0.7]       # stadium
+    orange2:            '#b8b8b8'           # pitch (play field)
+    orange3:            [0.7,0.7,0.7]       # racetrack (play field)
+    brown1:             [.67, .67, .67]     # university
+    brown1_r:           [.5, .5, .5]        # university roads
+    brown1_b:           [.63, .63, .63]     # university buildings
+    brown1_bo:          [0.20, 0.20, 0.20]  # university building outlines
+    brown2:             '#aaaaaa'           # school
+    brown3:             '#b8b8b8'           # playground
+    red1:               '#a2a2a2'           # hospital
+    red1_r:             [.5, .5, .5]        # hospital roads
+    red1_b:             [.65, .65, .65]     # hospital buildings
+    red1_bo:            [0.20, 0.20, 0.20]  # hospital building outlines
+    grey1:              '#cccccc'           # pedestrian, retail, airport apron, parking, church
+    grey1_e:            [.8, .8, .8]        # pedestrian, retail, airport apron, parking, church early zoom 14
+    grey1_v:            true                # pedestrian, retail, airport apron, parking, church
+    grey2:              [0.3, 0.3, 0.3]     # airport runway
+    grey3:              [0.65,0.65,0.65]    # railway
+    grey4:              '#cfcfcf'           # airport taxiway
+    grey5:              '#cfcfcf'           # airport taxiway
+    grey6:              '#c6c6c6'           # industrial
+    grey6_b:            [.65, .65, .65]     # industrial buildings
+    grey6_bo:           [.8, .8, .8]        # industrial building outlines
+    grey7:              [.85, .85, .85]     # pedestrian, match minor road / path color
+    grey7_v:            true                # pedestrian visibility
+    grey8:              [.85, .85, .85]     # winter sports
+    grey8_v:            true                # winter sports visibility
+    grey9:              [.5, .5, .5, 0.5]   # transit platform
+    grey9_o:            [.55, .55, .55]     # transit platform outline
+    grey9_v:            true                # transit platform visibility
+    grey10:             [.85, .85, .85]     # generic major landuse (theme park, resort, aquarium, winery)
+    grey10_o:           [.85, .85, .85]     # generic major landuse outline
+    grey11:             [.85, .85, .85]     # generic minor landuse (attraction, artwork)
+    grey11_o:           [.85, .85, .85]     # generic minor landuse outline
+    grey12:             [.85, .85, .85]     # generic minor amusements (roller coasters, rides, slide, carousel)
+    grey12_o:           [.85, .85, .85]     # generic minor amusements
+    purple:             [.65, .65, .65]     # airport
+    purple_v:           true                # airport
+    purple_b:           [0.55,0.55,0.55]    # airport buildings
+    purple_bo:          [0.35,0.35,0.35]    # airport buildings outline
+    mystry1:            '#aaaaaa'           # recreation ground (type of park, sometimes around reservoirs)
+    yellow1:            '#aaaaaa'           # beach
+    building1:          [.7, .7, .7]        # building
+    building2:          [.1, .1, .1]        # building stroke
+    building_o:         25                  # building stroke order
+    sdk_building_extrude:  false            # building extrude
