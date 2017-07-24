@@ -5845,7 +5845,7 @@ layers:
                             color: global.grey1_e
             pedestrian:
                 filter:
-                    kind: [pedestrian,common]
+                    kind: [pedestrian,common,footway]
                 draw:
                     polygons:
                         color: global.grey7
