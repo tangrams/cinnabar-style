@@ -446,12 +446,12 @@
                 '(default)': '5',
                 'More': '10',
                 'Some': '5',
-                'Some (no shields)': '5-no-shields',
+                'Some (no shields)': '4',
                 'None': '1'
             };
             gui.labels = query.labels || '5';
             gui.add(gui, 'labels', labels).onChange(function(value) {
-                var import_theme = 'themes/labels-'+ value + '.yaml'
+                var import_theme = 'themes/label-'+ value + '.yaml'
                 all_theme_imports.labels = import_theme;
 
                 update_scene_with_themes();
