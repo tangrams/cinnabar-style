@@ -174,3 +174,5 @@ global:
     building2:          [.1, .1, .1]        # building stroke
     building_o:         25                  # building stroke order
     sdk_building_extrude:  false            # building extrude
+    building_extrude_height: |              # building extrude height logic
+        function() { return feature.height || 20; }

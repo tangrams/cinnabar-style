@@ -629,16 +629,10 @@ sources:
 #        type: GeoJSON
 #        url: https://gist.githubusercontent.com/anonymous/88235c795bb44b8c45150bdd5561f947/raw/71d4fab97b6513833bf1a589167119e6169ef86d/map.geojson
 
-camera:
-    type: isometric
-    axis: [0, .1] # very small building extrusion
-
-#lights:
-#    light1:
-#        type: directional
-#        direction: [1, 1, -.9]
-#        diffuse: .5
-#        ambient: .85
+cameras:
+    isometric:
+        type: isometric
+        axis: [0, .1] # very small building extrusion
 
 styles:
     dashed:
@@ -2848,89 +2842,117 @@ layers:
     buildings:
         data: { source: mapzen, layer: buildings }
         filter:
-            any:
-                # limit show smaller landuse areas to higher zooms
-                - { $zoom: [13], scale_rank: [1,2] }
-                - { $zoom: [14], scale_rank: [1,2,3] }
-                - { $zoom: [15], area: { min: 5000 }, name: true }
-                - { $zoom: [15], area: { min: 5000 }, kind: true }
-                - { $zoom: [15], area: { min: 3000 }, landuse_kind: true }
-                - { $zoom: [15], height: { min: 100 } }
-                - { $zoom: [15], volume: { min: 100000 } }
-                - { $zoom: [16], area: { min: 1000 }, name: true }
-                - { $zoom: [16], area: { min: 1000 }, kind: true }
-                - { $zoom: [16], area: { min: 2000 }, landuse_kind: true }
-                - { $zoom: [16], volume: { min: 50000 } }
-                - { $zoom: { min: 17 } }
-            all:
-                - not: { location: underground }
+            not: { location: underground }
 
         draw:
             polygons:
-                order: 438
+                visible: false
+                order: 329
                 color: global.building1
-                extrude: global.sdk_building_extrude
-            outline:
-                style: lines
-                order: 439
+            lines:
+                visible: false
+                order: 330
                 color: global.building2
-                width: [[14,0.1px], [15,0.5px], [18,0.75px], [19,0.4m]]
-                extrude: global.sdk_building_extrude
+                width: [[14, 0.1px], [15, 0.5px], [18, 0.75px], [19, 0.4m]]
 
-        basement:
+        footprints:
             filter:
-                all:
-                    - layer: [-1, -2, -3, -4, -5]
+                any:
+                    # limit show smaller landuse areas to higher zooms
+                    - { $zoom: [13], scale_rank: [1,2] }
+                    - { $zoom: [14], scale_rank: [1,2,3] }
+                    - { $zoom: [15], area: { min: 5000 }, name: true }
+                    - { $zoom: [15], area: { min: 5000 }, kind: true }
+                    - { $zoom: [15], area: { min: 3000 }, landuse_kind: true }
+                    - { $zoom: [15], height: { min: 100 } }
+                    - { $zoom: [15], volume: { min: 100000 } }
+                    - { $zoom: [16], area: { min: 1000 }, name: true }
+                    - { $zoom: [16], area: { min: 1000 }, kind: true }
+                    - { $zoom: [16], area: { min: 2000 }, landuse_kind: true }
+                    - { $zoom: [16], volume: { min: 50000 } }
+                    - { $zoom: { min: 17 } }
             draw:
                 polygons:
-                    extrude: false
-                    order: 329
-                outline:
-                    extrude: false
-                    order: 330
+                    visible: true
+                lines:
+                    visible: true
 
-        in_park:
-            #todo: does forest belong here?
-            filter: { landuse_kind: [park,forest,nature_reserve,conservation,golf_course,garden] }
-            draw:
-                polygons:
-                    color: global.green1_b
-                outline:
-                    color: global.green1_bo
-            other_green:
-                filter: { landuse_kind: [golf_course, nature_reserve, conservation] }
+            extrude:
+                filter:
+                    all:
+                        - function() { return global.sdk_building_extrude; }
+                        - any:
+                            - { $zoom: [15], height: { min: 190 } }
+                            - { $zoom: [15], area: { min: 5000 } }
+                            - { $zoom: [15], volume: { min: 100000 } }
+                            - { $zoom: [16], height: { min: 100 } }
+                            - { $zoom: [16], area: { min: 3500 } }
+                            - { $zoom: [16], volume: { min: 50000 } }
+                            - { $zoom: [17], area: { min: 500 } }
+                            - { $zoom: [17], volume: { min: 15000 } }
+                            - { $zoom: { min: 18 } }
+                        - not:
+                            - layer: [-1, -2, -3, -4, -5]
                 draw:
-                    outline:
-                        color: global.green1_r
+                    polygons:
+                        visible: true
+                        order: 438
+                        extrude: global.building_extrude_height
+                    lines:
+                        visible: true
+                        order: 439
+                        extrude: global.building_extrude_height
 
-        in_zoo:
-            filter: { landuse_kind: [zoo, animal, enclosure, petting_zoo, aviary] }
-            draw:
-                polygons:
-                    color: global.green2_b
-                outline:
-                    color: global.green2_bo
-        in_university:
-            filter: { landuse_kind: [university,school] }
-            draw:
-                polygons:
-                    color: global.brown1_b
-                outline:
-                    color: global.brown1_bo
-        in_hospital:
-            filter: { landuse_kind: hospital }
-            draw:
-                polygons:
-                    color: global.red1_b
-                outline:
-                    color: global.red1_bo
-        in_airport:
-            filter: { landuse_kind: [aerodrome, runway, taxiway] }
-            draw:
-                polygons:
-                    color: global.purple_b
-                outline:
-                    color: global.purple_bo
+            basement:
+                filter:
+                    all:
+                        - layer: [-1, -2, -3, -4, -5]
+                draw:
+                    lines:
+                        color: global.building2
+
+            in_park:
+                #todo: does forest belong here?
+                filter: { landuse_kind: [park,forest,nature_reserve,conservation,golf_course,garden] }
+                draw:
+                    polygons:
+                        color: global.green1_b
+                    lines:
+                        color: global.green1_bo
+                other_green:
+                    filter: { landuse_kind: [golf_course, nature_reserve, conservation] }
+                    draw:
+                        lines:
+                            color: global.green1_r
+
+            in_zoo:
+                filter: { landuse_kind: [zoo, animal, enclosure, petting_zoo, aviary] }
+                draw:
+                    polygons:
+                        color: global.green2_b
+                    lines:
+                        color: global.green2_bo
+            in_university:
+                filter: { landuse_kind: [university,school] }
+                draw:
+                    polygons:
+                        color: global.brown1_b
+                    lines:
+                        color: global.brown1_bo
+            in_hospital:
+                filter: { landuse_kind: hospital }
+                draw:
+                    polygons:
+                        color: global.red1_b
+                    lines:
+                        color: global.red1_bo
+            in_airport:
+                filter: { landuse_kind: [aerodrome, runway, taxiway] }
+                draw:
+                    polygons:
+                        color: global.purple_b
+                    lines:
+                        color: global.purple_bo
 
 
         building-labels:
