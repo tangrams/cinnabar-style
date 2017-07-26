@@ -2789,20 +2789,13 @@ layers:
                     visible: global.text_visible_piste
                     font:
                         fill: global.text_fill_piste
-                        size: 12px
-                        stroke: { color: global.grey8, width: 4 }
+                        size: 11px
+                        stroke: { color: global.grey8, width: 4px }
             early:
                 filter: { $zoom: { max: 15 } }
                 draw:
                     text-blend-order:
                         visible: false
-            early-z15:
-                filter: { $zoom: [15] }
-                draw:
-                    text-blend-order:
-                        font:
-                            fill: global.text_fill_piste_e
-                            size: 11px
             easy:
                 filter: { piste_difficulty: easy }
                 draw:
@@ -2832,7 +2825,7 @@ layers:
             draw:
                 lines:
                     color: [[13, global.path2],[16, global.path1]]
-                    width: [[13, 1.5], [15, 2.0], [17, 3m]]
+                    width: [[13, 1.5px], [15, 2.0px], [17, 3m]]
         racetrack:
             filter: { kind: racetrack }
             draw:
@@ -2841,7 +2834,7 @@ layers:
                     cap: round
                     join: round
                     color: global.orange3
-                    width: [[13,1.5px],[14,2px],[15, 3px], [16, 5px], [18, 10m], [19, 15m]]
+                    width: [[13,1.5px], [14,2px], [15, 3px], [16, 5px], [18, 10m], [19, 15m]]
         airport-lines:
             filter: { kind: aeroway, kind_detail: [runway,taxiway] }
             draw:
