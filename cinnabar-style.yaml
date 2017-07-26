@@ -1035,18 +1035,36 @@ layers:
                 draw:
                     polygons:
                         color: global.water1
+
             playas:
                 filter: { kind: playa }
                 draw:
                     polygons:
                         order: function() { return feature.sort_rank + 1; }
                         color: global.water2
+
             water_boundaries-not-ocean:
                 filter:
                     all:
                         - boundary: true
+                        - not: { kind: ocean }
                         - $zoom: { min: 14 }
                     any:
+                        # limit show smaller landuse areas to higher zooms
+                        - { $zoom: { min: 1 },  area: { min: 40000000000 } }
+                        - { $zoom: { min: 2 },  area: { min: 20000000000 } }
+                        # some weird natural earth scale set transition
+                        - { $zoom: { min: 3 },  area: { min: 80000000000 } }
+                        - { $zoom: { min: 4 },  area: { min: 5000000000 } }
+                        - { $zoom: { min: 5 },  area: { min: 700000000 } }
+                        - { $zoom: { min: 6 },  area: { min: 500000000 } }
+                        - { $zoom: { min: 7 },  area: { min: 160000000 } }
+                        - { $zoom: { min: 8 },  area: { min: 40000000 } }
+                        - { $zoom: { min: 9 },  area: { min: 10000000 } }
+                        - { $zoom: { min: 10 }, area: { min: 8000000 } }
+                        - { $zoom: { min: 11 }, area: { min: 2000000 } }
+                        - { $zoom: { min: 12 }, area: { min: 200000 } }
+                        - { $zoom: { min: 13 }, area: { min: 100000 } }
                         - { $zoom: { min: 14 }, area: { min: 2000 } }
                         - { $zoom: { min: 15 } }
                 draw:
@@ -1059,7 +1077,7 @@ layers:
                 draw:
                     lines:
                         color: global.water2_o
-                        width: [[13, 0.5px], [14, 1.0px], [16, 1.5px], [18, 4m]]
+                        width: [[13, 0.5px], [16, 1.5px], [18, 4m]]
                         join: round
 
         water-labels:
@@ -1217,20 +1235,20 @@ layers:
                 draw:
                     lines:
                         color: grey
-                        width: [[14,1px],[16,2px],[18,3m]]
+                        width: [[14, 1px], [16, 2px], [18, 3m]]
             subway:
                 filter: { kind: subway }
                 draw:
                     lines:
                         color: global.rail1
-                        width: [[14,0.5px],[16,1px],[17,1.5px],[18,2m]]
+                        width: [[14, 0.5px], [16, 1px], [17, 1.5px], [18, 2m]]
             light_rail:
                 filter: { kind: [light_rail,tram], $zoom: { min: 15 } }
                 draw:
                     lines:
                         order: 415    # We want this to be above roads, below gondolas
                         color: grey
-                        width: [[14,0.5px],[16,1px],[17,1.5px],[19,1m]]
+                        width: [[14, 0.5px], [16, 1px], [17, 1.5px], [19, 1m]]
         platforms:
             filter: { kind: platform, $zoom: { min: 16 } }
             draw:
@@ -1238,11 +1256,7 @@ layers:
                     color: global.grey9
                     width: 5m
                     visible: global.grey9_v
-                    order: function() { if($zoom<17) { return feature.sort_rank; } else { return 435; } }
-                polygons_transparent:
-                    order: function() { if($zoom<17) { return feature.sort_rank; } else { return 435; } }
-                outline_transparent:
-                    order: function() { if($zoom<17) { return feature.sort_rank; } else { return 436; } }
+
             polygon_geom:
                 filter: { $geometry: polygon }
                 draw:
@@ -1253,7 +1267,7 @@ layers:
                         visible: false
                     outline_transparent:
                         color: global.grey9_o
-                        width: [[15,0px],[16,0.5px],[17,1px],[19,2px]]
+                        width: [[15, 0px], [16, 0.5px], [19, 2px]]
 
 #    transit-platforms:
 #        filter: { kind: platform, $zoom: { min: 15 }, $geometry: [polygon,line] }
