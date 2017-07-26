@@ -78,6 +78,7 @@ global:
     piste_advanced:             '#b3b3b3'
     piste_expert:               '#a6a6a6'
     runway:                     [0.300,0.300,0.300]
+    arrows:                     [0.650,0.650,0.650]
 
     # boundaries:
     country_boundary:           [0.3,0.3,0.3]

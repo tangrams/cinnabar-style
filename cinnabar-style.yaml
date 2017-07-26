@@ -1504,17 +1504,25 @@ layers:
                     flat: true
                     visible: global.icon_visible_landuse_green
                     sprite: arrow
-                    color: [0.766,0.705,0.706]
+                    color: global.arrows
                     size: [[17, 7px], [20, 14px]]
                     placement: spaced
                     placement_spacing: [[17, 70px], [20, 175px]]
                     angle: auto
 
-        early-minor_road:
-            filter: { $zoom: { max: 15 }, kind: [minor_road] }
+        # early-minor_road:
+        #     filter: { $zoom: { max: 15 }, kind: [minor_road] }
+        #     draw:
+        #         lines:
+        #             order: 351
+
+        early:
+            filter: { $zoom: { max: 15 } }
             draw:
                 lines:
-                    order: 351
+                    outline:
+                        order: global.feature_order
+
         bridges-tunnels:
             filter: { any: [is_bridge: true, is_tunnel: true] }
             draw:
@@ -1533,13 +1541,12 @@ layers:
                         width: function () { return 3/16 * Math.log($zoom); }
 
         natural_earth_highways:
-            filter: { source: 'naturalearthdata.com' }
+            filter: { $zoom: { min: 5, max: 8 } }
             draw:
                 lines:
-                    # put highways on top of all other roads
                     cap: round
                     join: round
-                    color: [[7, global.highway1_e],[8, global.major_road3]]
+                    color: [[7, global.highway1_e], [8, global.major_road3]]
                     width: [[9, 2px], [14, 3px], [16, 4px], [17, 10m]]
             major_road:
                 filter: { kind: major_road }
@@ -1559,25 +1566,17 @@ layers:
                     lines:
                         color: global.ferry1
                         width: 1px
+
         highway:
             filter: { kind: highway, $zoom: { min: 8 } }
             draw:
                 lines:
-                    #cap: [[0,butt],[15,round]]
-                    #join: round
-                    color: [[7,global.highway1_e], [8, global.highway1]]
-                    width: [[5, 1px], [7, 1.4px], [8, 2px], [9, 2.5px], [14, 4.0px], [15, 6.0px], [16, 6.5px], [17, 20m]]
+                    color: [[7, global.highway1_e], [8, global.highway1]]
+                    width: [[5, 1px], [8, 2px], [14, 4.0px], [16, 6.5px], [17, 20m]]
                     outline:
                         color: global.highway_casing1
                         width: [[9, 0.5px], [12, 1px], [16, 2px], [18, 6px]]
-#            not_link:
-#                filter: { not: { is_link: true }, $zoom: {max: 15} }
-#                draw:
-#                    lines:
-#                        order: function() { return (14 + feature.sort_rank) || 14; }
-#                        outline:
-#                            # except bridges and tunnels, their outlines should also self-sort
-#                            order: function() { return (14 + feature.sort_rank) || 14; }
+
             link:
                 filter: { is_link: true } # on- and off-ramps, etc
                 draw:
@@ -1601,6 +1600,7 @@ layers:
                             color: global.highway_tunnel1
                             outline:
                                 color: global.highway_tunnel_casing1
+
             tunnel:
                 filter: {is_tunnel: true, $zoom: {min: 13} }
                 draw:
@@ -1608,6 +1608,7 @@ layers:
                         color: global.highway_tunnel1
                         outline:
                             color: global.highway_tunnel_casing1
+
             highway_bridge:
                 filter: {is_bridge: true}
                 draw:
@@ -1615,110 +1616,19 @@ layers:
                         cap: round
                         outline:
                             cap: butt
-            labels-highway-default:
+
+            labels-highway:
+                filter:
+                    $zoom: { min: 13 }
                 draw:
                     text-blend-order:
+                        priority: 50
                         text_source: global.ux_language_text_source_road_ref_and_name
-            # labels-highway-early:
-            #     filter: { $zoom: [7,8,9] }
-            #     draw:
-            #         text-blend-order:
-            #             priority: 50
-            #             visible: global.sdk_road_shields
-            #             text_source: ref
-            #             font:
-            #                 fill: global.text_fill_shield
-            #                 size: 8px
-            #                 stroke: { color: global.text_stroke_shield, width: 2 }
-            # labels-highway-z10:
-            #     filter:
-            #         $zoom: 10
-            #     draw:
-            #         text-blend-order:
-            #             visible: global.sdk_road_shields
-            #             text_source: ref
-            #             font:
-            #                 fill: global.text_fill_shield
-            #                 size: 10px
-            #                 stroke: { color: global.text_stroke_shield, width: 2 }
-            # labels-highway-z11:
-            #     filter:
-            #         $zoom: 11
-            #     draw:
-            #         text-blend-order:
-            #             visible: global.sdk_road_shields
-            #             text_source: ref
-            #             font:
-            #                 fill: global.text_fill_shield
-            #                 size: 11px
-            #                 stroke: { color: global.text_stroke_shield, width: 2 }
-            # labels-highway-z12:
-            #     filter:
-            #         $zoom: 12
-            #     draw:
-            #         text-blend-order:
-            #             visible: global.sdk_road_shields
-            #             text_source: ref
-            #             font:
-            #                 fill: global.text_fill_shield
-            #                 size: 11px
-            #                 stroke: { color: global.text_stroke_shield, width: 2 }
-            labels-highway-z13:
-                filter:
-                    $zoom: 13
-                draw:
-                    text-blend-order:
-                        priority: 50
-                        visible: global.text_visible_highway
-                        #text_source: ref
-                        #text_source: function() { if( feature.ref && feature.name ) { return feature.ref + " " + feature.name; } else { return feature.name; } }
-                        font:
-                            fill: global.text_fill
-                            size: 13px
-                            stroke: { color: global.text_stroke_road1, width: 4 }
-            labels-highway-z14:
-                filter:
-                    $zoom: 14
-                draw:
-                    text-blend-order:
-                        priority: 50
-                        visible: global.text_visible_highway
-                        #text_source: ref
-                        #text_source: function() { if( feature.ref && feature.name ) { return feature.ref + " " + feature.name; } else { return feature.name; } }
-                        font:
-                            fill: global.text_fill
-                            size: 11px
-                            stroke: { color: global.text_stroke_road1, width: 4 }
-            labels-highway-z15:
-                filter:
-                    $zoom: 15
-                draw:
-                    text-blend-order:
                         visible: global.text_visible_highway
                         font:
-                            fill: global.text_fill
-                            size: 13px
-                            #stroke: { color: global.text_stroke_road1, width: 4 }
-            labels-highway-z16:
-                filter: { $zoom: { min: 16, max: 18 } }
-                draw:
-                    text-blend-order:
-                        priority: 50
-                        visible: global.text_visible_highway
-                        font:
-                            fill: global.text_fill
-                            size: 15px
-                            #stroke: { color: global.text_stroke_road1, width: 4 }
-            labels-highway-z18:
-                filter: { $zoom: { min: 18 } }
-                draw:
-                    text-blend-order:
-                        priority: 50
-                        visible: global.text_visible_highway
-                        font:
-                            fill: global.text_fill2
-                            size: 18px
-                            #stroke: { color: global.highway1, width: 4 }
+                            fill: [[14, global.text_fill], [16, global.text_fill], [18, global.text_fill2]]
+                            size: [[13, 13px], [18, 18px]]
+                            stroke: { color: global.text_stroke_road1, width: 4px }
 
         major_road:
             filter: { kind: major_road }
@@ -2042,34 +1952,35 @@ layers:
                     outline:
                         color: [[0, global.service_road_casing1],[18, global.service_road_casing2]]
                         width: [[15, 0px], [16, 0.5px], [17, 1.0px], [18, 1.75px]]
-            in_park:
-                filter: { landuse_kind: [park, forest, nature_reserve, conservation, golf_course, garden, zoo] }
+            in_landuse:
                 draw:
                     lines:
                         outline:
-                            color: global.green1_r
                             width: [[13, 0px], [14, 0.5px], [17, 2.0px], [18, 4.0px]]
-            in_cemetery_garden:
-                filter: { landuse_kind: [cemetery,garden] }
-                draw:
-                    lines:
-                        outline:
-                            color: global.green2_r
-                            width: [[13, 0.25px], [14, 0.5px], [17, 2.0px], [18, 4.0px]]
-            in_university:
-                filter: { landuse_kind: university }
-                draw:
-                    lines:
-                        outline:
-                            color: global.brown1_r
-                            width: [[13, 0px], [14, 0.5px], [17, 2.0px], [18, 4.0px]]
-            in_hospital:
-                filter: { landuse_kind: hospital }
-                draw:
-                    lines:
-                        outline:
-                            color: global.red1_r
-                            width: [[13, 0px], [14, 0.5px], [17, 2.0px], [18, 4.0px]]
+                in_park:
+                    filter: { landuse_kind: [park, forest, nature_reserve, conservation, golf_course, garden, zoo] }
+                    draw:
+                        lines:
+                            outline:
+                                color: global.green1_r
+                in_cemetery_garden:
+                    filter: { landuse_kind: [cemetery,garden] }
+                    draw:
+                        lines:
+                            outline:
+                                color: global.green2_r
+                in_university:
+                    filter: { landuse_kind: university }
+                    draw:
+                        lines:
+                            outline:
+                                color: global.brown1_r
+                in_hospital:
+                    filter: { landuse_kind: hospital }
+                    draw:
+                        lines:
+                            outline:
+                                color: global.red1_r
             labels-service_road:
                 filter: { $zoom: { min: 17 } }
                 draw:
@@ -2079,7 +1990,7 @@ layers:
                         text_source: name
                         font:
                             fill: [[17, global.text_fill], [18, global.text_fill2]]
-                            stroke: { color: global.text_stroke_road4, width: [[17, 2px], [18, 4px]] }
+                            stroke: { color: global.text_stroke_road4, width: [[17, 3px], [18, 4px]] }
 
         path:
             filter:
@@ -2913,7 +2824,7 @@ layers:
             draw:
                 railway_dash:
                     color: [[14, global.rail1_e], [16, global.rail1]]
-                    width: [[12, 0px], [12, 0.5px], [18, 4px], [20, 2m]]
+                    width: [[12, 0px], [12, 0.5px], [18, 2px], [20, 2m]]
                     # let roads sort themselves past zoom 14
                     order: global.feature_order
                     # but give them all the same outline
@@ -2931,7 +2842,7 @@ layers:
                 draw:
                     lines:
                         color: global.rail2
-                        width: [[14, 0px], [15, 0.4px], [16, 0.6px], [18, 0.7m]]
+                        width: [[14, 0px], [15, 0.4px], [18, 1px]]
 
     # buildings are the only layer that gets lighting
     buildings:

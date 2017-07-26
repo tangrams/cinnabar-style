@@ -37,7 +37,7 @@ global:
     ferry1:                     '#7caacb'
     rail1:                      '#777'
     rail1_e:                    '#bbb'
-    rail2:                      '#999'             # less important rail (service, sidings)
+    rail2:                      [0.950,0.950,0.950]             # less important rail (service, sidings)
     major_road1:                '#fbf2f2'    #80%
     major_road1b:               '#faeeee'    #10%
     major_road1c:               white    #15%
@@ -79,6 +79,7 @@ global:
     piste_advanced:             '#b3b3b3'
     piste_expert:               '#a6a6a6'
     runway:                     orange
+    arrows:                     [0.766,0.705,0.706]
 
     # boundaries:
     country_boundary:           '#fff'
