@@ -645,14 +645,22 @@ styles:
         base: lines
         dash: [1.25, 1.25]
         dash_background_color: [0.749,0.749,0.749]
+
     dashed_big:
         base: lines
         dash: [2.0, 1.0]
         dash_background_color: [0.749,0.749,0.749]
+
     dashed_steps:
         base: lines
         dash: [0.25, 0.25]
         dash_background_color: [0.749,0.749,0.749]
+
+    railway_dash:
+        base: lines
+        dash: [2.0, 0.25]
+        dash_background_color: global.scene1
+
     lines_transparent:
         base: lines
         blend: overlay
@@ -2879,19 +2887,19 @@ layers:
             filter: { kind: aerialway }
             draw:
                 lines:
-                    color: '#444'
+                    color: global.grey6_bo
                     width: [[14, 0.5px], [15, 1.0px], [16, 2m]]
             gondola_cable_car:
                 filter: { kind_detail: [gondola, cable_car] }
                 draw:
                     lines:
-                        color: black
+                        color: global.grey6_bo
                         width: [[12, 2.0px], [13, 2px], [14, 3.5px], [15, 4.5px], [16, 9m]]
             chair_lift:
                 filter: { kind_detail: chair_lift }
                 draw:
                     lines:
-                        color: '#333'
+                        color: global.brown1_bo
                         width: [[13, 1px], [14, 1.5px], [15, 3px], [16, 7m]]
             aerialway-labels:
                 filter: { $zoom: { min: 14 } }
@@ -2903,7 +2911,7 @@ layers:
                         font:
                             fill: global.text_fill
                             size: 12px
-                            stroke: { color: global.grey8, width: 4 }
+                            stroke: { color: global.grey8, width: 4px }
                 minor:
                     filter: { not: { kind_detail: [gondola,cable_car,chair_lift] }, $zoom: { max: 17 } }
                     draw:
@@ -2921,12 +2929,12 @@ layers:
                         text-blend-order:
                             font:
                                 weight: 600
-        railway-late:
+        railway:
             filter: { kind: rail, not: { railway: [subway,light_rail,tram] } }
             draw:
-                lines:
-                    color: [[14, global.rail1_e],[16, global.rail1]]
-                    width: [[15,0.5px],[16,0.75px],[18,1m]]
+                railway_dash:
+                    color: [[14, global.rail1_e], [16, global.rail1]]
+                    width: [[12, 0px], [12, 0.5px], [18, 4px], [20, 2m]]
                     # let roads sort themselves past zoom 14
                     order: global.feature_order
                     # but give them all the same outline
@@ -2944,7 +2952,7 @@ layers:
                 draw:
                     lines:
                         color: global.rail2
-                        width: [[14,0px],[15,0.4px],[16,0.6px],[18,0.7m]]
+                        width: [[14, 0px], [15, 0.4px], [16, 0.6px], [18, 0.7m]]
 
     # buildings are the only layer that gets lighting
     buildings:
@@ -5277,132 +5285,110 @@ layers:
                         polygons:
                             color: global.earth1
         tier5:
-            # filter:
-            #     any:
-            #         # limit show smaller landuse areas to higher zooms
-            #         - { $zoom: { min: 10 }, area: { min: 1000000 } }
-            #         - { $zoom: { min: 11 }, area: { min: 400000 } }
-            #         - { $zoom: { min: 12 }, area: { min: 200000 } }
-            #         - { $zoom: { min: 13 }, area: { min: 50000 } }
-            #         - { $zoom: { min: 14 }, area: { min: 20000 } }
-            #         - { $zoom: { min: 15 }, area: { min: 10000 } }
-            #         - { $zoom: { min: 15 }, area: { min: 2000 } }
-            #         - { $zoom: { min: 16 } }
-            #     all:
-            #         - kind:
-            #             - theme_park
-            #             - resort
-            #             - aquarium
-            #             - winery
-            #             - maze
-            #             - beach
-            tourism-related:
-                filter:
-                    kind:
+            filter:
+                all:
+                    - kind:
                         - theme_park
                         - resort
                         - aquarium
                         - winery
                         - maze
-                draw:
-                    polygons:
-                        color: global.grey10
+                        - beach
+            draw:
+                polygons:
+                    color: global.grey10
             beach:
                 filter:
                     kind: beach
                 draw:
                     polygons:
                         color: global.yellow1
-        tier6:
-            # filter:
-            #     any:
-            #         # limit show smaller landuse areas to higher zooms
-            #         - { $zoom: { min: 12 }, area: { min: 500000 } }
-            #         - { $zoom: { min: 13 }, area: { min: 100000 } }
-            #         - { $zoom: { min: 14 }, area: { min: 50000 } }
-            #         - { $zoom: { min: 15 }, area: { min: 20000 } }
-            #         - { $zoom: { min: 15 }, area: { min: 2000 } }
-            #         - { $zoom: { min: 16 } }
-            garden:
+        # tier6:
+        garden:
+            filter:
+                kind: garden
+            draw:
+                polygons:
+                    color: global.green2
+
+        parking:
+            filter:
+                all:
+                    - kind: parking
+                    - $zoom: { min: 14 }
+                any:
+                    - { $zoom: { min: 14 }, area: { min: 10000 } }
+                    - { $zoom: { min: 15 }, area: { min: 5000 } }
+            draw:
+                polygons:
+                    color: global.grey1
+                    visible: global.grey1_v
+            early:
+                filter: { $zoom: { max: 15 } }
+                draw:
+                    polygons:
+                        color: global.grey1_e
+
+        pedestrian:
+            filter:
+                kind: [pedestrian, common, footway]
+            draw:
+                polygons:
+                    color: global.grey7
+                    visible: global.grey7_v
+
+            green-stuff:
                 filter:
-                    kind: garden
+                    surface: [grass]
                 draw:
                     polygons:
-                        color: global.green2
-            parking:
-                filter:
-                    all:
-                        - kind: parking
-                        - $zoom: { min: 14 }
-                    any:
-                        - { $zoom: { min: 14 }, area: { min: 10000 } }
-                        - { $zoom: { min: 15 }, area: { min: 5000 } }
-                draw:
-                    polygons:
-                        color: global.grey1
-                        visible: global.grey1_v
-                early:
-                    filter: { $zoom: { max: 15 } }
-                    draw:
-                        polygons:
-                            color: global.grey1_e
-            pedestrian:
-                filter:
-                    kind: [pedestrian,common,footway]
-                draw:
-                    polygons:
-                        color: global.grey7
-                        visible: global.grey7_v
-                green-stuff:
-                    filter:
-                        surface: [grass]
-                    draw:
-                        polygons:
-                            color: global.green12
-            pitch:
-                filter: { kind: pitch }
-                draw:
-                    polygons:
-                        color: global.orange2
-                    outline:
-                        style: lines
-                        order: global.feature_order
-                        color: global.green6
-                        width: [[14,0px],[15,1px],[16,1m]]
-            place_of_worship:
-                filter:
-                    kind: place_of_worship
-                draw:
-                    polygons:
-                        color: global.grey1
-                        visible: global.grey1_v
-            playground:
-                filter:
-                    kind: playground
-                draw:
-                    polygons:
-                        color: global.brown3
-            school:
-                filter:
-                    kind: school
-                draw:
-                    polygons:
-                        color: global.brown2
-            minor-landuse:
-                filter:
-                    kind:
-                        - attraction
-                        - artwork
-                        - wilderness_hut
-                        - hanami
-                draw:
-                    polygons:
-                        color: global.grey11
-                    outline:
-                        style: lines
-                        order: global.feature_order
-                        color: global.grey11_o
-                        width: [[14,0px],[15,1px],[16,0.5m]]
+                        color: global.green12
+
+        pitch:
+            filter: { kind: pitch }
+            draw:
+                polygons:
+                    color: global.orange2
+                outline:
+                    style: lines
+                    order: global.feature_order
+                    color: global.green6
+                    width: [[14, 0px], [15, 1px], [16, 1m]]
+
+        place_of_worship:
+            filter:
+                kind: place_of_worship
+            draw:
+                polygons:
+                    color: global.grey1
+                    visible: global.grey1_v
+        playground:
+            filter:
+                kind: playground
+            draw:
+                polygons:
+                    color: global.brown3
+        school:
+            filter:
+                kind: school
+            draw:
+                polygons:
+                    color: global.brown2
+        minor-landuse:
+            filter:
+                kind:
+                    - attraction
+                    - artwork
+                    - wilderness_hut
+                    - hanami
+            draw:
+                polygons:
+                    color: global.grey11
+                outline:
+                    style: lines
+                    order: global.feature_order
+                    color: global.grey11_o
+                    width: [[14,0px],[15,1px],[16,0.5m]]
 
         landuse-not-filtered:
             # runways and taxiways are also in the roads layer as lines

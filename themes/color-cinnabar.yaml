@@ -108,16 +108,16 @@ global:
     green1_bo:          [.20, .20, .20]     # park building outlines
     green1_w:           '#b7d7bf'           # wilderness area
     green1_ws:          '#aed0b6'           # wilderness area stroke
-    green1b:            [0.80,0.80,0.80]    # park
-    green2:             '#b8d2bf'           # cemetery
-    green2_r:           [0.7,0.7,0.7]       # cemetery road
+    green1b:            [0.800,0.800,0.800]    # park
+    green2:             [0.722,0.824,0.749]           # cemetery
+    green2_r:           [0.700,0.700,0.700]       # cemetery road
     green2_b:           '#9caca0'           # cemetery, zoo buildings
     green2_bo:          [.20, .20, .20]     # cemetery, zoo building outline
     green3:             '#b8d2bf'           # golf course
     green4:             '#e3e2e0'           # farm faint
     green4_v:           false               # farm faint
     green5:             '#e3e2e0'           # farm
-    green6:             '#94d59f'           # nature reserve
+    green6:             [v0.580,0.835,0.624]           # nature reserve
     green7:             '#bddec5'           # forest
     green8:             '#B4D8BD'           # conservation
     green9:             '#cfe3d4'           # forest (landcover)
@@ -128,7 +128,7 @@ global:
     green11_o:          '#aec7b5'           # minor zoo related AOIs outline
     green12:            [0.584,0.843,0.792] # grass (common areas)
     orange1:            '#bfb08e'           # stadium
-    orange2:            '#d8ccb0'           # pitch (play field)
+    orange2:            [0.847,0.800,0.690]           # pitch (play field)
     orange3:            '#b9a597'           # racetrack (play field)
     brown1:             '#D9CFC3'           # university
     brown1_r:           '#cec1b2'           # university roads
@@ -140,36 +140,36 @@ global:
     red1_r:             '#d9c3c3'           # hospital roads
     red1_b:             '#b5a7a7'           # hospital buildings
     red1_bo:            [.30, .30, .30]     # hospital building outlines
-    grey1:              '#d7d7d7'           # retail, airport apron, parking, church
-    grey1_e:            '#cacaca'           # retail, airport apron, parking, church early zoom 14
+    grey1:              [0.843,0.843,0.843]           # retail, airport apron, parking, church
+    grey1_e:            [0.792,0.792,0.792]           # retail, airport apron, parking, church early zoom 14
     grey1_v:            true                # retail, airport apron, parking, church
     grey2:              orange              # airport runway
-    grey3:              '#d7d7d7'           # railway
+    grey3:              [0.843,0.843,0.843]           # railway
     grey4:              '#ffc52a'           # airport taxiway
     grey5:              '#ffc52a'           # airport taxiway
     grey6:              '#d1d1d1'           # industrial
-    grey6_b:            [.70, .70, .70]     # industrial buildings
-    grey6_bo:           [.20, .20, .20]     # industrial building outlines
-    grey7:              '#ecebe9'           # pedestrian, match minor road / path color
+    grey6_b:            [0.700,0.700,0.700]     # industrial buildings
+    grey6_bo:           [0.200,0.200,0.200]     # industrial building outlines
+    grey7:              [0.925,0.922,0.914]          # pedestrian, match minor road / path color
     grey7_v:            true                # pedestrian visibility
     grey8:              '#ecebe9'           # winter sports
     grey8_v:            true                # winter sports visibility
-    grey9:              [.569,.69,.722,.5]  #[.7, .7, .7]        # transit platform
-    grey9_o:            [.5, .5, .5]        # transit platform outline
+    grey9:              [0.569,0.690,0.722,.5]  #[.7, .7, .7]        # transit platform
+    grey9_o:            [0.500,0.500,0.500]        # transit platform outline
     grey9_v:            true                # transit platform visibility
-    grey10:             '#d4cce6'           # generic major landuse (theme park, resort, aquarium, winery)
-    grey10_o:           '#bcb9c5'           # generic major landuse outline
-    grey11:             '#d7d7d7'           # generic minor landuse (attraction, artwork)
-    grey11_o:           '#cccccc'           # generic minor landuse outline
-    grey12:             '#cfcfcf'           # generic minor amusements (roller coasters, rides, slide, carousel)
+    grey10:             [0.831,0.800,0.902]           # generic major landuse (theme park, resort, aquarium, winery)
+    grey10_o:           [0.737,0.725,0.773]           # generic major landuse outline
+    grey11:             [0.843,0.843,0.843]          # generic minor landuse (attraction, artwork)
+    grey11_o:           [0.800,0.800,0.800]          # generic minor landuse outline
+    grey12:             [0.812,0.812,0.812]           # generic minor amusements (roller coasters, rides, slide, carousel)
     grey12_o:           '#c5c5c5'           # generic minor amusements
     purple:             '#d2d1cd'           # airport
     purple_v:           true                # airport visibility
     purple_b:           '#c2c3c4'           # airport buildings
     purple_bo:          '#969798'           # airport buildings outline
     mystry1:            '#d9d7c3'           # recreation ground
-    yellow1:            '#e7eda8'           # beach
-    building1:          [.8, .8, .8]        # building
-    building2:          [.6, .6, .6]        # building stroke
+    yellow1:            [0.906,0.929,0.659]           # beach
+    building1:          [0.800,0.800,0.800]        # building
+    building2:          [0.600,0.600,0.600]        # building stroke
     building_o:         5                   # building stroke order
     sdk_building_extrude:  true             # building extrude
