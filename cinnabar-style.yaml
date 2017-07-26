@@ -1692,7 +1692,7 @@ layers:
                                 color: global.major_tunnel1
                                 outline:
                                     color: global.major_tunnel_casing1
-                    labels-trunk_primary-route-z11-up:
+                    labels-trunk_primary-route:
                         filter: { $zoom: { min: 11 } }
                         draw:
                             text-blend-order:
@@ -2861,15 +2861,12 @@ layers:
                 - { $zoom: [16], area: { min: 1000 }, kind: true }
                 - { $zoom: [16], area: { min: 2000 }, landuse_kind: true }
                 - { $zoom: [16], volume: { min: 50000 } }
-                #- { $zoom: [16], height: { min: 50 } }
                 - { $zoom: { min: 17 } }
             all:
                 - not: { location: underground }
-#                - { $zoom: { max: 18 } }
+
         draw:
-            #filter: { not: { location: underground } }
             polygons:
-                #order: function() { if( $zoom < 17) { return 5; } else { return 9; } }
                 order: 438
                 color: global.building1
                 extrude: global.sdk_building_extrude
@@ -2877,7 +2874,7 @@ layers:
                 style: lines
                 order: 439
                 color: global.building2
-                width: [[14,0.1px],[15,0.5px],[17,0.5px],[18,0.75px],[19,0.4m]]
+                width: [[14,0.1px], [15,0.5px], [18,0.75px], [19,0.4m]]
                 extrude: global.sdk_building_extrude
 
         basement:
@@ -2900,21 +2897,12 @@ layers:
                     color: global.green1_b
                 outline:
                     color: global.green1_bo
-            golf_course:
-                filter: { landuse_kind: golf_course }
+            other_green:
+                filter: { landuse_kind: [golf_course, nature_reserve, conservation] }
                 draw:
                     outline:
                         color: global.green1_r
-            nature_reserve:
-                filter: { landuse_kind: nature_reserve }
-                draw:
-                    outline:
-                        color: global.green1_r
-            conservation:
-                filter: { landuse_kind: conservation }
-                draw:
-                    outline:
-                        color: global.green1_r
+
         in_zoo:
             filter: { landuse_kind: [zoo, animal, enclosure, petting_zoo, aviary] }
             draw:
@@ -2943,12 +2931,7 @@ layers:
                     color: global.purple_b
                 outline:
                     color: global.purple_bo
-#                    width: [[14,0.5px],[15,0.5px],[17,0.5px],[18,0.75px],[19,0.25m]]
-#        in_retail:
-#            filter: { landuse_kind: retail }
-#            draw:
-#                polygons:
-#                    color: orange
+
 
         building-labels:
             filter:
@@ -2958,7 +2941,6 @@ layers:
                     - not: { kind: address }
                     - name: true
                     - function() { return global.text_visible_building; }
-    #                - kind: [false, building, university, college, school, kindergarten]
                 any:
                     - { $zoom: [16], area: { min: 5000 } }
                     - { $zoom: [16], area: { min: 5000 } }
@@ -2974,7 +2956,6 @@ layers:
                     - { $zoom: { min: 20 }, area: true }
             draw:
                 text-blend-order:
-                    #interactive: global.sdk_interactive
                     text_source: global.ux_language_text_source
                     move_into_tile: true
                     priority: 51
@@ -2983,17 +2964,11 @@ layers:
                         fill: global.text_fill
                         family: global.text_font_family
                         style: italic
-                        size: 11px
-                        stroke: { color: global.text_stroke_address, width: 1 }
-            building_labels-z15-z16-z17:
-                filter: { $zoom: [15,16,17] }
-                draw: { text-blend-order: { font: { size: 12px, stroke: { width: 2 } } } }
-            building_labels-z18:
-                filter: { $zoom: [18,19] }
-                draw: { text-blend-order: { font: { size: 12px, weight: 600, stroke: { width: 3 } } } }
-            building_labels-z20-up:
-                filter: { $zoom: { min: 20 } }
-                draw: { text-blend-order: { font: { size: 14px, weight: 600, stroke: { width: 3 }  } } }
+                        size: [[17, 12px], [20, 14px]]
+                        stroke: { color: global.text_stroke_address, width: [[17, 2px], [18, 3px]] }
+            building_labels-z18-up:
+                filter: { $zoom: { min: 18 } }
+                draw: { text-blend-order: { font: { weight: 600 } } }
             building-labels-z16:
                 filter: function() { if( $zoom == 16 && feature.name.length > 20 ) { return true; } else { return false; } }
                 draw:
@@ -3019,7 +2994,6 @@ layers:
                     - { label_position: true, addr_housenumber: true, name: false }
             draw:
                 text-blend-order:
-                    #interactive: global.sdk_interactive
                     order: 7
                     text_source: addr_housenumber
                     font:
