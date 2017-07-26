@@ -89,6 +89,15 @@ global:
     snow_fence:                 '#d9c4a5'
     fence:                      '#555555'
 
+    # color swatches
+    # green: '#ff00ff'
+    # orange: '#ff00ff'
+    #
+    # categories:
+    #     parks: global.green
+    #
+    # layers, juse use the color swatches
+
     #areas:
     scene1:             white               # map background, water
     water1:             '#9dc3de'           # water
@@ -118,7 +127,7 @@ global:
     green4:             '#e3e2e0'           # farm faint
     green4_v:           false               # farm faint
     green5:             '#e3e2e0'           # farm
-    green6:             [v0.580,0.835,0.624]           # nature reserve
+    green6:             [0.580,0.835,0.624]           # nature reserve
     green7:             '#bddec5'           # forest
     green8:             '#B4D8BD'           # conservation
     green9:             '#cfe3d4'           # forest (landcover)

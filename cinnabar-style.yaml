@@ -990,28 +990,21 @@ layers:
     # Basemap styling
     water:
         data: { source: mapzen, layer: water }
-        ocean-water:
-            # don't filter ocean polys because OSM ocean split tiles don't have coherent areas
-            filter: { kind: ocean }
+        draw:
+            polygons:
+                order: global.feature_order
+                color: global.water1
+
+        water_boundaries-ocean:
+            filter: { boundary: true, kind: ocean, $zoom: { min: 10 } }
             draw:
-                polygons:
-                    order: global.feature_order
-                    color: global.water1
-            water_boundaries-ocean:
-                filter: { boundary: true, $zoom: { min: 10 } }
-                draw:
-                    lines:
-                        order: global.feature_order
-                        color: global.water1_o
-                        width: [[10,1px],[12,2px]]
-                        join: round
+                lines:
+                    color: global.water1_o
+                    width: [[10, 1px], [12, 2px]]
+                    join: round
 
         water-not-ocean:
             filter: { not: { kind: ocean } }
-            draw:
-                polygons:
-                    order: global.feature_order
-                    #color: global.water1
             inland-water:
                 filter:
                     all:
@@ -1048,11 +1041,6 @@ layers:
                     polygons:
                         order: function() { return feature.sort_rank + 1; }
                         color: global.water2
-    #        swimming_pool:
-    #            filter: { kind: swimming_pool }
-    #            draw:
-    #                polygons:
-    #                    order: 8
             water_boundaries-not-ocean:
                 filter:
                     all:
@@ -1063,17 +1051,15 @@ layers:
                         - { $zoom: { min: 15 } }
                 draw:
                     lines:
-                        order: global.feature_order
                         color: global.water2_o
-                        width: [[14,1.0px],[16,1.5px],[18,2m]]
+                        width: [[14, 1.0px], [16, 1.5px], [18, 2m]]
                         join: round
             river:
                 filter: { kind: [river,canal,stream,dam,ditch,drain], $zoom: { min: 13 } }
                 draw:
                     lines:
-                        order: global.feature_order
                         color: global.water2_o
-                        width: [[13,0.5px],[14,1.0px],[16,1.5px],[18,4m]]
+                        width: [[13, 0.5px], [14, 1.0px], [16, 1.5px], [18, 4m]]
                         join: round
 
         water-labels:
@@ -1081,6 +1067,48 @@ layers:
                 all:
                     - name: true
                     - function() { return global.text_visible_water_labels; }
+            draw:
+                text-blend-order:
+                    text_source: global.ux_language_text_source
+                    visible: false
+                    font:
+                        fill: global.text_fill_water
+                        family: global.text_font_family
+                        weight: normal
+
+            ocean-labels:
+                filter:
+                    all:
+                        - $zoom: { min: 1 }
+                        - kind: [ocean]
+                draw:
+                    text-blend-order:
+                        visible: global.text_visible_water_labels
+                        text_source: global.ux_language_text_source_ocean
+                        text_wrap: false
+                        priority: 1
+                        font:
+                            size: [[1, 8px], [2, 10px], [3, 13px], [4, 16px]]
+                            transform: uppercase
+                            style: italic
+
+            sea-labels:
+                filter:
+                    all:
+                        - $zoom: { min: 4 }
+                        - kind: [sea]
+                draw:
+                    text-blend-order:
+                        visible: global.text_visible_water_labels
+                        text_source: global.ux_language_text_source_sea
+                        text_wrap: false
+                        priority: 2
+                        font:
+                            fill: global.text_fill_water
+                            size: [[4, 8px],[6, 11px],[8, 14px]]
+                            transform: uppercase
+                            style: italic
+
             water-area-labels:
                 filter:
                     all:
@@ -1106,12 +1134,9 @@ layers:
                 default-label-text:
                     draw:
                         text-blend-order:
-                            text_source: global.ux_language_text_source
+                            visible: global.text_visible_water_labels
                             font:
-                                fill: global.text_fill_water
-                                family: global.text_font_family
                                 style: italic
-                                weight: normal
                                 size: 12px
                 lakes-labels:
                     filter:
@@ -1119,59 +1144,7 @@ layers:
                     draw:
                         text-blend-order:
                             font:
-                                size: [[5,9px],[8,12px]]
-
-            ocean-sea-labels:
-                filter:
-                    kind: [sea, ocean]
-                draw:
-                    text-blend-order:
-                        text_source: global.ux_language_text_source
-                        font:
-                            fill: global.text_fill_water
-                            family: global.text_font_family
-                            style: italic
-                            weight: normal
-                            size: 12px
-                            transform: uppercase
-
-                ocean-spacer:
-                    filter: { kind: ocean }
-                    ocean-spacer-z1-z4:
-                        filter: { $zoom: { min: 1, max: 4 } }
-                        draw:
-                            text-blend-order:
-                                text_source: global.ux_language_text_source_sea
-                                text_wrap: false
-                    ocean-spacer-z4-up:
-                        filter: { $zoom: { min: 4 } }
-                        draw:
-                            text-blend-order:
-                                text_source: global.ux_language_text_source_ocean
-                                text_wrap: false
-                ocean-labels:
-                    draw:
-                        text-blend-order:
-                            font:
-                                size: [[1,8px],[2,10px],[3,13px],[4,16px]]
-
-                sea-early:
-                    filter: { $zoom: [3], kind: sea }
-                    draw: { text-blend-order: { visible: false } }
-                sea-spacer:
-                    filter: { not: { kind: [ocean] }, $zoom: { min: 5 } }
-                    draw:
-                        text-blend-order:
-                            text_source: global.ux_language_text_source_sea
-                            text_wrap: false
-
-                sea-labels:
-                    filter: { not: { kind: [ocean] } }
-                    draw:
-                        text-blend-order:
-                            font:
-                                fill: global.text_fill_water
-                                size: [[4,8px],[6,11px],[8,14px]]
+                                size: [[5, 9px], [8, 12px]]
 
             playa-labels:
                 filter:
@@ -1196,19 +1169,13 @@ layers:
                         - { $zoom: { min: 17 } }
                 draw:
                     text-blend-order:
-                        text_source: global.ux_language_text_source
+                        visible: global.text_visible_water_labels
                         font:
                             fill: grey
-                            family: global.text_font_family
                             style: italic
-                            weight: normal
                             size: 12px
-                            stroke: { color: global.text_stroke_water, width: 3 }
-                # debug only
-        #        icons:
-        #            size: [[13, 12px], [15, 18px]]
-        #            interactive: true
-        #            sprite: global.townspot_sprite
+                            stroke: { color: global.text_stroke_water, width: 3px }
+
             water-line-labels:
                 filter:
                     all:
@@ -1217,18 +1184,15 @@ layers:
                         - $zoom: { min: 14 }
                 draw:
                     text-blend-order:
-                        text_source: global.ux_language_text_source
+                        visible: global.text_visible_water_labels
                         font:
-                            fill: global.text_fill_water
-                            family: global.text_font_family
                             style: italic
-                            weight: normal
                             size: 12px
                 water-line-labels:
                     draw:
                         text-blend-order:
                             font:
-                                size: [[14,10px],[17,14px]]
+                                size: [[14, 10px], [17, 14px]]
                 not-river-not-stream:
                     filter: { kind: [canal,dam,ditch,drain], $zoom: { max: 16 } }
                     draw:
@@ -1239,6 +1203,7 @@ layers:
                     draw:
                         text-blend-order:
                             visible: false
+
 
     transit-basemap:
         data: { source: mapzen, layer: transit }
@@ -4881,7 +4846,7 @@ layers:
                         style: italic
                         fill: global.text_fill
                         weight: normal
-                        stroke: { color: global.text_stroke, width: 4 }
+                        stroke: { color: global.text_stroke, width: 4px }
 
     landuse:
         data: { source: mapzen, layer: landuse }
@@ -4909,382 +4874,233 @@ layers:
                         family: global.text_font_family
                         style: italic
                         size: 11px
-                        stroke: { color: global.text_stroke_address, width: 1 }
+                        stroke: { color: global.text_stroke_address, width: 1px }
 
-        tier1:
-            # filter:
-            #     any:
-            #         # limit show smaller landuse areas to higher zooms
-            #         - { $zoom: { min: 3 },  area: { min: 300000000 } }
-            #         - { $zoom: { min: 4 },  area: { min: 300000000 } }
-            #         - { $zoom: { min: 5 },  area: { min: 150000000 } }
-            #         - { $zoom: { min: 6 },  area: { min: 150000000 } }
-            #         - { $zoom: { min: 7 },  area: { min: 100000000 } }
-            #         - { $zoom: { min: 8 },  area: { min: 10000000 } }
-            #         - { $zoom: { min: 9 },  area: { min: 5000000 } }
-            #         - { $zoom: { min: 10 }, area: { min: 1000000 } }
-            #         - { $zoom: { min: 11 }, area: { min: 500000 } }
-            #         - { $zoom: { min: 12 }, area: { min: 500000 } }
-            #         - { $zoom: { min: 13 }, area: { min: 100000 } }
-            #         - { $zoom: { min: 14 }, area: { min: 50000 } }
-            #         - { $zoom: { min: 15 }, area: { min: 20000 } }
-            #         - { $zoom: { min: 15 }, area: { min: 2000 } }
-            #         - { $zoom: { min: 16 } }
-            # national_park:
-            #     filter: { kind: [national_park], not: { operator: [ "United States Forest Service", "US Forest Service", "U.S. Forest Service", "USDA Forest Service" ] } }
-            #     draw:
-            #         polygons:
-            #             order: 18
-            #             color: global.green7
-            #     us_national_park:
-            #         # yosemite national park, death valley national park, grand canyon national park
-            #         filter: { operator: [ "United States National Park Service", "US National Park Service" ] }
-            #         draw:
-            #             polygons:
-            #                 order: 19
-            #                 color: global.green1
-
-            national_park:
+        #tier1:
+        national_park:
+            filter:
+                all:
+                    - kind: [national_park, battlefield, protected_area]
+                any:
+                    - not: { operator: [ "United States Forest Service" ] }
+                    - protect_class: ['2','3','5']
+            draw:
+                polygons:
+                    color: global.green7
+                    # todo: what is this?
+                    order: 18
+                    visible: true
+            us_national_park:
+                # yosemite national park, death valley national park, grand canyon national park
                 filter:
-                    all:
-                        - kind: [national_park, battlefield, protected_area]
                     any:
-                        - not: { operator: [ "United States Forest Service" ] }
+                        - operator: [ "United States National Park Service" ]
                         - protect_class: ['2','3','5']
                 draw:
                     polygons:
-                        color: global.green7
-                        # todo: what is this?
-                        order: 18
+                        color: global.green1
                         visible: true
-                us_national_park:
-                    # yosemite national park, death valley national park, grand canyon national park
-                    filter:
-                        any:
-                            - operator: [ "United States National Park Service" ]
-                            - protect_class: ['2','3','5']
-                    draw:
-                        polygons:
-                            color: global.green1
-                            visible: true
-        tier2:
-            # filter:
-            #     any:
-            #         # limit show smaller landuse areas to higher zooms
-            #         - { $zoom: { min: 4 },  area: { min: 1000000000 } }
-            #         - { $zoom: { min: 5 },  area: { min: 1000000000 } }
-            #         - { $zoom: { min: 6 },  area: { min: 150000000 } }
-            #         - { $zoom: { min: 7 },  area: { min: 100000000 } }
-            #         - { $zoom: { min: 8 },  area: { min: 10000000 } }
-            #         - { $zoom: { min: 9 },  area: { min: 5000000 } }
-            #         - { $zoom: { min: 10 }, area: { min: 1000000 } }
-            #         - { $zoom: { min: 11 }, area: { min: 500000 } }
-            #         - { $zoom: { min: 12 }, area: { min: 250000 } }
-            #         - { $zoom: { min: 13 }, area: { min: 100000 } }
-            #         - { $zoom: { min: 14 }, area: { min: 50000 } }
-            #         - { $zoom: { min: 15 }, area: { min: 20000 } }
-            #         - { $zoom: { min: 15 }, area: { min: 2000 } }
-            #         - { $zoom: { min: 16 } }
-            # conservation:
-            #     filter:
-            #         kind: [conservation, protected_area, nature_reserve]
-            #         $zoom: { min: 4 }
-            #     draw:
-            #         polygons:
-            #             color: global.green8
-            #     wilderness-areas:
-            #         filter: function() { return feature.name && feature.name.indexOf("Wilderness") > -1 }
-            #         draw:
-            #             polygons:
-            #                 order: 25
-            #                 color: [[5, global.green7],[8, global.green1_w]]
-            #             outline:
-            #                 style: lines
-            #                 order: 39
-            #                 color: global.green1_ws
-            #                 width: [[9,0px],[10,1px],[11,2px],[12,4px]]
-            #     national_forest_level_6:
-            #         filter: { protect_class: ["6",6] }
-            #         draw:
-            #             polygons:
-            #                 color: global.green7
-            #             lines:
-            #                 order: 10
-            #                 color: global.earth1
-            #                 width: 2px
+        #tier2:
+        conservation:
+            filter:
+                $zoom: { min: 4 }
+                kind: [protected_area, nature_reserve, national_park]
+                not: { protect_class: [2,3,5]}
+            draw:
+                # pixel-pattern-light:
+                #     #order: 33 #25
+                #     visible: true
 
+                polygons:
+                    color: [[5, global.green7],[8, global.green1_w]]
+                    visible: true
 
-            conservation:
-                filter:
-                    $zoom: { min: 4 }
-                    kind: [protected_area, nature_reserve, national_park]
-                    not: { protect_class: [2,3,5]}
-                draw:
-                    # pixel-pattern-light:
-                    #     #order: 33 #25
-                    #     visible: true
+        national_forest_level_6:
+            filter:
+                all:
+                    - kind: forest
+                any:
+                    - protect_class: ['6']
+                    - operator: ['United States Forest Service']
+            draw:
+                polygons:
+                    color: global.green7
+                    visible: true
+                lines:
+                    color: global.earth1
+                    width: 2px
 
-                    polygons:
-                        color: [[5, global.green7],[8, global.green1_w]]
-                        visible: true
-
-            # TODO: For another day
-            #     wilderness-areas:
-            #         filter: function() { return feature.name && feature.name.indexOf("Wilderness") > -1 }
-            #         draw:
-            #             outline:
-            #                 style: lines
-            #                 order: 39
-            #                 color: global.green1_ws
-            #                 width: [[9,0px],[10,1px],[11,2px],[12,4px]]
-
-            national_forest_level_6:
+        parks-and-national-forests-not-national-park:
+            filter:
+                all:
+                    - $zoom: { min: 4 }
+                    - kind: [park, national_park]
+                any:
+                    - not: { operator: [ "United States National Park Service", "United States Forest Service" ] }
+                    - not: { protect_class: ['2','3','5','6'] }
+            # default for national forests and more?
+            draw:
+                polygons:
+                    color: global.green7
+                    visible: true
+                lines:
+                    color: global.earth1
+                    width: [[7,0px],[8,1px],[10,2px]]
+            national_park:
+                #filter: function() { return feature.name && (feature.name.indexOf('National Park') > -1); }
                 filter:
                     all:
-                        - kind: forest
-                    any:
-                        - protect_class: ['6']
-                        - operator: ['United States Forest Service']
+                        - kind: national_park
+                        - not: [ protect_class: ['2','3','5','6'], operator: [ "United States National Park Service"] ]
                 draw:
                     polygons:
-                        color: global.green7
                         visible: true
-                    lines:
-                        color: global.earth1
-                        width: 2px
 
-            parks-and-national-forests-not-national-park:
-                filter:
-                    all:
-                        - $zoom: { min: 4 }
-                        - kind: [park, national_park]
-                    any:
-                        - not: { operator: [ "United States National Park Service", "United States Forest Service" ] }
-                        - not: { protect_class: ['2','3','5','6'] }
-                # default for national forests and more?
-                draw:
-                    polygons:
-                        color: global.green7
-                        visible: true
-                    lines:
-                        color: global.earth1
-                        width: [[7,0px],[8,1px],[10,2px]]
-                national_park:
-                    #filter: function() { return feature.name && (feature.name.indexOf('National Park') > -1); }
-                    filter:
-                        all:
-                            - kind: national_park
-                            - not: [ protect_class: ['2','3','5','6'], operator: [ "United States National Park Service"] ]
-                    draw:
-                        polygons:
-                            visible: true
-            # gotta be a protected area to draw green, not just a landcover type
-            farm:
-                filter:
-                    kind: [farm, farmland]
-                    $zoom: { min: 10}
-                draw:
-                    polygons:
-                        color: [ [10, global.green4], [12, global.green5] ]
-                        visible: global.green4_v
+        # gotta be a protected area to draw green, not just a landcover type
+        farm:
+            filter:
+                kind: [farm, farmland]
+                $zoom: { min: 10}
+            draw:
+                polygons:
+                    color: [ [10, global.green4], [12, global.green5] ]
+                    visible: global.green4_v
 
-            forest:
-                filter: { kind: [forest, wood, natural_wood, natural_forest, natural_park], $zoom: { min: 10 }, not: { operator: [ "United States Forest Service"] } }
-                draw:
-                    polygons:
-                        color: global.green7
-                        visible: true
-                    lines:
-                        order: 28
-                        color: global.earth1
-                        width: 2px
-            # forest:
-            #     filter: { kind: [forest,wood], $zoom: { min: 6 } }
-            #     national-forest:
-            #         filter:
-            #             operator: [ "United States Forest Service", "US Forest Service", "U.S. Forest Service", "USDA Forest Service" ]
-            #         draw:
-            #             polygons:
-            #                 color: global.green7
-            #             lines:
-            #                 order: 28
-            #                 color: global.earth1
-            #                 width: 2px
-            #     landuse-forest:
-            #         filter:
-            #             not: { operator: [ "United States Forest Service", "US Forest Service", "U.S. Forest Service", "USDA Forest Service" ] }
-            #             $zoom: { min: 10 }
-            #         draw:
-            #             polygons:
-            #                 color: global.green9
+        forest:
+            filter: { kind: [forest, wood, natural_wood, natural_forest, natural_park], $zoom: { min: 10 }, not: { operator: [ "United States Forest Service"] } }
+            draw:
+                polygons:
+                    color: global.green7
+                    visible: true
+                lines:
+                    order: 28
+                    color: global.earth1
+                    width: 2px
+        urban:
+            filter: { kind: [urban, rural, residential] }
+            visible: global.earth2_v
+            draw:
+                polygons:
+                    color: [[0, global.earth2],[9, global.earth2]]
+                    visible: global.earth2_v
 
-            # nature_reserve:
-            #     filter: { kind: nature_reserve, $zoom: { min: 7 } }
-            #     draw:
-            #         polygons:
-            #             color: global.green6
-            #     wilderness-areas:
-            #         filter: function() { return feature.name && feature.name.indexOf("Wilderness") > -1 }
-            #         draw:
-            #             polygons:
-            #                 color: global.green7
-            #             outline:
-            #                 style: lines
-            #                 color: global.green6
-            #                 width: [[9,0px],[10,2px],[12,4px]]
-            # parks-and-national-forests-not-national-park:
-            #     filter: { $zoom: { min: 4 }, kind: [park, national_park], not: { operator: [ "United States National Park Service", "US National Park Service" ] } }
-            #     # default for national forests and more?
-            #     draw:
-            #         polygons:
-            #             color: global.green7
-            #         lines:
-            #             color: global.earth1
-            #             width: [[7,0px],[8,1px],[10,2px]]
-            urban:
-                filter: { kind: [urban, rural, residential] }
-                visible: global.earth2_v
+        # tier3:
+        airport:
+            filter:
+                kind: aerodrome
+            draw:
+                polygons:
+                    color: global.purple
+                    visible: global.purple_v
+        military:
+            filter:
+                kind: military
+            draw:
+                polygons:
+                    color: global.purple
+        university:
+            filter:
+                kind: [university, college]
+            draw:
+                polygons:
+                    color: global.brown1
+
+        # tier4:
+        cemetery:
+            filter:
+                kind: cemetery
+            draw:
+                polygons:
+                    #order: 11
+                    color: global.green2
+        commercial:
+            filter:
+                kind: commercial
+            draw:
+                polygons:
+                    color: global.grey1
+                    visible: global.grey1_v
+        golf_course:
+            filter:
+                kind: golf_course
+            draw:
+                polygons:
+                    color: global.green3
+        hospital:
+            filter:
+                kind: hospital
+            draw:
+                polygons:
+                    color: global.red1
+        industrial:
+            filter:
+                kind: industrial
+            draw:
+                polygons:
+                    color: global.grey6
+        power:
+            filter: { kind: [plant, generator, substation] }
+            draw:
+                polygons:
+                    color: global.grey3
+        railway:
+            filter:
+                kind: railway
+            draw:
+                polygons:
+                    color: global.grey3
+        sports_centre:
+            filter:
+                kind: sports_centre
+            draw:
+                polygons:
+                    color: global.green10
+        recreation_ground:
+            filter:
+                kind: recreation_ground
+            draw:
+                polygons:
+                    color: global.mystry1
+        retail:
+            filter:
+                kind: retail
+            draw:
+                polygons:
+                    color: global.grey1
+                    visible: global.grey1_v
+        stadium:
+            filter:
+                kind: stadium
+            draw:
+                polygons:
+                    color: global.orange1
+        zoo:
+            filter:
+                kind: [zoo, wildlife_park]
+            draw:
+                polygons:
+                    color: global.green2
+        winter_sports:
+            filter:
+                kind: winter_sports
+            draw:
+                polygons:
+                    color: global.grey8
+                    visible: global.grey8_v
+
+        man-made:
+            filter: { kind: [pier,wastewater_plant,works,bridge,tower,breakwater,water_works,groyne,dike,cutline] }
+            draw:
+                polygons:
+                    color: global.grey3
+            pier:
+                filter: { kind: [pier,bridge,breakwater,groyne,dike,cutline] }
                 draw:
                     polygons:
-                        color: [[0, global.earth2],[9, global.earth2]]
-                        visible: global.earth2_v
-        tier3:
-            # filter:
-            #     any:
-            #         # limit show smaller landuse areas to higher zooms
-            #         - { $zoom: { min: 8 },  area: { min: 10000000 } }
-            #         - { $zoom: { min: 9 },  area: { min: 5000000 } }
-            #         - { $zoom: { min: 10 }, area: { min: 1000000 } }
-            #         - { $zoom: { min: 11 }, area: { min: 500000 } }
-            #         - { $zoom: { min: 12 }, area: { min: 500000 } }
-            #         - { $zoom: { min: 13 }, area: { min: 100000 } }
-            #         - { $zoom: { min: 14 }, area: { min: 50000 } }
-            #         - { $zoom: { min: 15 }, area: { min: 20000 } }
-            #         - { $zoom: { min: 15 }, area: { min: 2000 } }
-            #         - { $zoom: { min: 16 } }
-            airport:
-                filter:
-                    kind: aerodrome
-                draw:
-                    polygons:
-                        color: global.purple
-                        visible: global.purple_v
-            military:
-                filter:
-                    kind: military
-                draw:
-                    polygons:
-                        color: global.purple
-            university:
-                filter:
-                    kind: [university, college]
-                draw:
-                    polygons:
-                        color: global.brown1
-        tier4:
-            # filter:
-            #     any:
-            #         # limit show smaller landuse areas to higher zooms
-            #         - { $zoom: { min: 10 }, area: { min: 1000000 } }
-            #         - { $zoom: { min: 11 }, area: { min: 500000 } }
-            #         - { $zoom: { min: 12 }, area: { min: 500000 } }
-            #         - { $zoom: { min: 13 }, area: { min: 100000 } }
-            #         - { $zoom: { min: 14 }, area: { min: 50000 } }
-            #         - { $zoom: { min: 15 }, area: { min: 20000 } }
-            #         - { $zoom: { min: 15 }, area: { min: 2000 } }
-            #         - { $zoom: { min: 16 } }
-            cemetery:
-                filter:
-                    kind: cemetery
-                draw:
-                    polygons:
-                        #order: 11
-                        color: global.green2
-            commercial:
-                filter:
-                    kind: commercial
-                draw:
-                    polygons:
-                        color: global.grey1
-                        visible: global.grey1_v
-            golf_course:
-                filter:
-                    kind: golf_course
-                draw:
-                    polygons:
-                        color: global.green3
-            hospital:
-                filter:
-                    kind: hospital
-                draw:
-                    polygons:
-                        color: global.red1
-            industrial:
-                filter:
-                    kind: industrial
-                draw:
-                    polygons:
-                        color: global.grey6
-            power:
-                filter: { kind: [plant, generator, substation] }
-                draw:
-                    polygons:
-                        color: global.grey3
-            railway:
-                filter:
-                    kind: railway
-                draw:
-                    polygons:
-                        color: global.grey3
-            sports_centre:
-                filter:
-                    kind: sports_centre
-                draw:
-                    polygons:
-                        color: global.green10
-            recreation_ground:
-                filter:
-                    kind: recreation_ground
-                draw:
-                    polygons:
-                        color: global.mystry1
-            retail:
-                filter:
-                    kind: retail
-                draw:
-                    polygons:
-                        color: global.grey1
-                        visible: global.grey1_v
-            stadium:
-                filter:
-                    kind: stadium
-                draw:
-                    polygons:
-                        color: global.orange1
-            zoo:
-                filter:
-                    kind: [zoo, wildlife_park]
-                draw:
-                    polygons:
-                        color: global.green2
-            winter_sports:
-                filter:
-                    kind: winter_sports
-                draw:
-                    polygons:
-                        color: global.grey8
-                        visible: global.grey8_v
-            man-made:
-                filter: { kind: [pier,wastewater_plant,works,bridge,tower,breakwater,water_works,groyne,dike,cutline] }
-                draw:
-                    polygons:
-                        color: global.grey3
-                pier:
-                    filter: { kind: [pier,bridge,breakwater,groyne,dike,cutline] }
-                    draw:
-                        polygons:
-                            color: global.earth1
-        tier5:
+                        color: global.earth1
+
+        # tier5:
+        tourism-related:
             filter:
                 all:
                     - kind:
@@ -5293,16 +5109,16 @@ layers:
                         - aquarium
                         - winery
                         - maze
-                        - beach
             draw:
                 polygons:
                     color: global.grey10
-            beach:
-                filter:
-                    kind: beach
-                draw:
-                    polygons:
-                        color: global.yellow1
+        beach:
+            filter:
+                kind: beach
+            draw:
+                polygons:
+                    color: global.yellow1
+
         # tier6:
         garden:
             filter:
