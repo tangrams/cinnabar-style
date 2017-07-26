@@ -2930,7 +2930,7 @@ layers:
                             font:
                                 weight: 600
         railway:
-            filter: { kind: rail, not: { railway: [subway,light_rail,tram] } }
+            filter: { kind: rail, not: { kind_detail: [subway,light_rail,tram] } }
             draw:
                 railway_dash:
                     color: [[14, global.rail1_e], [16, global.rail1]]
@@ -5362,18 +5362,21 @@ layers:
                 polygons:
                     color: global.grey1
                     visible: global.grey1_v
+
         playground:
             filter:
                 kind: playground
             draw:
                 polygons:
                     color: global.brown3
+
         school:
             filter:
                 kind: school
             draw:
                 polygons:
                     color: global.brown2
+
         minor-landuse:
             filter:
                 kind:
@@ -5388,7 +5391,7 @@ layers:
                     style: lines
                     order: global.feature_order
                     color: global.grey11_o
-                    width: [[14,0px],[15,1px],[16,0.5m]]
+                    width: [[14, 0px], [15, 1px], [16, 0.5m]]
 
         landuse-not-filtered:
             # runways and taxiways are also in the roads layer as lines
@@ -5410,12 +5413,13 @@ layers:
             draw:
                 polygons:
                     order: global.feature_order
+
             runway:
                 filter:
                     kind: runway
                 draw:
                     polygons:
-                        color: global.grey2
+                        color: global.runway
             apron:
                 filter:
                     kind: apron
@@ -5424,6 +5428,7 @@ layers:
                     polygons:
                         color: global.grey1
                         visible: global.grey1_v
+
             minor-amusement-park-landuse:
                 filter:
                     kind:
@@ -5439,9 +5444,9 @@ layers:
                         visible: true
                     outline:
                         style: lines
-                        order: global.feature_order
                         color: global.grey12_o
-                        width: [[14,0px],[15,1px],[16,0.5m]]
+                        width: [[14, 0px], [15, 1px], [16, 0.5m]]
+
             minor-zoo-landuse:
                 filter:
                     kind:
@@ -5455,9 +5460,8 @@ layers:
                         visible: true
                     outline:
                         style: lines
-                        order: global.feature_order
                         color: global.green11_o
-                        width: [[14,0px],[15,1px],[16,0.5m]]
+                        width: [[14, 0px], [15, 1px], [16, 0.5m]]
 
         landuse_urban_area-early:
             filter:

@@ -78,6 +78,7 @@ global:
     piste_intermediate:         '#d0d0d0'
     piste_advanced:             '#b3b3b3'
     piste_expert:               '#a6a6a6'
+    runway:                     orange
 
     # boundaries:
     country_boundary:           '#fff'
