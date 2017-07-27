@@ -228,6 +228,7 @@ global:
     #
     # default order for basemap features
     feature_order: function() { return feature.sort_rank; }
+    feature_order_down_1: function() { return feature.sort_rank - 1; }
     #
     #label visibility
     text_visible_continent:         true
@@ -1067,12 +1068,21 @@ layers:
                         width: [[14, 1.0px], [16, 1.5px], [18, 2m]]
                         join: round
             river:
-                filter: { kind: [river,canal,stream,dam,ditch,drain], $zoom: { min: 13 } }
+                filter: { kind: [river, canal, stream, dam, ditch, drain], $zoom: { min: 13 }, not: { is_tunnel: true } }
                 draw:
                     lines:
                         color: global.water2_o
+                        order: global.feature_order_down_1
                         width: [[13, 0.5px], [16, 1.5px], [18, 4m]]
                         join: round
+                intermittent:
+                    filter:
+                        any:
+                            - intermittent: [true]
+                            - kind: drain
+                    draw:
+                        lines:
+                            color: global.water2_o
 
         water-labels:
             filter:
