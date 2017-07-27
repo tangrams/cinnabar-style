@@ -84,7 +84,7 @@ global:
     region_boundary:            '#eee'
     subregion_boundary:         '#eee'
     city_wall:                  '#ccb38f'
-    retaining_wall:             '#d9c4a5'
+    retaining_wall:             [0.902,0.769,0.647]
     snow_fence:                 '#d9c4a5'
     fence:                      '#555555'
 
