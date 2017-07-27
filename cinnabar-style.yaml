@@ -1644,7 +1644,7 @@ layers:
                     color: [[8, global.major_road4], [13, major_road2], [17, global.major_road1]]
                     width: [[13, 0px], [14, 2px], [16, 2.5px], [19, 8m]]
                     outline:
-                        color: [[0, global.earth1_r],[13, global.major_casing1]]
+                        color: [[0, global.earth1_r], [13, global.major_casing1]]
                         width: [[12, 0px], [13, .5px], [15, 1px]]
             trunk_primary:
                 filter: { kind_detail: [trunk, primary] }
@@ -2118,8 +2118,9 @@ layers:
                     color: global.path_steps1_b
                     width: [[15, 0.5px], [18, 3px], [19, 1.5m]]
                     outline:
-                        color: global.path_steps1
-                        width: [[14, 1.0px], [15, 1.5px], [18, 2m]]
+                        style: lines
+                        color: [[14, global.earth1], [18, global.path_steps1]]
+                        width: [[14, 0px], [15, 1px], [18, 1.5m]]
             in_park:
                 filter: { landuse_kind: [park, nature_reserve, conservation, golf_course, garden] }
                 draw:
@@ -3948,7 +3949,7 @@ layers:
                         weight: normal
                         fill: global.grey6_bo
                         size: [[13, 10px], [14, 11px], [17, 12px], [19, 12px], [20, 14px]]
-                        stroke: { color: global.text_stroke, width: [[12, 2px],[16, 4px]] }
+                        stroke: { color: global.text_stroke, width: [[12, 3px],[16, 4px]] }
         # improve legibility at high zooms
         poi_labels-z18:
             filter: { $zoom: { min: 18 } }
@@ -4047,7 +4048,6 @@ layers:
                     text:
                         font:
                             fill: global.building2
-                            family: global.text_font_family
                             style: italic
                             size: 11px
         suppress-icon-z17:
@@ -4322,9 +4322,6 @@ layers:
                 draw:
                     icons:
                         size: 0px
-                        text:
-                            font:
-                                style: italic
         forest:
             filter:
                 - kind: forest
@@ -4376,7 +4373,6 @@ layers:
                         text_wrap: 10
                         font:
                             style: italic
-                            weight: normal
         glacier:
             filter:
                 kind: glacier
@@ -4389,7 +4385,6 @@ layers:
                         priority: 44
                         text_wrap: 10
                         font:
-                            weight: normal
                             style: italic
                             fill: global.text_fill_park
 
@@ -4486,7 +4481,6 @@ layers:
                         optional: true
                         font:
                             size: 11px
-                            weight: normal
             early:
                 filter: { $zoom: { max: 19 } }
                 draw:
@@ -4862,7 +4856,7 @@ layers:
                     visible: true
                 lines:
                     color: global.earth1
-                    width: [[7,0px],[8,1px],[10,2px]]
+                    width: [[7, 0px], [8, 1px], [10, 2px]]
             national_park:
                 #filter: function() { return feature.name && (feature.name.indexOf('National Park') > -1); }
                 filter:
@@ -4893,13 +4887,12 @@ layers:
                     order: 28
                     color: global.earth1
                     width: 2px
-        urban:
-            filter: { kind: [urban, rural, residential] }
-            visible: global.earth2_v
-            draw:
-                polygons:
-                    color: [[0, global.earth2],[9, global.earth2]]
-                    visible: global.earth2_v
+        # urban:
+        #     filter: { kind: [urban, rural, residential] }
+        #     draw:
+        #         polygons:
+        #             color: global.earth2
+        #             visible: global.earth2_v
 
         # tier3:
         airport:
@@ -5202,9 +5195,9 @@ layers:
                 kind: urban_area
             draw:
                 polygons:
-                    visible: global.earth2_ev
+                    visible: global.urban_v
                     order: global.feature_order
-                    color: [[0, global.earth2_e], [6, global.earth2_e2], [8, global.earth2_e3]]
+                    color: [[0, global.urban1], [7, global.urban1], [10, global.earth1]]
 
         city_walls:
             filter: { kind: city_wall }

@@ -72,7 +72,7 @@ global:
     path_casing1:               grey
     path_bridge_casing1:        black
     path_bridge_casing2:        grey                # zoomed out
-    path_steps1:                '#bcc19e'
+    path_steps1:                [0.794,0.815,0.667]
     path_steps1_b:              '#e3e2e0'
     piste_easy:                 '#d0d0d0'
     piste_intermediate:         '#d0d0d0'
@@ -102,17 +102,15 @@ global:
     #areas:
     scene1:             white               # map background, water
     water1:             '#9dc3de'           # water
-    water2:             [.75,.75,.75]       # playa
+    water2:             [0.750,0.750,0.750]       # playa
     water1_o:           '#9dc3de'           # water stroke
     water2_o:           '#9dc3de'           # water stroke 2
     earth1:             '#e3e2e0'           # land color
-    earth1_r:           '#666'              # land color road
-    earth2:             '#d8d3ca'           # urban
-    earth2_v:           false               # urban visibility
-    earth2_e:           '#d8d3ca'           # urban early
-    earth2_e2:          '#d4cfc6'           # urban early fade in
-    earth2_e3:          '#dbd8d3'           # urban early fade in 3
-    earth2_ev:          true                # urban early visibility
+    earth1_r:           [0.400,0.400,0.400]              # land color road
+    # earth2:             '#d8d3ca'           # urban
+    # earth2_v:           false               # urban visibility
+    urban1:           '#d8d3ca'           # urban early
+    urban_v:          true                # urban early visibility
     green1:             '#aed0b6'           # park (national park, local parks)
     green1_r:           '#bddec5'           # park roads
     green1_b:           '#9caca0'           # park buildings
@@ -158,7 +156,7 @@ global:
     grey3:              [0.843,0.843,0.843]           # railway
     grey4:              '#ffc52a'           # airport taxiway
     grey5:              '#ffc52a'           # airport taxiway
-    grey6:              '#d1d1d1'           # industrial
+    grey6:              [0.820,0.820,0.820]           # industrial
     grey6_b:            [0.700,0.700,0.700]     # industrial buildings
     grey6_bo:           [0.200,0.200,0.200]     # industrial building outlines
     grey7:              [0.925,0.922,0.914]          # pedestrian, match minor road / path color
