@@ -1496,8 +1496,8 @@ layers:
                 text_source: global.ux_language_text_source
                 font:
                     family: global.text_font_family
-                    weight: 400
                     fill: global.text_fill
+                    weight: 400
 
         arrows:
             # oneway arrows and shields are distinct groups!
@@ -1705,20 +1705,19 @@ layers:
                                 text_source: global.ux_language_text_source_road_ref_and_name
                                 font:
                                     fill: global.text_fill
-                                    size: [[11, 9px], [14, 11px], [15, 12px]]
-                                    stroke: { color: global.text_stroke_road3, width: 2px }
+                                    size: [[11, 12px], [16, 16px], [20, 20px]]
+                                    stroke: { color: global.text_stroke_road3, width: 4px }
                 labels-trunk_primary-z11-z15:
-                    filter:
-                        $zoom: [11,12,13,14,15]
+                    filter: { $zoom: { min: 11, max: 16 } }
                     draw:
                         text-blend-order:
                             priority: 51
                             visible: global.text_visible_trunk_primary
                             text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
-                                fill: global.text_fill
-                                size: [[11, 11px], [13, 12px], [15, 14px]]
-                                stroke: { color: global.text_stroke_road2, width: 4 }
+                                fill: [[11, global.text_fill], [15, global.text_fill], [16, global.text_fill2]]
+                                size: [[11, 11px], [16, 14px]]
+                                stroke: { color: global.text_stroke_road2, width: 4px }
                 labels-trunk_primary-z16-up:
                     filter: { $zoom: { min: 16 } }
                     draw:
@@ -1728,8 +1727,9 @@ layers:
                             text_source: global.ux_language_text_source_road_ref_and_name
                             font:
                                 fill: global.text_fill2
-                                size: [[16, 14px], [18, 16px]]
-                                stroke: { color: global.text_stroke_road2, width: 4 }
+                                size: [[16, 14px], [20, 20px]]
+                                stroke: { color: global.text_stroke_road2, width: 4px }
+
 
             link:
                 filter: { is_link: true } # on- and off-ramps, etc
@@ -1800,9 +1800,9 @@ layers:
                             visible: global.text_visible_secondary
                             text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
-                                fill: [[12, global.text_fill], [15, global.text_fill], [18, global.text_fill2]]
-                                size: [[12, 10px], [18, 13px]]
-                                stroke: { color: [[12, global.text_stroke_road4], [15, global.text_stroke_road3], [18, global.major_road1]], width: [[12, 1px], [18, 4px]] }
+                                fill: [[11, global.text_fill], [15, global.text_fill], [16, global.text_fill2]]
+                                size: [[12, 10px], [16, 13px], [20, 20px]]
+                                stroke: { color: [[12, white], [15, global.text_stroke_road3], [18, global.major_road1]], width: [[12, 1px], [18, 4px]] }
             tertiary:
                 filter: { kind_detail: [tertiary, tertiary_link] }
                 draw:
@@ -1935,8 +1935,8 @@ layers:
                         visible: global.text_visible_minor_road
                         text_source: name
                         font:
-                            fill: [[15, global.text_fill_road_e], [18, global.text_fill2]]
                             size: [[15, 9px], [18, 15px]]
+                            fill: [[15, global.text_fill_road_e], [18, global.text_fill2]]
                             stroke: { color: global.text_stroke_road4, width: [[15, 2px], [18, 4px]] }
         service_road:
             filter: { kind: minor_road, kind_detail: service }
@@ -1986,6 +1986,7 @@ layers:
                         visible: global.text_visible_service_road
                         text_source: name
                         font:
+                            # size: [[17, 11px], [18, 14px]]
                             fill: [[17, global.text_fill], [18, global.text_fill2]]
                             stroke: { color: global.text_stroke_road4, width: [[17, 3px], [18, 4px]] }
 
