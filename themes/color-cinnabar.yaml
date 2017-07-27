@@ -63,10 +63,8 @@ global:
     minor_casing2:              grey                # zoomed out
     minor_tunnel1:              white
     minor_tunnel_casing1:       [0.3, 0.3, 0.3]
-    service_road1:              white
-    service_road2:              white
-    service_road_casing1:       white
-    service_road_casing2:       white
+    service_road:               white
+    service_road_casing:        grey
     path1:                      '#fff'
     path2:                      '#fff'              # zoomed out
     path_casing1:               grey
@@ -146,7 +144,7 @@ global:
     brown2:             '#D9CFC3'           # school
     brown3:             '#c7b7a2'           # playground
     red1:               '#d9c3c3'           # hospital
-    red1_r:             '#d9c3c3'           # hospital roads
+    red1_r:             [0.788,0.708,0.708]          # hospital roads
     red1_b:             '#b5a7a7'           # hospital buildings
     red1_bo:            [.30, .30, .30]     # hospital building outlines
     grey1:              [0.843,0.843,0.843]           # retail, airport apron, parking, church

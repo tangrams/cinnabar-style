@@ -1788,10 +1788,10 @@ layers:
                     filter: { landuse_kind: [park, nature_reserve, conservation, golf_course, garden, zoo] }
                     draw:
                         lines:
-                            color: [[11, global.green1_r],[12, global.minor_road3],[14, global.minor_road3]]
+                            color: [[11, global.green1_r], [12, global.minor_road3]]
                             outline:
-                                color: [[14, global.green1_r],[15, global.major_casing1]]
-                                width: [[12, 0px], [13, 0.5px], [14, 1.0px], [15, 1.0px], [16, 1.5px], [18, 3.0px]]
+                                color: [[14, global.green1_r], [15, global.major_casing1]]
+                                width: [[12, 0px], [13, 0.5px], [15, 1.0px], [16, 1.5px], [18, 3.0px]]
                 labels-secondary:
                     filter: { $zoom: { min: 12 } }
                     draw:
@@ -1850,10 +1850,10 @@ layers:
                     filter: { landuse_kind: [park, nature_reserve, conservation, golf_course, garden, zoo] }
                     draw:
                         lines:
-                            color: [[11, global.green1_r],[12, global.minor_road3],[14, global.minor_road3]]
+                            color: [[11, global.green1_r], [12, global.minor_road3]]
                             outline:
-                                color: [[14, global.green1_r],[15, global.major_casing1]]
-                                width: [[12, 0px], [13, 0.5px], [14, 1.0px], [15, 1.0px], [16, 1.5px], [18, 3.0px]]
+                                color: [[14, global.green1_r], [15, global.major_casing1]]
+                                width: [[12, 0px], [13, 0.5px], [14, 1.0px], [16, 1.5px], [18, 3.0px]]
                 labels-tertiary:
                     filter: { $zoom: { min: 12 } }
                     draw:
@@ -1872,8 +1872,8 @@ layers:
                     color: [[11, global.minor_road5], [13, global.minor_road4], [15, global.minor_road3]]
                     width: [[11, 0.5px], [12, 0.75px], [13, 1.0px], [14, 1.2px], [15, 2.5px], [16, 8m]]
                     outline:
-                        width: [[14, 0px], [15, 0.5px], [17, 0.75px], [18, 1.5px], [19, 2px]]
-                        color: [[16, global.minor_casing1],[17, global.minor_casing2]]
+                        width: [[14, 0px], [15, 0.5px], [17, 0.75px], [19, 2px]]
+                        color: [[16, global.minor_casing1], [17, global.minor_casing2]]
             early:
                 filter: { $zoom: { max: 16 } }
                 draw:
@@ -1893,24 +1893,24 @@ layers:
                 filter: { landuse_kind: [park, protected_area, nature_reserve, conservation, golf_course, garden, wood, farmland, farm, zoo] }
                 draw:
                     lines:
-                        color: [[11, global.green1_r],[12, global.green1_r],[14, global.minor_road3]]
+                        color: [[11, global.green1_r], [12, global.green1_r], [14, global.minor_road3]]
                         outline:
-                            color: [[14, global.green1_r],[18, global.minor_casing1]]
-                            width: [[12, 0px], [13, 0.5px], [14, 0.75px], [17, 2.0px], [18, 4.0px]]
+                            color: [[14, global.green1_r], [17, global.minor_casing2]]
+                            width: [[12, 0px], [13, 0.5px], [14, 1.0px], [16, 1.5px], [18, 3.0px]]
             in_university:
                 filter: { landuse_kind: university }
                 draw:
                     lines:
                         outline:
                             color: global.brown1_r
-                            width: [[13, 0px], [14, 0.5px], [17, 2.0px], [18, 4.0px]]
+                            width: [[13, 0px], [14, 0.5px], [18, 4.0px]]
             in_hospital:
                 filter: { landuse_kind: hospital }
                 draw:
                     lines:
                         outline:
                             color: global.red1_r
-                            width: [[13, 0px], [14, 0.5px], [17, 2.0px], [18, 4.0px]]
+                            width: [[13, 0px], [14, 0.5px], [18, 4.0px]]
 
             tunnel:
                 filter: { is_tunnel: true, $zoom: { min: 13 } }
@@ -1942,12 +1942,14 @@ layers:
             filter: { kind: minor_road, kind_detail: service }
             draw:
                 lines:
-                    color: [[0, global.service_road2],[18, global.service_road2]]
-                    width: [[13,0.5px],[15, 1px], [16, 1.5px], [18, 4m], [19, 4.5m]]
+                    color: global.service_road
+                    width: [[13, 0.5px], [16, 1px], [18, 4m]]
                     outline:
-                        color: [[0, global.service_road_casing1],[18, global.service_road_casing2]]
-                        width: [[15, 0px], [16, 0.5px], [17, 1.0px], [18, 1.75px]]
+                        color: global.service_road_casing
+                        width: [[14, 0px], [16, 0px], [17, 0.75px], [19, 2px]]
             in_landuse:
+                filter:
+                    landuse_kind: [park, forest, nature_reserve, conservation, golf_course, garden, zoo, cemetery, garden university, hospital]
                 draw:
                     lines:
                         outline:
@@ -2029,7 +2031,7 @@ layers:
                 filter: { landuse_kind: [park, nature_reserve, conservation, golf_course, garden] }
                 draw:
                     lines:
-                        color: [[14, global.green1_r],[16, global.minor_road3]]
+                        color: [[14, global.green1_r], [16, global.minor_road3]]
                         outline:
                             color: global.green1_r
                             width: [[14, 0.1px], [15, 0.5px], [18, 2px]]
@@ -2125,14 +2127,14 @@ layers:
                 filter: { landuse_kind: [park, nature_reserve, conservation, golf_course, garden] }
                 draw:
                     dashed_steps:
-                        color: [[14, global.green1_r],[16, global.minor_road3]]
+                        color: [[14, global.green1_r], [16, global.minor_road3]]
                         outline:
                             color: global.green1_r
             in_university:
                 filter: { landuse_kind: university }
                 draw:
                     dashed_steps:
-                        color: [[14, global.brown1_r],[16, global.minor_road3]]
+                        color: [[14, global.brown1_r], [16, global.minor_road3]]
                         outline:
                             color: global.brown1_r
             in_hospital:
