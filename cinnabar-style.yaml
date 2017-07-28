@@ -1863,8 +1863,8 @@ layers:
                             text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
                                 fill: [[12, global.text_fill_road_e], [18, global.text_fill2]]
-                                size: [[13, 10px], [16, 11px], [20, 18px]]
-                                stroke: { color: [[12, white], [15, global.text_stroke_road3], [18, global.major_road1]], width: [[13, 2px], [16, 4px]] }
+                                size: [[13, 10px], [16, 12px], [20, 18px]]
+                                stroke: { color: [[12, white], [14, global.text_stroke_road3], [18, global.major_road1]], width: [[13, 2px], [16, 4px]] }
         minor_road:
             filter: { kind: minor_road, not: { kind_detail: service } }
             draw:
@@ -1943,17 +1943,17 @@ layers:
             draw:
                 lines:
                     color: global.service_road
-                    width: [[13, 0.5px], [16, 1px], [18, 4m]]
+                    width: [[13, 0.5px], [17, 3px], [18, 4m]]
                     outline:
                         color: global.service_road_casing
-                        width: [[16, 0px], [17, 1px], [19, 2px]]
+                        width: [[16, 0px], [17, 0px], [19, 2px]]
             in_landuse:
                 filter:
                     landuse_kind: [park, forest, nature_reserve, conservation, golf_course, garden, zoo, cemetery, garden university, hospital]
                 draw:
                     lines:
                         outline:
-                            width: [[13, 0px], [14, 0.5px], [17, 2.0px], [18, 4.0px]]
+                            width: [[13, 0px], [14, 0px], [18, 3px]]
                 in_park:
                     filter: { landuse_kind: [park, forest, nature_reserve, conservation, golf_course, garden, zoo] }
                     draw:
@@ -2858,7 +2858,7 @@ layers:
                 visible: false
                 order: 330
                 color: global.building2
-                width: [[14, 0.1px], [15, 0.5px], [18, 0.75px], [19, 0.4m]]
+                width: [[14, 0px], [15, 1px], [18, 1px], [19, 0.4m]]
 
         footprints:
             filter:
@@ -4785,12 +4785,8 @@ layers:
                 kind: [protected_area, nature_reserve, national_park]
                 not: { protect_class: [2,3,5]}
             draw:
-                # pixel-pattern-light:
-                #     #order: 33 #25
-                #     visible: true
-
                 polygons:
-                    color: [[5, global.green7],[8, global.green1_w]]
+                    color: global.green1_w
                     visible: true
 
         national_forest_level_6:
@@ -4838,10 +4834,10 @@ layers:
         farm:
             filter:
                 kind: [farm, farmland]
-                $zoom: { min: 10}
+                $zoom: { min: 10 }
             draw:
                 polygons:
-                    color: [ [10, global.green4], [12, global.green5] ]
+                    color: global.green4
                     visible: global.green4_v
 
         forest:
@@ -4888,7 +4884,6 @@ layers:
                 kind: cemetery
             draw:
                 polygons:
-                    #order: 11
                     color: global.green2
         commercial:
             filter:

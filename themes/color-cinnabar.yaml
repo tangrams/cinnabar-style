@@ -112,18 +112,15 @@ global:
     green1:             '#aed0b6'           # park (national park, local parks)
     green1_r:           '#bddec5'           # park roads
     green1_b:           '#9caca0'           # park buildings
-    green1_bo:          [.20, .20, .20]     # park building outlines
+    green1_bo:          [0.414,0.457,0.425]     # park building outlines
     green1_w:           '#b7d7bf'           # wilderness area
-    green1_ws:          '#aed0b6'           # wilderness area stroke
-    green1b:            [0.800,0.800,0.800]    # park
     green2:             [0.722,0.824,0.749]           # cemetery
     green2_r:           [0.700,0.700,0.700]       # cemetery road
     green2_b:           '#9caca0'           # cemetery, zoo buildings
-    green2_bo:          [.20, .20, .20]     # cemetery, zoo building outline
+    green2_bo:          [0.200,0.200,0.200]     # cemetery, zoo building outline
     green3:             '#b8d2bf'           # golf course
-    green4:             '#e3e2e0'           # farm faint
+    green4:             [0.861,0.896,0.870]           # farm faint
     green4_v:           false               # farm faint
-    green5:             '#e3e2e0'           # farm
     green6:             [0.580,0.835,0.624]           # nature reserve
     green7:             '#bddec5'           # forest
     green8:             '#B4D8BD'           # conservation
