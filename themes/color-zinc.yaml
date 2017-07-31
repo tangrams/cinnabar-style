@@ -6,57 +6,55 @@ global:
     text_fill_exits:        [0.200,0.200,0.200]     # motorway junctions, highway_casing1
     text_fill_address:      [0.400,0.400,0.400]     # GRAY
     text_fill_water:        [0.000,0.000,0.000]     # BLACK
-    text_fill_park:         [0.2, 0.2, 0.2]         # green
-    text_fill_beach:        [0.2, 0.2, 0.2]         # green
+    text_fill_park:         [0.200,0.200,0.200]     # green
+    text_fill_beach:        [0.200,0.200,0.200]     # green
     text_fill_piste:        [0.000,0.000,0.000]     # BLACK
     text_fill_shield:       [0.308,0.308,0.308]     # road shield fill color
     text_fill_shield2:      [0.508,0.508,0.508]     # road shield fill color
     text_stroke:            [0.749,0.749,0.749]     # land color
-    text_stroke_water:      [0.8, 0.8, 0.8]         # water stroke color
+    text_stroke_water:      [0.800,0.800,0.800]     # water stroke color
     text_stroke_building:   [0.850,0.850,0.850]     # buildings stroke color
     text_stroke_address:    [0.800,0.800,0.800]     # address stroke color
-    text_stroke_road1:      [0.8, 0.8, 0.8]         # road stroke color highway
-    text_stroke_road2:      [0.8, 0.8, 0.8]         # road stroke color major road
-    text_stroke_road3:      [0.8, 0.8, 0.8]         # road stroke color major road route
-    text_stroke_road4:      [0.8, 0.8, 0.8]         # road stroke color minor road
+    text_stroke_road1:      [0.800,0.800,0.800]     # road stroke color highway
+    text_stroke_road2:      [0.800,0.800,0.800]     # road stroke color major road
+    text_stroke_road3:      [0.800,0.800,0.800]     # road stroke color major road route
+    text_stroke_road4:      [0.800,0.800,0.800]     # road stroke color minor road
     text_fill_region:       [0.400,0.400,0.400]     # region labels
     text_font_family:       'Open Sans'             # branding in asperational Unicode, yo (or Helvetica)
 
     # roads:
-    highway1:                   [0.8, 0.8, 0.8]
-    highway1_e:                 [0.8, 0.8, 0.8]
-    highway_link1:              [0.8, 0.8, 0.8]
-    highway_casing1:            [0.2, 0.2, 0.2]
+    highway1:                   [0.800,0.800,0.800]
+    highway1_e:                 [0.800,0.800,0.800]
+    highway_link1:              [0.800,0.800,0.800]
+    highway_casing1:            [0.200,0.200,0.200]
     highway_tunnel1:            [0.6, 0.6, 0.6]
     highway_tunnel_casing1:     [0.75, 0.75, 0.75]
     ferry1:                     [0.4, 0.4, 0.4]
-    rail1:                      '#777'
-    rail1_e:                    '#777'
-    rail2:                      '#999'             # less important rail (service, sidings)
-    major_road1:                [0.8, 0.8, 0.8]
-    major_road1b:               [0.8, 0.8, 0.8]
-    major_road2:                [0.8, 0.8, 0.8]
-    major_road3:                [0.8, 0.8, 0.8]
+    rail1:                      [0.467,0.467,0.467]
+    rail1_e:                    [0.467,0.467,0.467]
+    rail2:                      '#999'              # less important rail (service, sidings)
+    major_road1:                [0.800,0.800,0.800]
+    major_road1b:               [0.800,0.800,0.800]
+    major_road2:                [0.800,0.800,0.800]
+    major_road3:                [0.800,0.800,0.800]
     major_road4:                [0.60, 0.60, 0.60]  # ???????
-    major_road5:                [0.8, 0.8, 0.8]
+    major_road5:                [0.800,0.800,0.800]
     major_casing1:              [0.45, 0.45, 0.45]  # same as highway_casing1
-    major_casing2:              [0.5, 0.5, 0.5]     # zoomed out
+    major_casing2:              [0.500,0.500,0.500]     # zoomed out
     major_tunnel1:              grey
     major_tunnel_casing1:       [0.75, 0.75, 0.75]
-    major_route1:               [0.8, 0.8, 0.8]
-    major_route2:               [0.8, 0.8, 0.8]     # zoomed out
-    minor_route:                [0.8, 0.8, 0.8]     # same as major_route
+    major_route1:               [0.800,0.800,0.800]
+    major_route2:               [0.800,0.800,0.800] # zoomed out
+    minor_route:                [0.800,0.800,0.800] # same as major_route
     minor_road1:                [0.60, 0.60, 0.60]  # natural earth
     minor_road2:                [0.40, 0.40, 0.40]  # natural earth, same as major_road2
     minor_road3:                [0.800,0.800,0.800]
-    minor_casing1:              [0.2, 0.2, 0.2]     # same as highway_casing1
-    minor_casing2:              [0.2, 0.2, 0.2]     # zoomed out
+    minor_casing1:              [0.200,0.200,0.200] # same as highway_casing1
+    minor_casing2:              [0.200,0.200,0.200] # zoomed out
     minor_tunnel1:              [0.9, 0.9, 0.9]
     minor_tunnel_casing1:       [0.1, 0.1, 0.1]
-    service_road1:              [0.2, 0.2, 0.2]
-    service_road2:              '#bbb'
-    service_road_casing1:       grey
-    service_road_casing2:       '#444'
+    service_road:               [0.800,0.800,0.800]
+    service_road_casing:        [0.500,0.500,0.500]
     path1:                      '#b3b3b3'
     path_casing1:               '#6b6b6b'
     path_bridge_casing1:        grey
@@ -74,13 +72,13 @@ global:
     university:                 [0.670,0.670,0.670]
 
     # boundaries:
-    country_boundary:           [0.3,0.3,0.3]
-    region_boundary:            [0.4,0.4,0.4]
-    subregion_boundary:         '#ccc'
+    country_boundary:           [0.300,0.300,0.300]
+    region_boundary:            [0.400,0.400,0.400]
+    subregion_boundary:         [0.800,0.800,0.800]
     city_wall:                  '#b7b7b7'
     retaining_wall:             '#c7c7c7'
-    snow_fence:                 '#555555'
-    fence:                      '#555555'
+    snow_fence:                 [0.333,0.333,0.333]
+    fence:                      [0.333,0.333,0.333]
 
     # areas:
     scene1:             [0.85, 0.85, 0.85]      # map background, water

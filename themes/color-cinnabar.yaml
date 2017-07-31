@@ -19,7 +19,7 @@ global:
     text_stroke_road1:      '#f8c2c2'               # road stroke color highway
     text_stroke_road2:      '#fbf2f2'               # road stroke color major road
     text_stroke_road3:      '#f8d8d9'               # road stroke color major road route
-    text_stroke_road4:      white                   # road stroke color minor road
+    text_stroke_road4:      [1.000,1.000,1.000]     # road stroke color minor road
     text_fill_region:       [0.400,0.400,0.400]     # region labels
     text_font_family:       'Open Sans'             # branding in asperational Unicode, yo (or Helvetica)
     #
@@ -31,8 +31,8 @@ global:
     highway_tunnel1:            '#D19596'           #85%
     highway_tunnel_casing1:     [0.300,0.300,0.300] #95%
     ferry1:                     '#7caacb'
-    rail1:                      '#777'
-    rail1_e:                    '#bbb'
+    rail1:                      [0.467,0.467,0.467]
+    rail1_e:                    [0.733,0.733,0.733]
     rail2:                      [0.950,0.950,0.950] # less important rail (service, sidings)
     major_road1:                '#fbf2f2'           #80%
     major_road1b:               '#faeeee'           #10%
@@ -74,12 +74,12 @@ global:
 
     # boundaries:
     country_boundary:           [1.000,1.000,1.000]
-    region_boundary:            '#eee'
-    subregion_boundary:         '#eee'
+    region_boundary:            [0.933,0.933,0.933]
+    subregion_boundary:         [0.933,0.933,0.933]
     city_wall:                  '#ccb38f'
     retaining_wall:             [0.902,0.769,0.647]
     snow_fence:                 '#d9c4a5'
-    fence:                      '#555555'
+    fence:                      [0.333,0.333,0.333]
 
     #areas:
     scene1:             [1.000,1.000,1.000]     # map background, water
