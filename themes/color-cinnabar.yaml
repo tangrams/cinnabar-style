@@ -36,32 +36,32 @@ global:
     rail2:                      [0.950,0.950,0.950] # less important rail (service, sidings)
     major_road1:                '#fbf2f2'           #80%
     major_road1b:               '#faeeee'           #10%
-    major_road2:                white    #20%
-    major_road3:                white    #30%
-    major_road4:                white
+    major_road2:                [1.000,1.000,1.000]
+    major_road3:                [1.000,1.000,1.000]
+    major_road4:                [1.000,1.000,1.000]
     major_road5:                '#e3989a'
     major_casing1:              '#d19596'           # same as highway_casing1
     major_casing2:              '#d19596'           # zoomed out
     major_tunnel1:              grey                # light orange (major_route1)
-    major_tunnel_casing1:       [0.3, 0.3, 0.3]
+    major_tunnel_casing1:       [0.300,0.300,0.300]
     major_route1:               '#f8d8d9'
     major_route2:               '#e3989a'           # zoomed out
     minor_route:                '#d19596'           # same as major_route
-    minor_road1:                white               # natural earth
-    minor_road2:                whtie               # natural earth, same as major_road2
-    minor_road3:                white
-    minor_casing1:              white               # same as highway_casing1
+    minor_road1:                [1.000,1.000,1.000] # natural earth
+    minor_road2:                [1.000,1.000,1.000] # natural earth, same as major_road2
+    minor_road3:                [1.000,1.000,1.000]
+    minor_casing1:              [1.000,1.000,1.000] # same as highway_casing1
     minor_casing2:              grey                # zoomed out
-    minor_tunnel1:              white
-    minor_tunnel_casing1:       [0.3, 0.3, 0.3]
-    service_road:               white
+    minor_tunnel1:              [1.000,1.000,1.000]
+    minor_tunnel_casing1:       [0.300,0.300,0.300]
+    service_road:               [1.000,1.000,1.000]
     service_road_casing:        grey
-    path1:                      '#fff'
+    path1:                      [1.000,1.000,1.000]
     path_casing1:               grey
     path_bridge_casing1:        black
     path_bridge_casing2:        grey                # zoomed out
     path_steps1:                [0.794,0.815,0.667]
-    path_steps2:              '#e3e2e0'
+    path_steps2:                '#e3e2e0'
     piste_easy:                 '#d0d0d0'
     piste_intermediate:         '#d0d0d0'
     piste_advanced:             '#b3b3b3'
@@ -73,7 +73,7 @@ global:
     university:                 '#D9CFC3'
 
     # boundaries:
-    country_boundary:           '#fff'
+    country_boundary:           [1.000,1.000,1.000]
     region_boundary:            '#eee'
     subregion_boundary:         '#eee'
     city_wall:                  '#ccb38f'
@@ -81,17 +81,8 @@ global:
     snow_fence:                 '#d9c4a5'
     fence:                      '#555555'
 
-    # color swatches
-    # green: '#ff00ff'
-    # orange: '#ff00ff'
-    #
-    # categories:
-    #     parks: global.green
-    #
-    # layers, juse use the color swatches
-
     #areas:
-    scene1:             white                   # map background, water
+    scene1:             [1.000,1.000,1.000]     # map background, water
     water1:             '#9dc3de'               # water
     water2:             [0.750,0.750,0.750]     # playa
     water1_o:           '#9dc3de'               # water stroke

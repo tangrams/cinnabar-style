@@ -989,6 +989,8 @@ layers:
             polygons:
                 order: global.feature_order
                 color: global.water1
+            lines:
+                order: global.feature_order
 
         water_boundaries-ocean:
             filter: { boundary: true, kind: ocean, $zoom: { min: 10 } }
