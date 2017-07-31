@@ -1650,7 +1650,7 @@ layers:
                 filter: { kind_detail: [trunk, primary] }
                 draw:
                     lines:
-                        color: [[8, global.major_road5], [9, global.major_road2b], [13, global.major_road2], [14, global.major_road1c], [15, global.major_road1b], [17, global.major_road1]]
+                        color: [[8, global.major_road5], [9, global.major_road2], [14, global.major_road2], [15, global.major_road1b], [17, global.major_road1]]
                         width: [[8, 0.6px], [9, 0.75px], [10, 1.5px], [13, 2.5px], [14, 4.5px], [15, 5.5px], [16, 7.0px], [19, 14m]]
                         outline:
                             width: [[8, 0px], [9, 0.5px], [10, 1px], [12, 1.25px], [14, 1.5px], [16, 2.5px], [18, 4.5px]]
@@ -1671,7 +1671,7 @@ layers:
                     filter: { ref: true }
                     draw:
                         lines:
-                            color: [[8, global.major_road5],[9, global.major_route2],[10, global.major_route1]]
+                            color: [[8, global.major_route2], [9, global.major_route2], [10, global.major_route1]]
                             width: [[8, 1.0px], [9, 1.5px], [10, 2.0px], [14, 3.5px], [15, 4.5px], [16, 6.0px], [17, 12m]]
                             outline:
                                 color: global.highway_casing1
@@ -1687,7 +1687,7 @@ layers:
                         filter: { network: ["US:US", "US:I"] }
                         draw:
                             lines:
-                                color: [[8, global.major_route2],[9, global.major_route2],[10, global.major_route1]]
+                                color: [[8, global.major_route2], [9, global.major_route2], [10, global.major_route1]]
                                 width: [[8, 2.0px], [10, 2.5px], [14, 3.5px], [15, 4.5px], [16, 6.0px], [17, 12m]]
                     tunnel:
                         filter: {is_tunnel: true, $zoom: {min: 13} }
@@ -1735,7 +1735,7 @@ layers:
                 filter: { is_link: true } # on- and off-ramps, etc
                 draw:
                     lines:
-                        color: [[8, global.major_road3], [9, global.major_road2b], [14, global.major_road2], [15, global.major_road1b], [17, global.major_road1]]
+                        color: [[8, global.major_road2], [14, global.major_road2], [15, global.major_road1b], [17, global.major_road1]]
                         width: [[10, 1px], [14, 3px], [16, 4.5px], [18, 10m]]
                         outline:
                             color: global.major_casing1
@@ -1751,7 +1751,7 @@ layers:
                 filter: { kind_detail: secondary }
                 draw:
                     lines:
-                        color: [[13, global.major_road3], [14, global.major_road2b], [15, global.major_road1b], [17, global.major_road1]]
+                        color: [[13, global.major_road3], [14, global.major_road3], [15, global.major_road1b], [17, global.major_road1]]
                         width: [[11, 1.0px], [12, 1.0px], [13, 2.0px], [14, 3.5px], [15, 4.5px], [16, 7.0px], [19, 16m]]
                         outline:
                             width: [[11, 0px], [12, .75px], [13, 1.0px], [14, 1.75px], [15, 2.0px], [16, 3.0px], [18, 4.0px]]
@@ -1759,7 +1759,7 @@ layers:
                     filter: { ref: true, $zoom: { min: 12 } }
                     draw:
                         lines:
-                            color: [[8, global.major_road5],[9, global.major_route2],[10, global.major_route1]]  #global.minor_route
+                            color: [[8, global.major_road5], [9, global.major_route2], [10, global.major_route1]]
                     tunnel:
                         filter: {is_tunnel: true, $zoom: {min: 13} }
                         draw:
@@ -1802,12 +1802,12 @@ layers:
                             font:
                                 fill: [[11, global.text_fill], [15, global.text_fill], [16, global.text_fill2]]
                                 size: [[12, 10px], [16, 13px], [20, 20px]]
-                                stroke: { color: [[12, white], [15, global.text_stroke_road3], [18, global.major_road1]], width: [[12, 2px], [18, 4px]] }
+                                stroke: { color: [[12, white], [15, global.text_stroke_road3], [18, global.text_stroke_road2]], width: [[12, 2px], [18, 4px]] }
             tertiary:
                 filter: { kind_detail: [tertiary, tertiary_link] }
                 draw:
                     lines:
-                        color: [[13, global.major_road2b], [14, global.major_road2a], [15, global.major_road1b], [17, global.major_road1]]
+                        color: [[13, global.major_road2], [14, global.major_road2], [15, global.major_road1b], [17, global.major_road1]]
                         width: [[11, 0.5px], [12, .75px], [14, 2.5px], [15, 4.0px], [16, 6.5px], [17, 7.5px], [19, 14m]]
                         outline:
                             width: [[11, 0px], [13, 0.5px], [14, 1.0px], [15, 1.5px], [16, 2.0px], [18, 3.5px]]
@@ -1864,12 +1864,12 @@ layers:
                             font:
                                 fill: [[12, global.text_fill_road_e], [18, global.text_fill2]]
                                 size: [[13, 10px], [16, 12px], [20, 18px]]
-                                stroke: { color: [[12, white], [14, global.text_stroke_road3], [18, global.major_road1]], width: [[13, 2px], [16, 4px]] }
+                                stroke: { color: [[12, white], [14, global.text_stroke_road3], [18, global.text_stroke_road2]], width: [[13, 2px], [16, 4px]] }
         minor_road:
             filter: { kind: minor_road, not: { kind_detail: service } }
             draw:
                 lines:
-                    color: [[11, global.minor_road5], [13, global.minor_road4], [15, global.minor_road3]]
+                    color: global.minor_road3
                     width: [[11, 0.5px], [12, 0.75px], [13, 1.0px], [14, 1.2px], [15, 2.5px], [16, 8m]]
                     outline:
                         width: [[14, 0px], [15, 0.5px], [17, 0.75px], [19, 2px]]
@@ -1998,7 +1998,7 @@ layers:
                     - kind_detail: [steps, track, pier]
             draw:
                 lines:
-                    color: [[14, global.path2], [16, global.path1]]
+                    color: global.path1
                     width: [[14, 1.0px], [15, 1.5px], [17, 3m]]
                     outline:
                         color: global.path_casing1
@@ -2015,7 +2015,7 @@ layers:
                 filter: { kind_detail: pedestrian }
                 draw:
                     lines:
-                        color: [[13, global.path2],[16, global.path1]]
+                        color: global.path1
                         width: [[13, 1.5px], [15, 1.5px], [17, 3m]]
             bridge:
                 filter: { is_bridge: true }
@@ -2024,7 +2024,7 @@ layers:
                         width: [[15, 3.5px], [17, 3m]]
                         cap: round
                         outline:
-                            color: [[15, global.path_bridge_casing2],[16, global.path_bridge_casing1]]
+                            color: [[15, global.path_bridge_casing2], [16, global.path_bridge_casing1]]
                             width: [[15, 0.5px], [16, 1.0px], [18, 2px]]
                             cap: butt
             in_park:
@@ -2085,7 +2085,7 @@ layers:
             filter: { kind: path, kind_detail: track }
             draw:
                 lines:
-                    color: [[13, global.minor_road4], [15, global.minor_road3]]
+                    color: global.minor_road3
                     width: [[13, 0.5px], [14, 1.0px], [15, 1.0px], [16, 6m]]
                     cap: butt
                     join: round
@@ -2118,7 +2118,7 @@ layers:
             draw:
                 dashed_steps:
                     order: global.feature_order
-                    color: global.path_steps1_b
+                    color: global.path_steps2
                     width: [[15, 0.5px], [18, 3px], [19, 1.5m]]
                     outline:
                         style: lines
@@ -2218,8 +2218,8 @@ layers:
                             }
                         font:
                             family: Montserrat
-                            fill: [0.308,0.308,0.308]
-                            size: [[7,7px],[12,8px],[16,11px]]
+                            fill: global.text_fill_shield
+                            size: [[7, 7px], [12, 8px], [16, 11px]]
 
             default_priority_highway:
                 filter:
@@ -2380,8 +2380,8 @@ layers:
                             text:
                                 offset: [0px, 0.5px]
                                 font:
-                                    fill: [0.308,0.308,0.308]
-                                    size: [[7,8px],[13,9px],[15,11px]]
+                                    fill: global.text_fill_shield
+                                    size: [[7, 8px], [13, 9px], [15, 11px]]
                     width_1char:
                         filter: function() { return (feature.shield_text.length === 1) }
                         draw:
@@ -2423,8 +2423,8 @@ layers:
                             text:
                                 offset: [0px, -0.7px]
                                 font:
-                                    fill: [0.380,0.318,0.312]
-                                    size: [[7,8px],[13,9px],[15,11px]]
+                                    fill: global.text_fill_shield
+                                    size: [[7, 8px], [13, 9px], [15, 11px]]
                     width_1char:
                         filter: function() { return (feature.shield_text.length === 1) }
                         draw:
@@ -2477,8 +2477,8 @@ layers:
                             text:
                                 offset: [0px, 1px]
                                 font:
-                                    fill: [0.308,0.308,0.308]
-                                    size: [[7,7px],[13,9px],[15,10px]]
+                                    fill: global.text_fill_shield
+                                    size: [[7, 7px], [13, 9px], [15, 10px]]
                     motorway:
                         filter: { kind_detail: [motorway], $zoom: [7,8] }
                         draw:
@@ -2534,8 +2534,8 @@ layers:
                             text:
                                 # offset: [0px, 1px]
                                 font:
-                                    fill: [0.308,0.308,0.308]
-                                    size: [[7,7px],[13,9px],[15,10px]]
+                                    fill: global.text_fill_shield
+                                    size: [[7, 7px], [13, 9px], [15, 10px]]
                     width_1char:
                         filter: function() { return (feature.shield_text.length === 1) }
                         draw:
@@ -2575,8 +2575,8 @@ layers:
                             text:
                                 offset: [0px, 1px]
                                 font:
-                                    fill: [0.308,0.308,0.308]
-                                    size: [[7,7px],[13,9px],[15,10px]]
+                                    fill: global.text_fill_shield
+                                    size: [[7, 7px], [13, 9px], [15, 10px]]
                     width_1char:
                         filter: function() { return (feature.shield_text.length === 1) }
                         draw:
@@ -2644,7 +2644,7 @@ layers:
                             visible: global.sdk_road_shields
                             text:
                                 font:
-                                    fill: [0.508,0.508,0.508]
+                                    fill: global.text_fill_shield2
                                     #size: [[11,7px],[15,10px]]
                     width_1char:
                         filter: function() { return (feature.shield_text.length === 1) }
@@ -2721,7 +2721,7 @@ layers:
             filter: { kind: path, kind_detail: pier }
             draw:
                 lines:
-                    color: [[13, global.path2],[16, global.path1]]
+                    color: global.path1
                     width: [[13, 1.5px], [15, 2.0px], [17, 3m]]
         racetrack:
             filter: { kind: racetrack }
@@ -2991,7 +2991,7 @@ layers:
                         family: global.text_font_family
                         style: italic
                         size: [[17, 12px], [20, 14px]]
-                        stroke: { color: global.text_stroke_address, width: [[17, 2px], [18, 3px]] }
+                        stroke: { color: global.text_stroke_building, width: [[17, 2px], [18, 3px]] }
             building_labels-z18-up:
                 filter: { $zoom: { min: 18 } }
                 draw: { text-blend-order: { font: { weight: 600 } } }
@@ -3027,7 +3027,7 @@ layers:
                         family: global.text_font_family
                         style: italic
                         size: 10px
-                        stroke: { color: global.building1, width: 4px }
+                        stroke: { color: global.text_stroke_address, width: 4px }
 
     boundaries:
         data: { source: mapzen, layer: boundaries }
@@ -3116,16 +3116,13 @@ layers:
                         text_source: global.ux_language_text_source_boundary_lines_left_right
                         offset: [0, 5px]
                         text_wrap: 100px
-                        # offset: 10px
-                        # anchor: top
                         font:
                             family: Varela
                             size: 9px
                             weight: 200
-                            fill: [0.4,0.4,0.4]
-                            # stroke: { color: global.text_stroke, width: 4 }
+                            fill: global.text_fill_region
                             transform: uppercase
-                            stroke: { color: global.earth1, width: 3px }
+                            stroke: { color: global.earth1, width: 4px }
                 no-left-right:
                     filter: { "name:left": false, "name:right": false }
                     draw:
@@ -3214,7 +3211,7 @@ layers:
                         priority: 8
                         font:
                             size: 13px
-                            stroke: { color: global.text_stroke, width: 3 }
+                            stroke: { color: global.text_stroke, width: 3px }
                 early-ones-z5:
                     filter:
                         # South Ossetia and Abkhazia aren't countries (they are disputed areas)
@@ -3232,7 +3229,7 @@ layers:
                         font:
                             weight: 600
                             size: 14px
-                            stroke: { color: global.text_stroke, width: 3 }
+                            stroke: { color: global.text_stroke, width: 3px }
                 small-ones-z6:
                     filter:
                         # South Ossetia and Abkhazia aren't countries (they are disputed areas)
@@ -3249,7 +3246,7 @@ layers:
                         font:
                             size: 16px
                             weight: bold
-                            stroke: { color: global.text_stroke, width: 4 }
+                            stroke: { color: global.text_stroke, width: 4px }
                 small-ones-z7:
                     filter:
                         $zoom: [7]
@@ -3306,7 +3303,7 @@ layers:
                         visible: global.text_visible_admin
                         font:
                             size: 13px
-                            stroke: { color: global.text_stroke, width: 4 }
+                            stroke: { color: global.text_stroke, width: 4px }
             region-z7-z8:
                 filter: { $zoom: [7,8] }
                 draw:
@@ -3315,7 +3312,7 @@ layers:
                         text_source: global.ux_language_text_source_short_proxy_name
                         font:
                             size: 14px
-                            stroke: { color: global.text_stroke, width: 4 }
+                            stroke: { color: global.text_stroke, width: 4px }
                 pesky:
                     filter:
                         $zoom: [7]
@@ -3433,10 +3430,10 @@ layers:
                     icons:
                         text:
                             font:
-                                stroke: { color: global.text_stroke, width: 4 }
+                                stroke: { color: global.text_stroke, width: 4px }
                     text-blend-order:
                         font:
-                            stroke: { color: global.text_stroke, width: 4 }
+                            stroke: { color: global.text_stroke, width: 4px }
 
             # HACK
             # NOTE: These should use icon: buffer instead of going visible: false, but there are problems using icon here :(
@@ -4751,7 +4748,7 @@ layers:
                         family: global.text_font_family
                         style: italic
                         size: 11px
-                        stroke: { color: global.text_stroke_address, width: 1px }
+                        stroke: { color: global.text_stroke, width: 1px }
 
         #tier1:
         national_park:

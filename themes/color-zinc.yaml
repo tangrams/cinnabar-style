@@ -1,29 +1,26 @@
 global:
     #label styling
-    text_fill:          [0.00,0.00,0.00]    # BLACK
-    text_fill2:         '#555'             # WHITE
-    text_fill_road_e:   '#555'             # WHITE
-    text_fill_exits:    [0.2, 0.2, 0.2]    # motorway junctions, highway_casing1
-    text_fill_building: [0.3, 0.3, 0.3]    # WHITE
-    text_fill_address:  '#666'             # HUH
-    text_fill_water:    '#000'             # blue
-    text_fill_park:     [0.2, 0.2, 0.2]    # green
-    text_fill_beach:    [0.2, 0.2, 0.2]    # green
-    text_fill_piste:    '#000'             # dark gray
-    text_fill_piste_e:  '#666'             # dark gray early
-    text_fill_shield:   [0.8, 0.8, 0.8]    # road shield fill color
-    text_stroke:        [0.749,0.749,0.749]    # land color
-    text_stroke_water:  [0.8, 0.8, 0.8]    # water stroke color
-    text_stroke_park:   [0.8, 0.8, 0.8]    # park stroke color
-    text_stroke_building:  [.8, .8, .8]   # building stroke color
-    text_stroke_address:   [0.85, 0.85, 0.85]    # address stroke color
-    text_stroke_road1:  [0.8, 0.8, 0.8]   # road stroke color highway
-    text_stroke_road2:  [0.8, 0.8, 0.8]   # road stroke color major road
-    text_stroke_road3:  [0.8, 0.8, 0.8]   # road stroke color major road route
-    text_stroke_road4:  [0.8, 0.8, 0.8]   # road stroke color minor road
-    text_stroke_shield: [0.2, 0.2, 0.2]   # road shield stroke color &highway_casing1
-    townspot_sprite:   townspot-l-rev     # depends on land color and text settings
-    text_font_family:  'Open Sans'        # branding in asperational Unicode, yo (or Helvetica)
+    text_fill:              [0.000,0.000,0.000]     # BLACK
+    text_fill2:             [0.333,0.333,0.333]     # DARK GRAY
+    text_fill_road_e:       [0.333,0.333,0.333]     # DARK GRAY
+    text_fill_exits:        [0.200,0.200,0.200]     # motorway junctions, highway_casing1
+    text_fill_address:      [0.400,0.400,0.400]     # GRAY
+    text_fill_water:        [0.000,0.000,0.000]     # BLACK
+    text_fill_park:         [0.2, 0.2, 0.2]         # green
+    text_fill_beach:        [0.2, 0.2, 0.2]         # green
+    text_fill_piste:        [0.000,0.000,0.000]     # BLACK
+    text_fill_shield:       [0.308,0.308,0.308]     # road shield fill color
+    text_fill_shield2:      [0.508,0.508,0.508]     # road shield fill color
+    text_stroke:            [0.749,0.749,0.749]     # land color
+    text_stroke_water:      [0.8, 0.8, 0.8]         # water stroke color
+    text_stroke_building:   [0.850,0.850,0.850]     # buildings stroke color
+    text_stroke_address:    [0.800,0.800,0.800]     # address stroke color
+    text_stroke_road1:      [0.8, 0.8, 0.8]         # road stroke color highway
+    text_stroke_road2:      [0.8, 0.8, 0.8]         # road stroke color major road
+    text_stroke_road3:      [0.8, 0.8, 0.8]         # road stroke color major road route
+    text_stroke_road4:      [0.8, 0.8, 0.8]         # road stroke color minor road
+    text_fill_region:       [0.400,0.400,0.400]     # region labels
+    text_font_family:       'Open Sans'             # branding in asperational Unicode, yo (or Helvetica)
 
     # roads:
     highway1:                   [0.8, 0.8, 0.8]
@@ -32,17 +29,13 @@ global:
     highway_casing1:            [0.2, 0.2, 0.2]
     highway_tunnel1:            [0.6, 0.6, 0.6]
     highway_tunnel_casing1:     [0.75, 0.75, 0.75]
-    highway_link_tunnel_casing1: [0.6, 0.6, 0.6]
     ferry1:                     [0.4, 0.4, 0.4]
     rail1:                      '#777'
     rail1_e:                    '#777'
     rail2:                      '#999'             # less important rail (service, sidings)
     major_road1:                [0.8, 0.8, 0.8]
     major_road1b:               [0.8, 0.8, 0.8]
-    major_road1c:               [0.8, 0.8, 0.8]
     major_road2:                [0.8, 0.8, 0.8]
-    major_road2a:               [0.8, 0.8, 0.8]
-    major_road2b:               [0.8, 0.8, 0.8]
     major_road3:                [0.8, 0.8, 0.8]
     major_road4:                [0.60, 0.60, 0.60]  # ???????
     major_road5:                [0.8, 0.8, 0.8]
@@ -55,9 +48,7 @@ global:
     minor_route:                [0.8, 0.8, 0.8]     # same as major_route
     minor_road1:                [0.60, 0.60, 0.60]  # natural earth
     minor_road2:                [0.40, 0.40, 0.40]  # natural earth, same as major_road2
-    minor_road3:                '#ccc'
-    minor_road4:                '#ccc'              # zoomed out
-    minor_road5:                [0.8, 0.8, 0.8]     # zoomed out, again
+    minor_road3:                [0.800,0.800,0.800]
     minor_casing1:              [0.2, 0.2, 0.2]     # same as highway_casing1
     minor_casing2:              [0.2, 0.2, 0.2]     # zoomed out
     minor_tunnel1:              [0.9, 0.9, 0.9]
@@ -67,12 +58,11 @@ global:
     service_road_casing1:       grey
     service_road_casing2:       '#444'
     path1:                      '#b3b3b3'
-    path2:                      '#b3b3b3'           # zoomed out
     path_casing1:               '#6b6b6b'
     path_bridge_casing1:        grey
     path_bridge_casing2:        grey                # zoomed out
     path_steps1:                grey
-    path_steps1_b:              '#dadada'
+    path_steps2:              '#dadada'
     piste_easy:                 '#c5c5c5'
     piste_intermediate:         '#c5c5c5'
     piste_advanced:             '#b3b3b3'

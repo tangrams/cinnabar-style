@@ -1,49 +1,42 @@
 global:
     #
     #label styling
-    text_fill:          '#333'             # WHITE
-    text_fill2:         '#000'             # WHITE
-    text_fill_road_e:   '#555'             # WHITE
-    text_fill_exits:    '#D16768'          # motorway junctions, highway_casing1
-    text_fill_building: '#ccc'             # WHITE
-    text_fill_address:  '#aaa'             # HUH
-    text_fill_water:    '#4c89b5'          # blue
-    text_fill_park:     '#43a254'          # green
-    text_fill_beach:    '#99905c'          # green
-    text_fill_piste:    '#444'             # dark gray
-    text_fill_piste_e:  '#666'             # dark gray early
-    text_fill_shield:   white              # road shield fill color
-    text_stroke:        '#e4e1de'          # land color
-    text_stroke_water:  [0.9, 0.9, 0.9]    # water stroke color
-    text_stroke_park:   '#bddec5'          # park stroke color
-    text_stroke_building:  [.8, .8, .8]    # building stroke color
-    text_stroke_address:   [0.85, 0.85, 0.85]    # address stroke color
-    text_stroke_road1:  '#f8c2c2'          # road stroke color highway
-    text_stroke_road2:  '#fbf2f2'          # road stroke color major road
-    text_stroke_road3:  '#f8d8d9'          # road stroke color major road route
-    text_stroke_road4:  white             # road stroke color minor road
-    text_stroke_shield: '#D16768'         # road shield stroke color &highway_casing1
-    townspot_sprite:    townspot-l-rev     # depends on land color and text settings
-    text_font_family:  'Open Sans'        # branding in asperational Unicode, yo (or Helvetica)
+    text_fill:              [0.200,0.200,0.200]     # DARK GRAY
+    text_fill2:             [0.000,0.000,0.000]     # BLACK
+    text_fill_road_e:       [0.333,0.333,0.333]     # DARK GRAY
+    text_fill_exits:        '#D16768'               # motorway junctions, highway_casing1
+    text_fill_address:      [0.667,0.667,0.667]     # GRAY
+    text_fill_water:        '#4c89b5'               # blue
+    text_fill_park:         '#43a254'               # green
+    text_fill_beach:        '#99905c'               # green
+    text_fill_piste:        [0.267,0.267,0.267]     # dark gray
+    text_fill_shield:       [0.308,0.308,0.308]     # road shield fill color
+    text_fill_shield2:      [0.508,0.508,0.508]     # road shield fill color
+    text_stroke:            '#e4e1de'               # land color
+    text_stroke_water:      [0.900,0.900,0.900]     # water stroke color
+    text_stroke_building:   [0.850,0.850,0.850]     # buildings stroke color
+    text_stroke_address:    [0.800,0.800,0.800]     # address stroke color
+    text_stroke_road1:      '#f8c2c2'               # road stroke color highway
+    text_stroke_road2:      '#fbf2f2'               # road stroke color major road
+    text_stroke_road3:      '#f8d8d9'               # road stroke color major road route
+    text_stroke_road4:      white                   # road stroke color minor road
+    text_fill_region:       [0.400,0.400,0.400]     # region labels
+    text_font_family:       'Open Sans'             # branding in asperational Unicode, yo (or Helvetica)
     #
     # roads:
     highway1:                   '#f8c2c2'
     highway1_e:                 '#eeb1b1'
     highway_link1:              '#D19596'
     highway_casing1:            '#D16768'
-    highway_tunnel1:            '#D19596'       #85%
-    highway_tunnel_casing1:     [0.3, 0.3, 0.3] #95%
-    highway_link_tunnel_casing1: '#D16768'      #95%
+    highway_tunnel1:            '#D19596'           #85%
+    highway_tunnel_casing1:     [0.300,0.300,0.300] #95%
     ferry1:                     '#7caacb'
     rail1:                      '#777'
     rail1_e:                    '#bbb'
-    rail2:                      [0.950,0.950,0.950]             # less important rail (service, sidings)
-    major_road1:                '#fbf2f2'    #80%
-    major_road1b:               '#faeeee'    #10%
-    major_road1c:               white    #15%
+    rail2:                      [0.950,0.950,0.950] # less important rail (service, sidings)
+    major_road1:                '#fbf2f2'           #80%
+    major_road1b:               '#faeeee'           #10%
     major_road2:                white    #20%
-    major_road2a:               white    #17%
-    major_road2b:               white    #25%
     major_road3:                white    #30%
     major_road4:                white
     major_road5:                '#e3989a'
@@ -57,8 +50,6 @@ global:
     minor_road1:                white               # natural earth
     minor_road2:                whtie               # natural earth, same as major_road2
     minor_road3:                white
-    minor_road4:                white               # zoomed out
-    minor_road5:                white               # zoomed out, again
     minor_casing1:              white               # same as highway_casing1
     minor_casing2:              grey                # zoomed out
     minor_tunnel1:              white
@@ -66,12 +57,11 @@ global:
     service_road:               white
     service_road_casing:        grey
     path1:                      '#fff'
-    path2:                      '#fff'              # zoomed out
     path_casing1:               grey
     path_bridge_casing1:        black
     path_bridge_casing2:        grey                # zoomed out
     path_steps1:                [0.794,0.815,0.667]
-    path_steps1_b:              '#e3e2e0'
+    path_steps2:              '#e3e2e0'
     piste_easy:                 '#d0d0d0'
     piste_intermediate:         '#d0d0d0'
     piste_advanced:             '#b3b3b3'
