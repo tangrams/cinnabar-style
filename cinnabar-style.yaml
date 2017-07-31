@@ -1257,20 +1257,20 @@ layers:
             filter: { kind: platform, $zoom: { min: 16 } }
             draw:
                 lines_transparent:
-                    color: global.grey9
+                    color: global.platform
                     width: 5m
-                    visible: global.grey9_v
+                    visible: global.platform_v
 
             polygon_geom:
                 filter: { $geometry: polygon }
                 draw:
                     polygons_transparent:
-                        color: global.grey9
-                        visible: global.grey9_v
+                        color: global.platform
+                        visible: global.platform_v
                     lines_transparent:
                         visible: false
                     outline_transparent:
-                        color: global.grey9_o
+                        color: global.platform_o
                         width: [[15, 0px], [16, 0.5px], [19, 2px]]
 
 #    transit-platforms:
@@ -1902,14 +1902,14 @@ layers:
                 draw:
                     lines:
                         outline:
-                            color: global.brown1_r
+                            color: global.university_r
                             width: [[13, 0px], [14, 0.5px], [18, 4.0px]]
             in_hospital:
                 filter: { landuse_kind: hospital }
                 draw:
                     lines:
                         outline:
-                            color: global.red1_r
+                            color: global.hospital_r
                             width: [[13, 0px], [14, 0.5px], [18, 4.0px]]
 
             tunnel:
@@ -1971,13 +1971,13 @@ layers:
                     draw:
                         lines:
                             outline:
-                                color: global.brown1_r
+                                color: global.university_r
                 in_hospital:
                     filter: { landuse_kind: hospital }
                     draw:
                         lines:
                             outline:
-                                color: global.red1_r
+                                color: global.hospital_r
             labels-service_road:
                 filter: { $zoom: { min: 17 } }
                 draw:
@@ -2058,17 +2058,17 @@ layers:
                 filter: { landuse_kind: university }
                 draw:
                     lines:
-                        color: [[14, global.brown1_r],[16, global.minor_road3]]
+                        color: [[14, global.university_r], [16, global.minor_road3]]
                         outline:
-                            color: global.brown1_r
+                            color: global.university_r
                             width: [[14, 0px], [16, 0.5px], [18, 2px]]
             in_hospital:
                 filter: { landuse_kind: hospital }
                 draw:
                     lines:
-                        color: [[14, global.red1_r],[16, global.minor_road3]]
+                        color: [[14, global.hospital_r],[16, global.minor_road3]]
                         outline:
-                            color: global.red1_r
+                            color: global.hospital_r
                             width: [[14, 0px], [16, 0.5px], [18, 2px]]
             labels-path:
                 filter: { $zoom: { min: 17 } }
@@ -2135,16 +2135,16 @@ layers:
                 filter: { landuse_kind: university }
                 draw:
                     dashed_steps:
-                        color: [[14, global.brown1_r], [16, global.minor_road3]]
+                        color: [[14, global.university_r], [16, global.minor_road3]]
                         outline:
-                            color: global.brown1_r
+                            color: global.university_r
             in_hospital:
                 filter: { landuse_kind: hospital }
                 draw:
                     dashed_steps:
-                        color: [[14, global.red1_r],[16, global.minor_road3]]
+                        color: [[14, global.hospital_r],[16, global.minor_road3]]
                         outline:
-                            color: global.red1_r
+                            color: global.hospital_r
             labels-steps:
                 filter: { $zoom: { min: 17 } }
                 draw:
@@ -2727,18 +2727,17 @@ layers:
             filter: { kind: racetrack }
             draw:
                 lines:
-                    #order: 5
                     cap: round
                     join: round
                     color: global.orange3
-                    width: [[13,1.5px], [14,2px], [15, 3px], [16, 5px], [18, 10m], [19, 15m]]
+                    width: [[13, 1.5px], [16, 5px], [19, 15m]]
         airport-lines:
             filter: { kind: aeroway, kind_detail: [runway,taxiway] }
             draw:
                 lines:
-                    color: global.grey2
+                    color: global.taxiway
                     cap: butt
-                    width: [[10, 1px], [11, 1.5px], [12, 2px], [13, 4px], [14, 8px], [15, 16px], [16, 32px], [17, 60m]]
+                    width: [[10, 1px], [13, 4px], [15, 16px], [17, 60m]]
             # Features come in at zoom 9, but include mostly minor airports without POIs until z13
             early:
                 filter: { $zoom: { max: 12 }, not: { landuse_kind: [aerodrome, runway, taxiway] } }
@@ -2754,7 +2753,7 @@ layers:
                 filter: { kind_detail: taxiway }
                 draw:
                     lines:
-                        color: global.grey4
+                        color: global.taxiway
                         width: [[14, 1px], [15, 1.5px], [16, 8m]]
                 early:
                     filter: { $zoom: { max: 14 } }
@@ -2765,7 +2764,7 @@ layers:
                 filter: { kind_detail: runway }
                 draw:
                     lines:
-                        color: global.grey2
+                        color: global.runway
         ferry:
             filter: { kind: ferry }
             draw:
@@ -2776,19 +2775,19 @@ layers:
             filter: { kind: aerialway }
             draw:
                 lines:
-                    color: global.grey6_bo
+                    color: global.grey2
                     width: [[14, 0.5px], [15, 1.0px], [16, 2m]]
             gondola_cable_car:
                 filter: { kind_detail: [gondola, cable_car] }
                 draw:
                     lines:
-                        color: global.grey6_bo
+                        color: global.grey2
                         width: [[12, 2.0px], [13, 2px], [14, 3.5px], [15, 4.5px], [16, 9m]]
             chair_lift:
                 filter: { kind_detail: chair_lift }
                 draw:
                     lines:
-                        color: global.brown1_bo
+                        color: global.chairlift
                         width: [[13, 1px], [14, 1.5px], [15, 3px], [16, 7m]]
             aerialway-labels:
                 filter: { $zoom: { min: 14 } }
@@ -2941,23 +2940,23 @@ layers:
                 filter: { landuse_kind: [university,school] }
                 draw:
                     polygons:
-                        color: global.brown1_b
+                        color: global.university_b
                     lines:
-                        color: global.brown1_bo
+                        color: global.university_bo
             in_hospital:
                 filter: { landuse_kind: hospital }
                 draw:
                     polygons:
-                        color: global.red1_b
+                        color: global.hospital_b
                     lines:
-                        color: global.red1_bo
+                        color: global.hospital_bo
             in_airport:
                 filter: { landuse_kind: [aerodrome, runway, taxiway] }
                 draw:
                     polygons:
-                        color: global.purple_b
+                        color: global.airport_b
                     lines:
-                        color: global.purple_bo
+                        color: global.airport_bo
 
 
         building-labels:
@@ -3028,7 +3027,7 @@ layers:
                         family: global.text_font_family
                         style: italic
                         size: 10px
-                        stroke: { color: global.building1, width: 4 }
+                        stroke: { color: global.building1, width: 4px }
 
     boundaries:
         data: { source: mapzen, layer: boundaries }
@@ -3914,7 +3913,7 @@ layers:
                     font:
                         family: global.text_font_family
                         weight: normal
-                        fill: global.grey6_bo
+                        fill: global.grey2
                         size: [[13, 10px], [14, 11px], [17, 12px], [19, 12px], [20, 14px]]
                         stroke: { color: global.text_stroke, width: [[12, 3px],[16, 4px]] }
         # improve legibility at high zooms
@@ -4876,7 +4875,7 @@ layers:
                 kind: [university, college]
             draw:
                 polygons:
-                    color: global.brown1
+                    color: global.university
 
         # tier4:
         cemetery:
@@ -4885,54 +4884,54 @@ layers:
             draw:
                 polygons:
                     color: global.green2
-        commercial:
-            filter:
-                kind: commercial
-            draw:
-                polygons:
-                    color: global.grey1
-                    visible: global.grey1_v
+
         golf_course:
             filter:
                 kind: golf_course
             draw:
                 polygons:
                     color: global.green3
+
         hospital:
             filter:
                 kind: hospital
             draw:
                 polygons:
-                    color: global.red1
+                    color: global.hospital
+
         industrial:
             filter:
                 kind: industrial
             draw:
                 polygons:
-                    color: global.grey6
+                    color: global.grey7
+
         power:
             filter: { kind: [plant, generator, substation] }
             draw:
                 polygons:
-                    color: global.grey3
+                    color: global.grey1
+
         railway:
             filter:
                 kind: railway
             draw:
                 polygons:
-                    color: global.grey3
+                    color: global.grey1
+
         sports_centre:
             filter:
                 kind: sports_centre
             draw:
                 polygons:
                     color: global.green10
+
         recreation_ground:
             filter:
                 kind: recreation_ground
             draw:
                 polygons:
-                    color: global.mystry1
+                    color: global.recreation
         retail:
             filter:
                 kind: retail
@@ -4964,7 +4963,7 @@ layers:
             filter: { kind: [pier,wastewater_plant,works,bridge,tower,breakwater,water_works,groyne,dike,cutline] }
             draw:
                 polygons:
-                    color: global.grey3
+                    color: global.grey1
             pier:
                 filter: { kind: [pier,bridge,breakwater,groyne,dike,cutline] }
                 draw:
@@ -4983,13 +4982,13 @@ layers:
                         - maze
             draw:
                 polygons:
-                    color: global.grey10
+                    color: global.tourism
         beach:
             filter:
                 kind: beach
             draw:
                 polygons:
-                    color: global.yellow1
+                    color: global.beach
 
         # tier6:
         garden:
@@ -5037,8 +5036,7 @@ layers:
             draw:
                 polygons:
                     color: global.orange2
-                outline:
-                    style: lines
+                lines:
                     order: global.feature_order
                     color: global.green6
                     width: [[14, 0px], [15, 1px], [16, 1m]]
@@ -5056,14 +5054,14 @@ layers:
                 kind: playground
             draw:
                 polygons:
-                    color: global.brown3
+                    color: global.playground
 
         school:
             filter:
                 kind: school
             draw:
                 polygons:
-                    color: global.brown2
+                    color: global.school
 
         minor-landuse:
             filter:
@@ -5074,11 +5072,11 @@ layers:
                     - hanami
             draw:
                 polygons:
-                    color: global.grey11
+                    color: global.minor_landuse
                 outline:
                     style: lines
                     order: global.feature_order
-                    color: global.grey11_o
+                    color: global.gray1_e
                     width: [[14, 0px], [15, 1px], [16, 0.5m]]
 
         landuse-not-filtered:
@@ -5128,11 +5126,11 @@ layers:
                         - carousel
                 draw:
                     polygons:
-                        color: global.grey12
+                        color: global.grey6_b
                         visible: true
                     outline:
                         style: lines
-                        color: global.grey12_o
+                        color: global.grey1_e
                         width: [[14, 0px], [15, 1px], [16, 0.5m]]
 
             minor-zoo-landuse:
@@ -5146,8 +5144,7 @@ layers:
                     polygons:
                         color: global.green11
                         visible: true
-                    outline:
-                        style: lines
+                    lines:
                         color: global.green11_o
                         width: [[14, 0px], [15, 1px], [16, 0.5m]]
 

@@ -79,6 +79,9 @@ global:
     piste_expert:               '#a6a6a6'
     runway:                     [0.300,0.300,0.300]
     arrows:                     [0.650,0.650,0.650]
+    taxiway:                    '#cfcfcf'
+    runway:                     [0.300,0.300,0.300]
+    university:                 [0.670,0.670,0.670]
 
     # boundaries:
     country_boundary:           [0.3,0.3,0.3]
@@ -90,89 +93,69 @@ global:
     fence:                      '#555555'
 
     # areas:
-    scene1:             [0.85, 0.85, 0.85]  # map background, water
-    water1:             grey                # water
-    water2:             [0.70, 0.70, 0.70]  # playa
-    water1_o:           [0.30, 0.30, 0.30]  # water stroke
-    water2_o:           [0.40, 0.40, 0.40]  # water stroke
-    earth1:             [0.75, 0.75, 0.75]  # land color
-    earth1_r:           '#666'              # land color road
-    earth2:             '#111'              # urban
-    earth2_v:           false               # urban
-    earth2_e:           '#b3b3b3'           # urban early
-    earth2_e2:          '#b3b3b3'           # urban early fade in
-    earth2_e3:          '#bbbbbb'           # urban early fade in 3
-    earth2_ev:          true                # urban early visibility
-    green1:             [0.59,0.59,0.59]    # park
-    green1_r:           [0.60,0.60,0.60]    # park roads
-    green1_b:           [0.60, 0.60, 0.60]  # park buildings
-    green1_bo:          [0.20, 0.20, 0.20]  # park building outlines
-    green1_w:           [0.630,0.630,0.630]       # wilderness area
-    green1_ws:          '#6e6e6e'           # wilderness area stroke
-    green1b:            [0.80,0.80,0.80]    # park
-    green2:             [0.70,0.70,0.70]    # cemetery, zoo
-    green2_r:           [0.65,0.65,0.66]    # cemetery, zoo road
-    green2_b:           [0.65,0.65,0.65]    # cemetery, zoo buildings
-    green2_bo:          [0.35,0.35,0.35]    # cemetery, zoo building outline
-    green3:             [0.7,0.7,0.7]       # golf course
-    green4:             [0.90,0.90,0.9]     # farm faint
-    green4_v:           false               # farm faint
-    green5:             [0.75,0.75,0.75]    # farm
-    green6:             [0.55,0.55,0.55]    # nature reserve
-    green7:             [0.675,0.675,0.675]    # forest / park
-    green8:             [0.65,0.65,0.65]    # conservation
-    green9:             [0.7, 0.7, 0.7]     # forest (landcover)
-    green9_e:           [0.7, 0.7, 0.7]     # forest (landcover) early
-    green9_v:           true                # forest (landcover) visibility
-    green10:            [0.7,0.7,0.7]       # sports_centre
-    green11:            [0.8,0.8,0.8]       # minor zoo related AOIs
-    green11_o:          [0.4,0.4,0.4]       # minor zoo related AOIs outline
-    green12:            [0.7,0.7,0.7]       # grass (common areas)
-    orange1:            [0.7,0.7,0.7]       # stadium
-    orange2:            '#b8b8b8'           # pitch (play field)
-    orange3:            [0.7,0.7,0.7]       # racetrack (play field)
-    brown1:             [.67, .67, .67]     # university
-    brown1_r:           [.5, .5, .5]        # university roads
-    brown1_b:           [.63, .63, .63]     # university buildings
-    brown1_bo:          [0.20, 0.20, 0.20]  # university building outlines
-    brown2:             '#aaaaaa'           # school
-    brown3:             '#b8b8b8'           # playground
-    red1:               '#a2a2a2'           # hospital
-    red1_r:             [.5, .5, .5]        # hospital roads
-    red1_b:             [.65, .65, .65]     # hospital buildings
-    red1_bo:            [0.20, 0.20, 0.20]  # hospital building outlines
-    grey1:              '#cccccc'           # pedestrian, retail, airport apron, parking, church
-    grey1_e:            [0.800,0.800,0.800]        # pedestrian, retail, airport apron, parking, church early zoom 14
-    grey1_v:            true                # pedestrian, retail, airport apron, parking, church
-    grey2:              [0.300,0.300,0.300]     # airport runway
-    grey3:              [0.65,0.65,0.65]    # railway
-    grey4:              '#cfcfcf'           # airport taxiway
-    grey5:              '#cfcfcf'           # airport taxiway
-    grey6:              '#c6c6c6'           # industrial
-    grey6_b:            [.65, .65, .65]     # industrial buildings
-    grey6_bo:           [.8, .8, .8]        # industrial building outlines
-    grey7:              [.85, .85, .85]     # pedestrian, match minor road / path color
-    grey7_v:            true                # pedestrian visibility
-    grey8:              [.85, .85, .85]     # winter sports
-    grey8_v:            true                # winter sports visibility
-    grey9:              [.5, .5, .5, 0.5]   # transit platform
-    grey9_o:            [.55, .55, .55]     # transit platform outline
-    grey9_v:            true                # transit platform visibility
-    grey10:             [.85, .85, .85]     # generic major landuse (theme park, resort, aquarium, winery)
-    grey10_o:           [.85, .85, .85]     # generic major landuse outline
-    grey11:             [.85, .85, .85]     # generic minor landuse (attraction, artwork)
-    grey11_o:           [.85, .85, .85]     # generic minor landuse outline
-    grey12:             [.85, .85, .85]     # generic minor amusements (roller coasters, rides, slide, carousel)
-    grey12_o:           [.85, .85, .85]     # generic minor amusements
-    purple:             [.65, .65, .65]     # airport
-    purple_v:           true                # airport
-    purple_b:           [0.55,0.55,0.55]    # airport buildings
-    purple_bo:          [0.35,0.35,0.35]    # airport buildings outline
-    mystry1:            '#aaaaaa'           # recreation ground (type of park, sometimes around reservoirs)
-    yellow1:            '#aaaaaa'           # beach
-    building1:          [.7, .7, .7]        # building
-    building2:          [.1, .1, .1]        # building stroke
-    building_o:         25                  # building stroke order
-    sdk_building_extrude:  false            # building extrude
-    building_extrude_height: |              # building extrude height logic
+    scene1:             [0.85, 0.85, 0.85]      # map background, water
+    water1:             grey                    # water
+    water2:             [0.70, 0.70, 0.70]      # playa
+    water1_o:           [0.30, 0.30, 0.30]      # water stroke
+    water2_o:           [0.40, 0.40, 0.40]      # water stroke
+    earth1:             [0.75, 0.75, 0.75]      # land color
+    earth1_r:           '#666'                  # land color road
+    urban1:           '#b3b3b3'                 # urban early
+    urban_v:          true                      # urban early visibility
+    green1:             [0.59,0.59,0.59]        # park
+    green1_r:           [0.60,0.60,0.60]        # park roads
+    green1_b:           [0.60, 0.60, 0.60]      # park buildings
+    green1_bo:          [0.20, 0.20, 0.20]      # park building outlines
+    green1_w:           [0.630,0.630,0.630]     # wilderness area
+    green2:             [0.70,0.70,0.70]        # cemetery, zoo
+    green2_r:           [0.65,0.65,0.66]        # cemetery, zoo road
+    green2_b:           [0.65,0.65,0.65]        # cemetery, zoo buildings
+    green2_bo:          [0.35,0.35,0.35]        # cemetery, zoo building outline
+    green3:             [0.7,0.7,0.7]           # golf course
+    green4:             [0.90,0.90,0.9]         # farm faint
+    green4_v:           false                   # farm faint
+    green6:             [0.55,0.55,0.55]        # nature reserve
+    green7:             [0.675,0.675,0.675]     # forest / park
+    green10:            [0.7,0.7,0.7]           # sports_centre
+    green11:            [0.8,0.8,0.8]           # minor zoo related AOIs
+    green11_o:          [0.4,0.4,0.4]           # minor zoo related AOIs outline
+    green12:            [0.7,0.7,0.7]           # grass (common areas)
+    orange1:            [0.7,0.7,0.7]           # stadium
+    orange2:            '#b8b8b8'               # pitch (play field)
+    orange3:            [0.700,0.700,0.700]     # racetrack (play field)
+    university_r:       [0.500,0.500,0.500]     # university roads
+    university_b:       [0.630,0.630,0.630]     # university buildings
+    university_bo:      [0.200,0.200,0.200]     # university building outlines
+    chairlift:          [0.200,0.200,0.200]
+    school:             '#aaaaaa'               # school
+    playground:         '#b8b8b8'               # playground
+    hospital:           '#a2a2a2'               # hospital
+    hospital_r:         [0.500,0.500,0.500]     # hospital roads
+    hospital_b:         [0.650,0.650,0.650]     # hospital buildings
+    hospital_bo:        [0.200,0.200,0.200]     # hospital building outlines
+    grey1:              [0.650,0.650,0.650]     # pedestrian, retail, airport apron, parking, church
+    grey1_e:            [0.800,0.800,0.800]     # pedestrian, retail, airport apron, parking, church early zoom 14
+    grey1_v:            true                    # pedestrian, retail, airport apron, parking, church
+    grey6:              [0.776,0.776,0.776]     # industrial
+    grey6_b:            [0.650,0.650,0.650]     # industrial buildings
+    grey2:              [0.800,0.800,0.800]     # industrial building outlines
+    grey7:              [0.850,0.850,0.850]     # pedestrian, match minor road / path color
+    grey7_v:            true                    # pedestrian visibility
+    grey8:              [0.850,0.850,0.850]     # winter sports
+    grey8_v:            true                    # winter sports visibility
+    platform:           [0.500,0.500,0.500,0.5] # transit platform
+    platform_o:         [0.550,0.550,0.550]     # transit platform outline
+    platform_v:         true                    # transit platform visibility
+    tourism:            [0.850,0.850,0.850]     # generic major landuse (theme park, resort, aquarium, winery)
+    minor_landuse:      [0.850,0.850,0.850]     # generic minor landuse (attraction, artwork)
+    purple:             [.65, .65, .65]         # airport
+    purple_v:           true                    # airport
+    airport_b:          [0.550,0.550,0.550]     # airport buildings
+    airport_bo:         [0.350,0.350,0.350]     # airport buildings outline
+    recreation:         [0.640,0.640,0.640]     # recreation ground (type of park, sometimes around reservoirs)
+    beach:              [0.785,0.785,0.785]     # beach
+    building1:          [0.700,0.700,0.700]     # building
+    building2:          [0.100,0.100,0.100]     # building stroke
+    sdk_building_extrude:  false                # building extrude
+    building_extrude_height: |                  # building extrude height logic
         function() { return feature.height || 20; }
