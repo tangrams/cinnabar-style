@@ -419,19 +419,19 @@
             gui.fallback_button.name('lang fallback');
 
             // So many themes
-            var all_theme_imports = { colors: null, lod: null, labels: null };
+            var all_theme_imports = { color: null, detail: null, label: null };
 
             function update_scene_with_themes() {
-                console.log( all_theme_imports );
+                //console.log( all_theme_imports );
 
                 // construct the import array
                 themes_as_array = [tg_baseScene];
 
-                if( all_theme_imports.colors ) {
-                    themes_as_array.push( all_theme_imports.colors );
+                if( all_theme_imports.color ) {
+                    themes_as_array.push( all_theme_imports.color );
                 }
-                if( all_theme_imports.labels ) {
-                    themes_as_array.push( all_theme_imports.labels );
+                if( all_theme_imports.label ) {
+                    themes_as_array.push( all_theme_imports.label );
                 }
 
                 scene.load({ import: themes_as_array, global: tg_global });
@@ -442,22 +442,16 @@
 
 
             // Labels selector
-            var labels = {
-                '(default)': '5',
-                'More': '10',
-                'Some': '5',
-                'Some (no shields)': '4',
-                'None': '1'
-            };
-            gui.labels = query.labels || '5';
-            gui.add(gui, 'labels', labels).onChange(function(value) {
+            gui.label = query.label || 5;
+            gui.add(gui, 'label', 0, 11).step(1).onChange(function(value) {
                 var import_theme = 'themes/label-'+ value + '.yaml'
-                all_theme_imports.labels = import_theme;
+                all_theme_imports.label = import_theme;
 
                 update_scene_with_themes();
 
                 //window.location.search = 'language=' + value;
             });
+
 
             // Color theme selector
             var color = {
@@ -469,7 +463,7 @@
             gui.add(gui, 'color', color).onChange(function(value) {
                 var import_theme = 'themes/color-'+ value + '.yaml'
 
-                all_theme_imports.colors = import_theme;
+                all_theme_imports.color = import_theme;
                 update_scene_with_themes();
 
                 //window.location.color = 'color=' + value;

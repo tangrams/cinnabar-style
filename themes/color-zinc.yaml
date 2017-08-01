@@ -22,7 +22,7 @@ global:
     text_stroke_road4:      [0.800,0.800,0.800]     # road stroke color minor road
     text_stroke_transit:    [1.000,1.000,1.000]
     text_fill_region:       [0.400,0.400,0.400]     # region labels
-    text_fill_pois:         [0.800,0.800,0.800]
+    text_fill_pois:         [0.200,0.200,0.200]
     text_fill_pois2:        [0.100,0.100,0.100]
     text_font_family:       'Open Sans'             # branding in asperational Unicode, yo (or Helvetica)
 
