@@ -1195,7 +1195,7 @@ layers:
                     text-blend-order:
                         visible: global.text_visible_water_labels
                         font:
-                            fill: grey
+                            fill: global.text_fill2
                             style: italic
                             size: 12px
                             stroke: { color: global.text_stroke_water, width: 3px }
@@ -1479,7 +1479,7 @@ layers:
                     draw:
                         text:
                             font:
-                                fill: black
+                                fill: global.text_fill
                                 style: italic
                                 stroke: { color: white, width: 3px }
 
@@ -1988,7 +1988,7 @@ layers:
                         visible: global.text_visible_service_road
                         text_source: name
                         font:
-                            # size: [[17, 11px], [18, 14px]]
+                            size: [[17, 11px], [18, 14px]]
                             fill: [[17, global.text_fill], [18, global.text_fill2]]
                             stroke: { color: global.text_stroke_road4, width: [[17, 3px], [18, 4px]] }
 
@@ -3063,7 +3063,7 @@ layers:
                         font:
                             family: global.text_font_family
                             size: 9px
-                            fill: [0.00,0.00,0.00]
+                            fill: global.text_fill
                             transform: uppercase
                             stroke: { color: global.earth1, width: 3px }
                 no-left-right:
@@ -3360,12 +3360,14 @@ layers:
                         visible: global.text_visible_populated_places
                         buffer: 3px
                         font:
-                            size: [[5,9px],[8,10px],[12,11px]]
+                            fill: global.text_fill
+                            size: [[5, 9px], [8, 10px], [12, 11px]]
                 text-blend-order:
                     visible: global.text_visible_populated_places
                     buffer: 10px
                     font:
-                        size: [[5,9px],[8,10px],[12,11px]]
+                        fill: global.text_fill
+                        size: [[5, 9px], [8, 10px], [12, 11px]]
 
             #
             # NOTE: you'd think no-townspot would be the way to go, but icons with size 0px seems to have a bug to also hide the text :(
@@ -3432,9 +3434,11 @@ layers:
                     icons:
                         text:
                             font:
+                                fill: global.text_fill
                                 stroke: { color: global.text_stroke, width: 4px }
                     text-blend-order:
                         font:
+                            fill: global.text_fill
                             stroke: { color: global.text_stroke, width: 4px }
 
             # HACK
@@ -3680,11 +3684,11 @@ layers:
                         priority: 19
                         text:
                             font:
-                                size: [[9,10px],[14,12px],[15,0px]]
+                                size: [[9, 10px], [14, 12px], [15, 0px]]
                     text-blend-order:
                         priority: 19
                         font:
-                            size: [[9,10px],[14,12px],[15,0px]]
+                            size: [[9, 10px], [14, 12px], [15, 0px]]
                 capital:
                     filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
@@ -3704,18 +3708,16 @@ layers:
                         priority: 21
                         text:
                             font:
-                                fill: [[9,[0.25,0.25,0.25]],[11,[0.00,0.00,0.00]]]
-                                size: [[9,10px],[14,12px],[15,0px]]
+                                size: [[9, 10px], [14, 12px], [15, 0px]]
                     text-blend-order:
                         priority: 21
                         font:
-                            fill: [[9,[0.25,0.25,0.25]],[11,[0.00,0.00,0.00]]]
-                            size: [[9,10px],[14,12px],[15,0px]]
+                            size: [[9, 10px], [14, 12px], [15, 0px]]
                 capital:
                     filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
                         icons:
-                            size: [[10,5px],[11,0px]]
+                            size: [[10, 5px], [11, 0px]]
                             sprite: capital-s
                             priority: 20
                         text-blend-order:
@@ -3725,18 +3727,16 @@ layers:
                     population: { min: 5000, max: 10000 }
                 draw:
                     icons:
-                        size: [[8,4px],[9,4px],[10,4px],[11,0px]]
+                        size: [[8, 4px], [9, 4px], [10, 4px], [11, 0px]]
                         sprite: townspot-xs-rev
                         priority: 23
                         text:
                             font:
-                                fill: [[9,[0.25,0.25,0.25]],[11,[0.00,0.00,0.00]]]
-                                size: [[9,10px],[14,12px],[15,0px]]
+                                size: [[9, 10px], [14, 12px], [15, 0px]]
                     text-blend-order:
                         priority: 23
                         font:
-                            fill: [[9,[0.25,0.25,0.25]],[11,[0.00,0.00,0.00]]]
-                            size: [[9,10px],[14,12px],[15,0px]]
+                            size: [[9, 10px], [14, 12px], [15, 0px]]
                 capital:
                     filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
@@ -3751,23 +3751,21 @@ layers:
                     population: { min: 2000, max: 5000 }
                 draw:
                     icons:
-                        size: [[8,4px],[9,4px],[10,4px],[11,0px]]
+                        size: [[8, 4px], [9, 4px], [10, 4px], [11, 0px]]
                         sprite: townspot-xs-rev
                         priority: 25
                         text:
                             font:
-                                fill: [[9,[0.25,0.25,0.25]],[11,[0.00,0.00,0.00]]]
-                                size: [[9,10px],[14,12px],[15,0px]]
+                                size: [[9, 10px], [14, 12px], [15, 0px]]
                     text-blend-order:
                         priority: 25
                         font:
-                            fill: [[9,[0.25,0.25,0.25]],[11,[0.00,0.00,0.00]]]
-                            size: [[9,10px],[14,12px],[15,0px]]
+                            size: [[9, 10px], [14, 12px], [15, 0px]]
                 capital:
                     filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
                         icons:
-                            size: [[10,5px],[11,0px]]
+                            size: [[10, 5px], [11, 0px]]
                             sprite: capital-s
                             priority: 24
                         text-blend-order:
@@ -3777,23 +3775,21 @@ layers:
                     population: { min: 1000, max: 2000 }
                 draw:
                     icons:
-                        size: [[8,4px],[9,4px],[10,4px],[11,0px]]
+                        size: [[8, 4px], [9, 4px], [10, 4px], [11, 0px]]
                         sprite: townspot-xs-rev
                         priority: 27
                         text:
                             font:
-                                fill: [[9,[0.25,0.25,0.25]],[11,[0.00,0.00,0.00]]]
-                                size: [[9,10px],[14,12px],[15,0px]]
+                                size: [[9, 10px], [14, 12px], [15, 0px]]
                     text-blend-order:
                         priority: 27
                         font:
-                            fill: [[9,[0.25,0.25,0.25]],[11,[0.00,0.00,0.00]]]
-                            size: [[9,10px],[14,12px],[15,0px]]
+                            size: [[9, 10px], [14, 12px], [15, 0px]]
                 capital:
                     filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
                         icons:
-                            size: [[10,5px],[11,0px]]
+                            size: [[10, 5px], [11, 0px]]
                             sprite: capital-s
                             priority: 26
                         text-blend-order:
@@ -3803,23 +3799,21 @@ layers:
                     population: { min: 200, max: 1000 }
                 draw:
                     icons:
-                        size: [[8,4px],[9,4px],[10,4px],[11,0px]]
+                        size: [[8, 4px], [9, 4px], [10, 4px], [11, 0px]]
                         sprite: townspot-xs-rev
                         priority: 28
                         text:
                             font:
-                                fill: [[9,[0.25,0.25,0.25]],[11,[0.00,0.00,0.00]]]
-                                size: [[9,10px],[14,11px],[15,0px]]
+                                size: [[9, 10px], [14, 11px], [15, 0px]]
                     text-blend-order:
                         priority: 28
                         font:
-                            fill: [[9,[0.25,0.25,0.25]],[11,[0.00,0.00,0.00]]]
-                            size: [[9,10px],[14,11px],[15,0px]]
+                            size: [[9, 10px], [14, 11px], [15, 0px]]
                 capital:
                     filter: { country_capital: true, $zoom: { min: 5 } }
                     draw:
                         icons:
-                            size: [[10,5px],[11,0px]]
+                            size: [[10, 5px], [11, 0px]]
                             sprite: capital-s
                             priority: 27
                         text-blend-order:
@@ -3912,7 +3906,7 @@ layers:
                     font:
                         family: global.text_font_family
                         weight: normal
-                        fill: global.grey2
+                        fill: global.text_fill_pois
                         size: [[13, 10px], [14, 11px], [17, 12px], [19, 12px], [20, 14px]]
                         stroke: { color: global.text_stroke, width: [[12, 3px],[16, 4px]] }
         # improve legibility at high zooms
@@ -4012,7 +4006,7 @@ layers:
                     priority: 100
                     text:
                         font:
-                            fill: global.building2
+                            fill: global.text_fill_pois2
                             style: italic
                             size: 11px
         suppress-icon-z17:
@@ -4521,10 +4515,10 @@ layers:
                         interactive: global.sdk_interactive
                         priority: 16
                         font:
-                            fill: black
+                            fill: global.text_fill
                             weight: normal
                             size: 11px
-                            stroke: { color: white, width: 3 }
+                            stroke: { color: global.text_stroke_transit, width: 3px }
             poi_labels-z14:
                 filter: { $zoom: [14] }
                 draw: { icons: { text: { font: { size: 11px } } } }
@@ -4643,9 +4637,9 @@ layers:
                         text:
                             interactive: global.sdk_interactive
                             font:
-                                fill: black
+                                fill: global.text_fill
                                 size: 12px
-                                stroke: { color: white, width: 4 }
+                                stroke: { color: global.text_stroke_transit, width: 4px }
             bus-station-labels:
                 filter:
                     kind: [bus_station, bus_stop]
@@ -4659,9 +4653,9 @@ layers:
                             interactive: global.sdk_interactive
                             priority: 18
                             font:
-                                fill: black
+                                fill: global.text_fill
                                 size: 12px
-                                stroke: { color: white, width: 4 }
+                                stroke: { color: global.text_stroke_transit, width: 4px }
                 bus_stop:
                     filter:
                         kind: [bus_stop]
@@ -4685,9 +4679,9 @@ layers:
                             interactive: global.sdk_interactive
                             text_source: function() { if( feature.ref || feature.name ) { if( feature.ref && feature.name ) { return '[' + feature.ref + ']\n' + feature.name; } else { return feature.name; } } else { return "Entrance"; } }
                             font:
-                                fill: black
+                                fill: global.text_fill
                                 size: 12px
-                                stroke: { color: white, width: 4 }
+                                stroke: { color: global.text_stroke_transit, width: 4px }
 
     earth-labels:
         data: { source: mapzen, layer: earth }
@@ -4746,7 +4740,7 @@ layers:
                     priority: 100
                     visible: global.text_visible_landuse_generic
                     font:
-                        fill: '#666'
+                        fill: global.text_fill_landuse
                         family: global.text_font_family
                         style: italic
                         size: 11px
