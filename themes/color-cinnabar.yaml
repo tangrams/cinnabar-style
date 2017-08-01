@@ -61,7 +61,7 @@ global:
     service_road:               [1.000,1.000,1.000]
     service_road_casing:        grey
     path1:                      [1.000,1.000,1.000]
-    path_casing1:               grey
+    path_casing1:               [0.750,0.750,0.750]
     path_bridge_casing1:        black
     path_bridge_casing2:        grey                # zoomed out
     path_steps1:                [0.794,0.815,0.667]
