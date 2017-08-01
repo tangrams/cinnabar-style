@@ -107,7 +107,8 @@ global:
     sports_centre:      [0.700,0.700,0.700]     # sports_centre
     zoo:                [0.8,0.8,0.8]           # minor zoo related AOIs
     zoo_o:              [0.4,0.4,0.4]           # minor zoo related AOIs outline
-    green12:            [0.700,0.700,0.700]     # grass (common areas)
+    industrial:         [0.776,0.776,0.776]
+    grass:              [0.700,0.700,0.700]     # grass (common areas)
     orange1:            [0.700,0.700,0.700]     # stadium
     orange2:            '#b8b8b8'               # pitch (play field)
     orange3:            [0.700,0.700,0.700]     # racetrack (play field)

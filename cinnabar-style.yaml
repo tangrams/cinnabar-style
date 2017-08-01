@@ -4903,7 +4903,7 @@ layers:
                 kind: industrial
             draw:
                 polygons:
-                    color: global.grey7
+                    color: global.industrial
 
         power:
             filter: { kind: [plant, generator, substation] }
@@ -5028,7 +5028,7 @@ layers:
                     surface: [grass]
                 draw:
                     polygons:
-                        color: global.green12
+                        color: global.grass
 
         pitch:
             filter: { kind: pitch }
