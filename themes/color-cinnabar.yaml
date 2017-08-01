@@ -100,14 +100,14 @@ global:
     green2_r:           [0.700,0.700,0.700]     # cemetery road
     green2_b:           '#9caca0'               # cemetery, zoo buildings
     green2_bo:          [0.200,0.200,0.200]     # cemetery, zoo building outline
-    green3:             '#b8d2bf'               # golf course
-    green4:             [0.861,0.896,0.870]     # farm faint
-    green4_v:           false                   # farm faint
-    green6:             [0.580,0.835,0.624]     # nature reserve
-    green7:             '#bddec5'               # forest, parks, national park
-    green10:            '#c7d4c0'               # sports_centre
-    green11:            '#d8ddd0'               # minor zoo related AOIs
-    green11_o:          '#aec7b5'               # minor zoo related AOIs outline
+    golf_course:        '#b8d2bf'               # golf course
+    farm:               [0.861,0.896,0.870]     # farm faint
+    farm_v:             false                   # farm faint
+    pitch_o:            [0.580,0.835,0.624]    # pitch outline
+    park_forest:        '#bddec5'               # forest, parks, national park
+    sports_centre:      '#c7d4c0'               # sports_centre
+    zoo:            '#d8ddd0'               # minor zoo related AOIs
+    zoo_o:          '#aec7b5'               # minor zoo related AOIs outline
     green12:            [0.584,0.843,0.792]     # grass (common areas)
     orange1:            '#bfb08e'               # stadium
     orange2:            [0.847,0.800,0.690]     # pitch (play field)

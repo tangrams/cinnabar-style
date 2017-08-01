@@ -83,7 +83,7 @@ global:
     # areas:
     scene1:             [0.85, 0.85, 0.85]      # map background, water
     water1:             grey                    # water
-    water2:             [0.70, 0.70, 0.70]      # playa
+    water2:             [0.700,0.700,0.700]     # playa
     water1_o:           [0.30, 0.30, 0.30]      # water stroke
     water2_o:           [0.40, 0.40, 0.40]      # water stroke
     earth1:             [0.75, 0.75, 0.75]      # land color
@@ -95,20 +95,20 @@ global:
     green1_b:           [0.60, 0.60, 0.60]      # park buildings
     green1_bo:          [0.20, 0.20, 0.20]      # park building outlines
     green1_w:           [0.630,0.630,0.630]     # wilderness area
-    green2:             [0.70,0.70,0.70]        # cemetery, zoo
+    green2:             [0.700,0.700,0.700]     # cemetery, zoo
     green2_r:           [0.65,0.65,0.66]        # cemetery, zoo road
     green2_b:           [0.65,0.65,0.65]        # cemetery, zoo buildings
     green2_bo:          [0.35,0.35,0.35]        # cemetery, zoo building outline
-    green3:             [0.7,0.7,0.7]           # golf course
-    green4:             [0.90,0.90,0.9]         # farm faint
-    green4_v:           false                   # farm faint
-    green6:             [0.55,0.55,0.55]        # nature reserve
-    green7:             [0.675,0.675,0.675]     # forest / park
-    green10:            [0.7,0.7,0.7]           # sports_centre
-    green11:            [0.8,0.8,0.8]           # minor zoo related AOIs
-    green11_o:          [0.4,0.4,0.4]           # minor zoo related AOIs outline
-    green12:            [0.7,0.7,0.7]           # grass (common areas)
-    orange1:            [0.7,0.7,0.7]           # stadium
+    golf_course:        [0.700,0.700,0.700]     # golf course
+    farm:               [0.90,0.90,0.9]         # farm faint
+    farm_v:             false                   # farm faint
+    pitch_o:            [0.550,0.550,0.550]     # pitch outline
+    park_forest:        [0.675,0.675,0.675]     # forest / park
+    sports_centre:      [0.700,0.700,0.700]     # sports_centre
+    zoo:                [0.8,0.8,0.8]           # minor zoo related AOIs
+    zoo_o:              [0.4,0.4,0.4]           # minor zoo related AOIs outline
+    green12:            [0.700,0.700,0.700]     # grass (common areas)
+    orange1:            [0.700,0.700,0.700]     # stadium
     orange2:            '#b8b8b8'               # pitch (play field)
     orange3:            [0.700,0.700,0.700]     # racetrack (play field)
     university_r:       [0.500,0.500,0.500]     # university roads

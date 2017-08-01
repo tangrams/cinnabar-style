@@ -4762,7 +4762,7 @@ layers:
                     - protect_class: ['2','3','5']
             draw:
                 polygons:
-                    color: global.green7
+                    color: global.park_forest
                     # todo: what is this?
                     order: 18
                     visible: true
@@ -4796,7 +4796,7 @@ layers:
                     - operator: ['United States Forest Service']
             draw:
                 polygons:
-                    color: global.green7
+                    color: global.park_forest
                     visible: true
                 lines:
                     color: global.earth1
@@ -4813,7 +4813,7 @@ layers:
             # default for national forests and more?
             draw:
                 polygons:
-                    color: global.green7
+                    color: global.park_forest
                     visible: true
                 lines:
                     color: global.earth1
@@ -4835,14 +4835,14 @@ layers:
                 $zoom: { min: 10 }
             draw:
                 polygons:
-                    color: global.green4
-                    visible: global.green4_v
+                    color: global.farm
+                    visible: global.farm_v
 
         forest:
             filter: { kind: [forest, wood, natural_wood, natural_forest, natural_park], $zoom: { min: 10 }, not: { operator: [ "United States Forest Service"] } }
             draw:
                 polygons:
-                    color: global.green7
+                    color: global.park_forest
                     visible: true
                 lines:
                     order: 28
@@ -4889,7 +4889,7 @@ layers:
                 kind: golf_course
             draw:
                 polygons:
-                    color: global.green3
+                    color: global.golf_course
 
         hospital:
             filter:
@@ -4923,7 +4923,7 @@ layers:
                 kind: sports_centre
             draw:
                 polygons:
-                    color: global.green10
+                    color: global.sports_centre
 
         recreation_ground:
             filter:
@@ -5037,7 +5037,7 @@ layers:
                     color: global.orange2
                 lines:
                     order: global.feature_order
-                    color: global.green6
+                    color: global.pitch_o
                     width: [[14, 0px], [15, 1px], [16, 1m]]
 
         place_of_worship:
@@ -5141,10 +5141,10 @@ layers:
                         - aviary
                 draw:
                     polygons:
-                        color: global.green11
+                        color: global.zoo
                         visible: true
                     lines:
-                        color: global.green11_o
+                        color: global.zoo_o
                         width: [[14, 0px], [15, 1px], [16, 0.5m]]
 
         landuse_urban_area-early:
