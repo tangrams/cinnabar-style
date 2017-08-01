@@ -74,7 +74,11 @@ global:
     arrows:                     [0.766,0.705,0.706]
     taxiway:                    '#ffc52a'
     runway:                     orange
-    university:                 '#D9CFC3'
+    earth1_r:                   [0.400,0.400,0.400] # land color road
+    green1_r:                   '#bddec5'           # park roads
+    green2_r:                   [0.700,0.700,0.700] # cemetery road
+    hospital_r:                 [0.788,0.708,0.708] # hospital roads
+    university_r:               '#cec1b2'           # university roads
 
     # boundaries:
     country_boundary:           [1.000,1.000,1.000]
@@ -92,16 +96,13 @@ global:
     water1_o:           '#9dc3de'               # water stroke
     water2_o:           '#9dc3de'               # water stroke 2
     earth1:             [0.890,0.886,0.878]     # land color
-    earth1_r:           [0.400,0.400,0.400]     # land color road
     urban1:             '#d8d3ca'               # urban early
     urban_v:            true                    # urban early visibility
     green1:             '#aed0b6'               # park (national park, local parks)
-    green1_r:           '#bddec5'               # park roads
     green1_b:           '#9caca0'               # park buildings
     green1_bo:          [0.414,0.457,0.425]     # park building outlines
     green1_w:           '#b7d7bf'               # wilderness area
     green2:             [0.722,0.824,0.749]     # cemetery
-    green2_r:           [0.700,0.700,0.700]     # cemetery road
     green2_b:           '#9caca0'               # cemetery, zoo buildings
     green2_bo:          [0.200,0.200,0.200]     # cemetery, zoo building outline
     golf_course:        '#b8d2bf'               # golf course
@@ -117,14 +118,13 @@ global:
     orange1:            '#bfb08e'               # stadium
     orange2:            [0.847,0.800,0.690]     # pitch (play field)
     orange3:            '#b9a597'               # racetrack (play field)
-    university_r:       '#cec1b2'               # university roads
+    university:                 '#D9CFC3'
     university_b:       '#b1aca4'               # university buildings
     university_bo:      [0.300,0.300,0.300]     # university building outlines]
     chairlift:          [0.300,0.300,0.300]
     school:             '#D9CFC3'               # school
     playground:         [0.930,0.761,0.539]     # playground
     hospital:           '#d9c3c3'               # hospital
-    hospital_r:         [0.788,0.708,0.708]     # hospital roads
     hospital_b:         '#b5a7a7'               # hospital buildings
     hospital_bo:        [0.300,0.300,0.300]     # hospital building outlines
     grey1:              [0.843,0.843,0.843]     # retail, airport apron, parking, church

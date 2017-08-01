@@ -654,7 +654,7 @@ styles:
     railway_dash:
         base: lines
         dash: [2.0, 0.25]
-        dash_background_color: global.scene1
+        dash_background_color: [0.850,0.850,0.850]
 
     lines_transparent:
         base: lines
@@ -4842,12 +4842,6 @@ layers:
                     order: 28
                     color: global.earth1
                     width: 2px
-        # urban:
-        #     filter: { kind: [urban, rural, residential] }
-        #     draw:
-        #         polygons:
-        #             color: global.earth2
-        #             visible: global.earth2_v
 
         # tier3:
         airport:

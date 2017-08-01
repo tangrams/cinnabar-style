@@ -73,7 +73,11 @@ global:
     arrows:                     [0.650,0.650,0.650]
     taxiway:                    '#cfcfcf'
     runway:                     [0.300,0.300,0.300]
-    university:                 [0.670,0.670,0.670]
+    earth1_r:                   '#666'              # land color road
+    green1_r:                   [0.60,0.60,0.60]    # park roads
+    green2_r:                   [0.65,0.65,0.66]    # cemetery, zoo road
+    hospital_r:                 [0.500,0.500,0.500] # hospital roads
+    university_r:               [0.500,0.500,0.500] # university roads
 
     # boundaries:
     country_boundary:           [0.300,0.300,0.300]
@@ -85,22 +89,19 @@ global:
     fence:                      [0.333,0.333,0.333]
 
     # areas:
-    scene1:             [0.85, 0.85, 0.85]      # map background, water
+    scene1:             [0.850,0.850,0.850]     # map background, water
     water1:             grey                    # water
     water2:             [0.700,0.700,0.700]     # playa
     water1_o:           [0.30, 0.30, 0.30]      # water stroke
     water2_o:           [0.40, 0.40, 0.40]      # water stroke
     earth1:             [0.75, 0.75, 0.75]      # land color
-    earth1_r:           '#666'                  # land color road
     urban1:           '#b3b3b3'                 # urban early
     urban_v:          true                      # urban early visibility
     green1:             [0.59,0.59,0.59]        # park
-    green1_r:           [0.60,0.60,0.60]        # park roads
     green1_b:           [0.60, 0.60, 0.60]      # park buildings
     green1_bo:          [0.20, 0.20, 0.20]      # park building outlines
     green1_w:           [0.630,0.630,0.630]     # wilderness area
     green2:             [0.700,0.700,0.700]     # cemetery, zoo
-    green2_r:           [0.65,0.65,0.66]        # cemetery, zoo road
     green2_b:           [0.65,0.65,0.65]        # cemetery, zoo buildings
     green2_bo:          [0.35,0.35,0.35]        # cemetery, zoo building outline
     golf_course:        [0.700,0.700,0.700]     # golf course
@@ -116,14 +117,13 @@ global:
     orange1:            [0.700,0.700,0.700]     # stadium
     orange2:            '#b8b8b8'               # pitch (play field)
     orange3:            [0.700,0.700,0.700]     # racetrack (play field)
-    university_r:       [0.500,0.500,0.500]     # university roads
+    university:         [0.670,0.670,0.670]
     university_b:       [0.630,0.630,0.630]     # university buildings
     university_bo:      [0.200,0.200,0.200]     # university building outlines
     chairlift:          [0.200,0.200,0.200]
     school:             '#aaaaaa'               # school
     playground:         '#b8b8b8'               # playground
     hospital:           '#a2a2a2'               # hospital
-    hospital_r:         [0.500,0.500,0.500]     # hospital roads
     hospital_b:         [0.650,0.650,0.650]     # hospital buildings
     hospital_bo:        [0.200,0.200,0.200]     # hospital building outlines
     grey1:              [0.650,0.650,0.650]     # pedestrian, retail, airport apron, parking, church
