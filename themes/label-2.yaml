@@ -1,4 +1,4 @@
- global:
+global:
     #label visibility
     icon_size:                      [[13, '14px'], [16, '18px'], [18, '19px']]
     text_visible_continent:         true
@@ -35,3 +35,20 @@
     text_visible_airport_gate:      true
     sdk_road_shields:               false
     text_visible_exits:             false
+
+layers:
+    places:
+        populated-places:
+            draw:
+                icons:
+                    buffer: 48px
+                text-blend-order:
+                    buffer: 48px
+
+    pois:
+        filter:
+            all:
+                - not: { kind: [building, address, farm, tree, apron, residential, commercial, industrial] }
+                # White list a few kinds to "always" show per the tile zoom inclusion, else test feature's min_zoom
+                #- function() { return feature.min_zoom <= $zoom }
+                - function() { return feature.min_zoom <= ($zoom - 4) }

@@ -1,4 +1,4 @@
- global:
+global:
     #label visibility
     icon_size:                      [[13, '14px'], [16, '18px'], [18, '19px']]
     text_visible_continent:         false

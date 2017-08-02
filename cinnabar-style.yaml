@@ -1673,7 +1673,7 @@ layers:
                             text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
                                 fill: [[11, global.text_fill], [15, global.text_fill], [16, global.text_fill2]]
-                                size: [[11, 11px], [16, 14px]]
+                                size: [[11, 11px], [16, 13px]]
                                 stroke: { color: global.text_stroke_road2, width: 4px }
                 labels-trunk_primary-z16-up:
                     filter: { $zoom: { min: 16 } }
@@ -1684,7 +1684,7 @@ layers:
                             text_source: global.ux_language_text_source_road_ref_and_name
                             font:
                                 fill: global.text_fill2
-                                size: [[16, 14px], [20, 20px]]
+                                size: [[16, 13px], [20, 20px]]
                                 stroke: { color: global.text_stroke_road2, width: 4px }
 
 
@@ -1733,7 +1733,7 @@ layers:
                                 visible: global.text_visible_secondary
                                 font:
                                     fill: [[12, global.text_fill], [15, global.text_fill], [16, global.text_fill2]]
-                                    size: [[12, 12px], [15, 14px]]
+                                    size: [[12, 12px], [15, 13px]]
                                     stroke: { color: global.text_stroke_road3, width: 2px }
                         labels-secondary-routes-z15:
                             filter: { $zoom: { min: 15 } }
@@ -1758,7 +1758,7 @@ layers:
                             text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
                                 fill: [[11, global.text_fill], [15, global.text_fill], [16, global.text_fill2]]
-                                size: [[12, 10px], [16, 13px], [20, 20px]]
+                                size: [[12, 10px], [16, 12px], [20, 20px]]
                                 stroke: { color: global.text_stroke_road2, width: [[12, 2px], [18, 4px]] }
             tertiary:
                 filter: { kind_detail: [tertiary, tertiary_link] }
@@ -1974,6 +1974,14 @@ layers:
                     lines:
                         color: global.path1
                         width: [[14, 1.0px], [15, 1.5px], [17, 3m]]
+
+            footway:
+                filter: { kind_detail: footway }
+                draw:
+                    lines:
+                        color: global.path1
+                        width: [[14, 1.0px], [15, 1.5px], [17, 3m]]
+
             bridge:
                 filter: { is_bridge: true }
                 draw:
@@ -2779,7 +2787,7 @@ layers:
             draw:
                 railway_dash:
                     color: [[14, global.rail1_e], [16, global.rail1]]
-                    width: [[12, 0px], [12, 0.5px], [18, 2px], [20, 2m]]
+                    width: [[12, 0px], [14, 0px], [18, 2px], [20, 2m]]
                     # let roads sort themselves past zoom 14
                     order: global.feature_order
                     # but give them all the same outline
@@ -2808,11 +2816,13 @@ layers:
         draw:
             polygons:
                 visible: false
-                order: 329
+                # order: 329
+                order: 355
                 color: global.building1
             lines:
                 visible: false
-                order: 330
+                # order: 330
+                order: 356
                 color: global.building2
                 width: [[14, 0px], [15, 1px], [18, 1px], [19, 0.4m]]
 
@@ -2869,6 +2879,8 @@ layers:
                     all:
                         - layer: [-1, -2, -3, -4, -5]
                 draw:
+                    polygons:
+                        visible: false
                     lines:
                         color: global.building2
 
@@ -5070,8 +5082,7 @@ layers:
                     polygons:
                         color: global.grey6_b
                         visible: true
-                    outline:
-                        style: lines
+                    lines:
                         color: global.grey1_e
                         width: [[14, 0px], [15, 1px], [16, 0.5m]]
 
