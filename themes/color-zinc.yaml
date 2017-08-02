@@ -36,7 +36,7 @@ global:
     ferry1:                     [0.4, 0.4, 0.4]
     rail1:                      [0.467,0.467,0.467]
     rail1_e:                    [0.467,0.467,0.467]
-    rail2:                      '#999'              # less important rail (service, sidings)
+    rail2:                      [0.867,0.867,0.867]             # less important rail (service, sidings)
     major_road1:                [0.800,0.800,0.800]
     major_road1b:               [0.800,0.800,0.800]
     major_road2:                [0.800,0.800,0.800]
@@ -126,7 +126,7 @@ global:
     hospital:           '#a2a2a2'               # hospital
     hospital_b:         [0.650,0.650,0.650]     # hospital buildings
     hospital_bo:        [0.200,0.200,0.200]     # hospital building outlines
-    grey1:              [0.650,0.650,0.650]     # pedestrian, retail, airport apron, parking, church
+    grey1:              [0.710,0.710,0.710]     # pedestrian, retail, airport apron, parking, church
     grey1_e:            [0.800,0.800,0.800]     # pedestrian, retail, airport apron, parking, church early zoom 14
     grey1_v:            true                    # pedestrian, retail, airport apron, parking, church
     grey6:              [0.776,0.776,0.776]     # industrial
