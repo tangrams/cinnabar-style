@@ -37,6 +37,20 @@ global:
     text_visible_exits:             true
 
 layers:
+    roads:
+        major_road:
+            secondary:
+                labels-secondary:
+                    filter: { $zoom: { min: 15 } }
+
+            tertiary:
+                labels-tertiary:
+                    filter: { $zoom: { min: 15 } }
+
+        minor_road:
+            labels-minor_road:
+                filter: { $zoom: { min: 16 } }
+
     places:
         populated-places:
             draw:
