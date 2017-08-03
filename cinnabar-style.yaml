@@ -1021,6 +1021,7 @@ layers:
                         - { $zoom: { min: 15 } }
                 draw:
                     lines:
+                        order: 240
                         color: global.water2_o
                         width: [[14, 1.0px], [16, 1.5px], [18, 2m]]
                         join: round
@@ -1488,7 +1489,7 @@ layers:
             filter: { any: [is_bridge: true, is_tunnel: true] }
             draw:
                 lines:
-                    #cap: butt
+                    # cap: butt
                     outline:
                         # except bridges and tunnels, their outlines should also self-sort
                         order: global.feature_order
