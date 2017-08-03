@@ -1969,6 +1969,14 @@ layers:
                         order: 351
                         outline:
                             order: 350
+
+            z16-up:
+                filter:
+                    $zoom: { min: 16 }
+                draw:
+                    lines:
+                        cap: round
+
             pedestrian:
                 filter: { kind_detail: pedestrian }
                 draw:
