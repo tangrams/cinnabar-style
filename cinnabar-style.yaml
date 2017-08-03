@@ -1957,7 +1957,7 @@ layers:
             draw:
                 lines:
                     color: global.path1
-                    width: [[14, 0px], [15, 1.5px], [17, 3m]]
+                    width: [[14, 0.5px], [15, 1.5px], [17, 3m]]
                     outline:
                         color: global.path_casing1
                         width: [[15, 0px], [17, 0px], [18, 1px]]
@@ -1982,14 +1982,14 @@ layers:
                 draw:
                     lines:
                         color: global.path1
-                        width: [[14, 1.0px], [15, 1.5px], [17, 3m]]
+                        width: [[14, 0.5px], [15, 1.5px], [17, 3m]]
 
             footway:
                 filter: { kind_detail: footway }
                 draw:
                     lines:
                         color: global.path1
-                        width: [[14, 1.0px], [15, 1.5px], [17, 3m]]
+                        width: [[14, 0.5px], [15, 1.5px], [17, 3m]]
 
             bridge:
                 filter: { is_bridge: true }
@@ -2009,7 +2009,7 @@ layers:
                         color: [[14, global.green1_r], [16, global.minor_road3]]
                         outline:
                             color: global.green1_r
-                            width: [[14, 0.1px], [15, 0.5px], [18, 2px]]
+                            width: [[14, 0px], [15, 0.5px], [18, 2px]]
             in_other:
                 filter: { landuse_kind: [cemetery, garden, zoo, university, hospital] }
                 draw:
