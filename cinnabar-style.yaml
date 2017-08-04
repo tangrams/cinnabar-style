@@ -1472,12 +1472,6 @@ layers:
                     placement_spacing: [[17, 70px], [20, 175px]]
                     angle: auto
 
-        # early-minor_road:
-        #     filter: { $zoom: { max: 15 }, kind: [minor_road] }
-        #     draw:
-        #         lines:
-        #             order: 351
-
         early:
             filter: { $zoom: { max: 15 } }
             draw:
@@ -1851,7 +1845,7 @@ layers:
                 filter: { landuse_kind: [park, protected_area, nature_reserve, conservation, golf_course, garden, wood, farmland, farm, zoo] }
                 draw:
                     lines:
-                        color: [[11, global.green1_r], [12, global.green1_r], [14, global.minor_road3]]
+                        color: global.minor_road3
                         outline:
                             color: [[14, global.green1_r], [17, global.minor_casing2]]
                             width: [[12, 0px], [13, 0.5px], [14, 1.0px], [16, 1.5px], [18, 3.0px]]
@@ -2084,6 +2078,19 @@ layers:
                         outline:
                             color: [[16, global.green1_r], [17, global.major_casing1]]
                             width: [[15, 0px], [17, 0.5px], [18, 1.0px], [19, 2.0px]]
+
+            labels-track:
+                filter: { $zoom: { min: 17 } }
+                draw:
+                    text-blend-order:
+                        priority: 61
+                        visible: global.text_visible_path
+                        text_source: name
+                        font:
+                            fill: global.text_fill
+                            size: 12px
+                            stroke: { color: global.text_stroke_road4, width: 4px }
+
         steps:
             filter:
                 all:
