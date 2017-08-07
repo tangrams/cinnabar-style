@@ -611,6 +611,20 @@ styles:
         dash: [2.0, 0.25]
         dash_background_color: [0.850,0.850,0.850]
 
+    dots-lines:
+        base: lines
+        lighting: false
+        texcoords: true
+        blend: overlay
+        shaders:
+            defines:
+                dotSize: .1
+            blocks:
+                color: |
+                    vec2 st = fract(v_texcoord.xy);
+                    st -= .5;
+                    color.a = 1.- step(dotSize, dot(st,st)*2.);
+
     lines_transparent:
         base: lines
         blend: overlay
@@ -963,7 +977,7 @@ layers:
                         - kind: [lake, water, riverbank, reservoir, playa, swimming_pool]
                     any:
                         # limit show smaller landuse areas to higher zooms
-                        - { $zoom: { min: 1 },  area: { min: 40000000000 } }
+                        - { $zoom: { min: 0 },  area: { min: 40000000000 } }
                         - { $zoom: { min: 2 },  area: { min: 20000000000 } }
                         # some weird natural earth scale set transition
                         - { $zoom: { min: 3 },  area: { min: 80000000000 } }
@@ -1003,7 +1017,7 @@ layers:
                         - $zoom: { min: 14 }
                     any:
                         # limit show smaller landuse areas to higher zooms
-                        - { $zoom: { min: 1 },  area: { min: 40000000000 } }
+                        - { $zoom: { min: 0 },  area: { min: 40000000000 } }
                         - { $zoom: { min: 2 },  area: { min: 20000000000 } }
                         # some weird natural earth scale set transition
                         - { $zoom: { min: 3 },  area: { min: 80000000000 } }
@@ -1040,7 +1054,12 @@ layers:
                             - kind: drain
                     draw:
                         lines:
+                            visible: false
+                        dots-lines:
+                            order: function() { return feature.sort_rank; }
                             color: global.water2_o
+                            width: [[10, 0px], [11, 0.5px], [14, 2px], [16,4px]]
+
 
         water-labels:
             filter:
@@ -1092,6 +1111,7 @@ layers:
             water-area-labels:
                 filter:
                     all:
+                        - name: true
                         - $geometry: point
                         - not: { kind: [riverbank, dock, playa] }
                         - area: true
@@ -1129,14 +1149,16 @@ layers:
             playa-labels:
                 filter:
                     all:
+                        - name: true
                         - $geometry: point
                         - kind: playa
                         - area: true
                     any:
                         # show labels for smaller landuse areas at higher zooms
-                        - { $zoom: { min: 7 },  area: { min: 1500000000 } }
+                        - { $zoom: { min: 5 },  area: { min: 10000000000 } }
+                        - { $zoom: { min: 6 },  area: { min: 5000000000 } }
+                        - { $zoom: { min: 7 },  area: { min: 400000000 } }
                         - { $zoom: { min: 8 },  area: { min: 200000000 } }
-                        # feature no longer available in switch from NE to OSM
                         - { $zoom: { min: 9 },  area: { min: 100000000 } }
                         - { $zoom: { min: 10 }, area: { min: 100000000 } }
                         - { $zoom: { min: 11 }, area: { min: 10000000 } }
@@ -1471,12 +1493,6 @@ layers:
                     placement: spaced
                     placement_spacing: [[17, 70px], [20, 175px]]
                     angle: auto
-
-        # early-minor_road:
-        #     filter: { $zoom: { max: 15 }, kind: [minor_road] }
-        #     draw:
-        #         lines:
-        #             order: 351
 
         early:
             filter: { $zoom: { max: 15 } }
@@ -1851,7 +1867,7 @@ layers:
                 filter: { landuse_kind: [park, protected_area, nature_reserve, conservation, golf_course, garden, wood, farmland, farm, zoo] }
                 draw:
                     lines:
-                        color: [[11, global.green1_r], [12, global.green1_r], [14, global.minor_road3]]
+                        color: global.minor_road3
                         outline:
                             color: [[14, global.green1_r], [17, global.minor_casing2]]
                             width: [[12, 0px], [13, 0.5px], [14, 1.0px], [16, 1.5px], [18, 3.0px]]
@@ -2084,6 +2100,19 @@ layers:
                         outline:
                             color: [[16, global.green1_r], [17, global.major_casing1]]
                             width: [[15, 0px], [17, 0.5px], [18, 1.0px], [19, 2.0px]]
+
+            labels-track:
+                filter: { $zoom: { min: 17 } }
+                draw:
+                    text-blend-order:
+                        priority: 61
+                        visible: global.text_visible_path
+                        text_source: name
+                        font:
+                            fill: global.text_fill
+                            size: 12px
+                            stroke: { color: global.text_stroke_road4, width: 4px }
+
         steps:
             filter:
                 all:
