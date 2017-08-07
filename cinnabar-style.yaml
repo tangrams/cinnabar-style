@@ -611,6 +611,20 @@ styles:
         dash: [2.0, 0.25]
         dash_background_color: [0.850,0.850,0.850]
 
+    dots-lines:
+        base: lines
+        lighting: false
+        texcoords: true
+        blend: overlay
+        shaders:
+            defines:
+                dotSize: .1
+            blocks:
+                color: |
+                    vec2 st = fract(v_texcoord.xy);
+                    st -= .5;
+                    color.a = 1.- step(dotSize, dot(st,st)*2.);
+
     lines_transparent:
         base: lines
         blend: overlay
@@ -963,7 +977,7 @@ layers:
                         - kind: [lake, water, riverbank, reservoir, playa, swimming_pool]
                     any:
                         # limit show smaller landuse areas to higher zooms
-                        - { $zoom: { min: 1 },  area: { min: 40000000000 } }
+                        - { $zoom: { min: 0 },  area: { min: 40000000000 } }
                         - { $zoom: { min: 2 },  area: { min: 20000000000 } }
                         # some weird natural earth scale set transition
                         - { $zoom: { min: 3 },  area: { min: 80000000000 } }
@@ -1003,7 +1017,7 @@ layers:
                         - $zoom: { min: 14 }
                     any:
                         # limit show smaller landuse areas to higher zooms
-                        - { $zoom: { min: 1 },  area: { min: 40000000000 } }
+                        - { $zoom: { min: 0 },  area: { min: 40000000000 } }
                         - { $zoom: { min: 2 },  area: { min: 20000000000 } }
                         # some weird natural earth scale set transition
                         - { $zoom: { min: 3 },  area: { min: 80000000000 } }
@@ -1040,7 +1054,12 @@ layers:
                             - kind: drain
                     draw:
                         lines:
+                            visible: false
+                        dots-lines:
+                            order: function() { return feature.sort_rank; }
                             color: global.water2_o
+                            width: [[10, 0px], [11, 0.5px], [14, 2px], [16,4px]]
+
 
         water-labels:
             filter:
@@ -1092,6 +1111,7 @@ layers:
             water-area-labels:
                 filter:
                     all:
+                        - name: true
                         - $geometry: point
                         - not: { kind: [riverbank, dock, playa] }
                         - area: true
@@ -1129,14 +1149,16 @@ layers:
             playa-labels:
                 filter:
                     all:
+                        - name: true
                         - $geometry: point
                         - kind: playa
                         - area: true
                     any:
                         # show labels for smaller landuse areas at higher zooms
-                        - { $zoom: { min: 7 },  area: { min: 1500000000 } }
+                        - { $zoom: { min: 5 },  area: { min: 10000000000 } }
+                        - { $zoom: { min: 6 },  area: { min: 5000000000 } }
+                        - { $zoom: { min: 7 },  area: { min: 400000000 } }
                         - { $zoom: { min: 8 },  area: { min: 200000000 } }
-                        # feature no longer available in switch from NE to OSM
                         - { $zoom: { min: 9 },  area: { min: 100000000 } }
                         - { $zoom: { min: 10 }, area: { min: 100000000 } }
                         - { $zoom: { min: 11 }, area: { min: 10000000 } }
