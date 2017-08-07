@@ -2102,7 +2102,7 @@ layers:
                             width: [[15, 0px], [17, 0.5px], [18, 1.0px], [19, 2.0px]]
 
             labels-track:
-                filter: { $zoom: { min: 17 } }
+                filter: { $zoom: { min: 16 } }
                 draw:
                     text-blend-order:
                         priority: 61
@@ -2110,7 +2110,7 @@ layers:
                         text_source: name
                         font:
                             fill: global.text_fill
-                            size: 12px
+                            size: [[16,11px],[17,12px]]
                             stroke: { color: global.text_stroke_road4, width: 4px }
 
         steps:
