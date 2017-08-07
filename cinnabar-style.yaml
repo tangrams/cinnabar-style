@@ -4847,7 +4847,11 @@ layers:
                     order: 28
                     color: global.earth1
                     width: 2px
-
+            natural:
+               filter: { kind: [natural_wood, natural_forest, natural_park] }
+               draw:
+                   lines:
+                       visible: false
         # tier3:
         airport:
             filter:
