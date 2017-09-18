@@ -13,7 +13,7 @@
 import:
     - themes/color-cinnabar.yaml
     - themes/label-5.yaml
-    - cinnabar-icons.yaml
+    - themes/cinnabar-icons.yaml
 
 global:
     # Sign up for a Mapzen API key to enjoy higher rate limits
@@ -2647,48 +2647,48 @@ layers:
                     lines:
                         color: global.building2
 
-            in_park:
-                #todo: does forest belong here?
-                filter: { landuse_kind: [park,forest,nature_reserve,conservation,golf_course,garden] }
+        in_park:
+            #todo: does forest belong here?
+            filter: { landuse_kind: [park,forest,nature_reserve,conservation,golf_course,garden] }
+            draw:
+                polygons:
+                    color: global.green1_b
+                lines:
+                    color: global.green1_bo
+            other_green:
+                filter: { landuse_kind: [golf_course, nature_reserve, conservation] }
                 draw:
-                    polygons:
-                        color: global.green1_b
                     lines:
-                        color: global.green1_bo
-                other_green:
-                    filter: { landuse_kind: [golf_course, nature_reserve, conservation] }
-                    draw:
-                        lines:
-                            color: global.green1_r
+                        color: global.green1_r
 
-            in_zoo:
-                filter: { landuse_kind: [zoo, animal, enclosure, petting_zoo, aviary] }
-                draw:
-                    polygons:
-                        color: global.green2_b
-                    lines:
-                        color: global.green2_bo
-            in_university:
-                filter: { landuse_kind: [university,school] }
-                draw:
-                    polygons:
-                        color: global.university_b
-                    lines:
-                        color: global.university_bo
-            in_hospital:
-                filter: { landuse_kind: hospital }
-                draw:
-                    polygons:
-                        color: global.hospital_b
-                    lines:
-                        color: global.hospital_bo
-            in_airport:
-                filter: { landuse_kind: [aerodrome, runway, taxiway] }
-                draw:
-                    polygons:
-                        color: global.airport_b
-                    lines:
-                        color: global.airport_bo
+        in_zoo:
+            filter: { landuse_kind: [zoo, animal, enclosure, petting_zoo, aviary] }
+            draw:
+                polygons:
+                    color: global.green2_b
+                lines:
+                    color: global.green2_bo
+        in_university:
+            filter: { landuse_kind: [university,school] }
+            draw:
+                polygons:
+                    color: global.university_b
+                lines:
+                    color: global.university_bo
+        in_hospital:
+            filter: { landuse_kind: hospital }
+            draw:
+                polygons:
+                    color: global.hospital_b
+                lines:
+                    color: global.hospital_bo
+        in_airport:
+            filter: { landuse_kind: [aerodrome, runway, taxiway] }
+            draw:
+                polygons:
+                    color: global.airport_b
+                lines:
+                    color: global.airport_bo
 
 
         building-labels:

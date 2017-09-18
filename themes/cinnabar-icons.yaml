@@ -21,7 +21,7 @@ styles:
 
 textures:
     mapzen_icon_library:
-        url: images/refill@2x.png
+        url: ../images/refill@2x.png
         filtering: mipmap
         sprites:
             # define sprites: [x origin, y origin, width, height]
