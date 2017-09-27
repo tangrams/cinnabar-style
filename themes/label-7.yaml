@@ -39,5 +39,5 @@ global:
 layers:
     pois:
         draw:
-            icons:
+            mapzen_icon_library:
                 buffer: 48px
