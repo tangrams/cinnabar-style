@@ -39,7 +39,7 @@ global:
 layers:
     places:
         draw:
-            icons:
+            mapzen_icon_library:
                 text:
                     buffer: 0px
 
@@ -59,14 +59,14 @@ layers:
 
         populated-places:
             draw:
-                icons:
+                mapzen_icon_library:
                     buffer: 0px
                 text-blend-order:
                     buffer: 0px
 
             _icons_later:
                 draw:
-                    icons:
+                    mapzen_icon_library:
                         visible: true
 
             _text_early:
@@ -78,21 +78,21 @@ layers:
                 filter:
                     population: true
                 draw:
-                    icons:
+                    mapzen_icon_library:
                         buffer: 0px
 
             z9-10k-below:
                 filter:
                     population: true
                 draw:
-                    icons:
+                    mapzen_icon_library:
                         buffer: 0px
 
             z9-no-population:
                 filter:
                     population: true
                 draw:
-                    icons:
+                    mapzen_icon_library:
                         buffer: 0px
 
         neighbourhoods:
@@ -105,7 +105,7 @@ layers:
             all:
                 - kind: true
         draw:
-            icons:
+            mapzen_icon_library:
                 buffer: 0px
                 text:
                     buffer: 0px
@@ -113,124 +113,124 @@ layers:
         z-server-friend:
             hide-until-z12-any:
                 draw:
-                    icons:
+                    mapzen_icon_library:
                         visible: true
 
             hide-until-z14-any:
                 draw:
-                    icons:
+                    mapzen_icon_library:
                         visible: true
 
             hide-until-z15-any:
                 draw:
-                    icons:
+                    mapzen_icon_library:
                         visible: true
 
             hide-until-z15-no-area:
                 draw:
-                    icons:
+                    mapzen_icon_library:
                         visible: true
 
             hide-until-z15-with-area:
                 draw:
-                    icons:
+                    mapzen_icon_library:
                         visible: true
 
             hide-until-z16-any:
                 draw:
-                    icons:
+                    mapzen_icon_library:
                         visible: true
 
             hide-until-z16-no-area:
                 draw:
-                    icons:
+                    mapzen_icon_library:
                         visible: true
 
             hide-until-z17-any:
                 draw:
-                    icons:
+                    mapzen_icon_library:
                         visible: true
 
             hide-until-z17-with-area:
                 draw:
-                    icons:
+                    mapzen_icon_library:
                         visible: true
 
             hide-until-z17-no-area:
                 draw:
-                    icons:
+                    mapzen_icon_library:
                         visible: true
 
             hide-until-z18-any:
                 draw:
-                    icons:
+                    mapzen_icon_library:
                         visible: true
 
             hide-until-z18-no-area:
                 draw:
-                    icons:
+                    mapzen_icon_library:
                         visible: true
 
             hide-until-z19-any:
                 draw:
-                    icons:
+                    mapzen_icon_library:
                         visible: true
 
             military-early:
                 draw:
-                    icons:
+                    mapzen_icon_library:
                         visible: true
 
             university-early:
                 draw:
-                    icons:
+                    mapzen_icon_library:
                         visible: true
 
             school-early:
                 draw:
-                    icons:
+                    mapzen_icon_library:
                         visible: true
 
             garden-area-early:
                 draw:
-                    icons:
+                    mapzen_icon_library:
                         visible: true
 
             cemetery-early:
                 draw:
-                    icons:
+                    mapzen_icon_library:
                         visible: true
 
             golf_course-early:
                 draw:
-                    icons:
+                    mapzen_icon_library:
                         visible: true
 
             office-early:
                 draw:
-                    icons:
+                    mapzen_icon_library:
                         visible: true
 
             landuse-labels-green-areas-not-national-park:
                 draw:
-                    icons:
+                    mapzen_icon_library:
                         visible: true
                 wilderness-areas-early:
                     draw:
-                        icons:
+                        mapzen_icon_library:
                             visible: true
                 not-national-park:
                     early:
                         draw:
-                            icons:
+                            mapzen_icon_library:
                                 visible: true
 
             landuse-labels-not-any-above:
                 draw:
-                    icons:
+                    mapzen_icon_library:
                         visible: true
 
             glacier:
                 draw:
-                    icons:
+                    mapzen_icon_library:
                         visible: true

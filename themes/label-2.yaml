@@ -40,7 +40,7 @@ layers:
     places:
         populated-places:
             draw:
-                icons:
+                mapzen_icon_library:
                     buffer: 48px
                 text-blend-order:
                     buffer: 48px

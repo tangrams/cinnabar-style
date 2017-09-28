@@ -46,5 +46,5 @@ layers:
                 - function() { return feature.min_zoom <= ($zoom - 1) }
 
         draw:
-            icons:
+            mapzen_icon_library:
                 buffer: 56px
